@@ -65,6 +65,11 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      colorMode: {
+        defaultMode: "light",
+        disableSwitch: true,
+        respectPrefersColorScheme: false,
+      },
       navbar: {
         title: "Spark Asset API",
         // logo: {
@@ -89,6 +94,15 @@ const config = {
       footer: {
         style: "dark",
         links: [
+          {
+            title: "Spark",
+            items: [
+              {
+                label: "Dashboard",
+                to: "https://spark-dashboard-volue-spark.vercel.app",
+              },
+            ],
+          },
           {
             title: "Docs",
             items: [
