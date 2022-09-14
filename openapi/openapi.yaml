@@ -1,15 +1,15 @@
 openapi: 3.0.0
-info: 
+info:
   title: Spark API
   version: 1.0.0
-  description: The Spark API is designed as a standard communication protocol between aggregators of smart energy devices and the Spark ecosystem. The Spark ecosystem can ingest one (or several) aggregators of smart energy devices. Smart energy devices are classified based on their nature of fascilitating enegy flexibilty. 
-  contact: 
+  description: The Spark API is designed as a standard communication protocol between aggregators of smart energy devices and the Spark ecosystem. The Spark ecosystem can ingest one (or several) aggregators of smart energy devices. Smart energy devices are classified based on their nature of fascilitating enegy flexibilty.
+  contact:
     name: Phillip Maree
     email: phillip.maree@volue.com
     url: https://www.volue.com/spark
-servers: 
+servers:
   - url: https://ev.dev-energy.volue.com
-paths: 
+paths:
   /ingest:
     post:
       summary: Ingest a smart energy device associated to a client ID.
@@ -21,33 +21,33 @@ paths:
               type: object
               properties:
                 metadata:
-                  $ref: '#/components/schemas/MetaData' 
-                parameters:   
+                  $ref: "#/components/schemas/MetaData"
+                parameters:
                   oneOf:
-                    - $ref: '#/components/schemas/VechileParameters' 
-                    - $ref: '#/components/schemas/ChargerParameters'
-                    - $ref: '#/components/schemas/HVACParameters'
-                    - $ref: '#/components/schemas/SolarInverterParameters'                 
+                    - $ref: "#/components/schemas/VehicleParameters"
+                    - $ref: "#/components/schemas/ChargerParameters"
+                    - $ref: "#/components/schemas/HVACParameters"
+                    - $ref: "#/components/schemas/SolarInverterParameters"
       responses:
-        '201':
-          description: Ingested new resource 
+        "201":
+          description: Ingested new resource
           content:
             application/json:
               schema:
                 type: object
-                $ref: '#/components/schemas/Response'
-                  
-        '401':
-          description: Duplicate ingestion of resource. Overwrite parameters 
+                $ref: "#/components/schemas/Response"
+
+        "401":
+          description: Duplicate ingestion of resource. Overwrite parameters
           content:
             application/json:
               schema:
                 type: object
-                $ref: '#/components/schemas/Response'
+                $ref: "#/components/schemas/Response"
 
   /update:
     put:
-      summary: Update a smart energy device flexbility parameters.  
+      summary: Update a smart energy device flexbility parameters.
       requestBody:
         required: true
         content:
@@ -56,50 +56,74 @@ paths:
               type: object
               properties:
                 metadata:
-                  $ref: '#/components/schemas/MetaData'
+                  $ref: "#/components/schemas/MetaData"
                 flexibility:
                   oneOf:
-                    - $ref: '#/components/schemas/VehicleFlexibility'
-                    - $ref: '#/components/schemas/ChargerFlexibility'
-                    - $ref: '#/components/schemas/HVACFlexibility'
-                    - $ref: '#/components/schemas/SolarInverterFlexibility'
+                    - $ref: "#/components/schemas/VehicleFlexibility"
+                    - $ref: "#/components/schemas/ChargerFlexibility"
+                    - $ref: "#/components/schemas/HVACFlexibility"
+                    - $ref: "#/components/schemas/SolarInverterFlexibility"
       responses:
-        '201':
+        "201":
           description: Smart energy device updated with flexbility parameters
           content:
             application/json:
               schema:
                 type: object
-                $ref: '#/components/schemas/Response'
-                
-        '401':
-          description: No association for flexible resource  
+                $ref: "#/components/schemas/Response"
+
+        "401":
+          description: No association for flexible resource
           content:
             application/json:
               schema:
                 type: object
-                $ref: '#/components/schemas/Response'
+                $ref: "#/components/schemas/Response"
 
 components:
   schemas:
-    
+    # Make Ingest Schema to match what's shown on https://ev.dev-energy.volue.com/static/api
+    Ingest:
+      type: object
+      properties:
+        metaData:
+          $ref: "#/components/schemas/MetaData"
+        parameters:
+          oneOf:
+            - $ref: "#/components/schemas/VehicleParameters"
+            - $ref: "#/components/schemas/ChargerParameters"
+            - $ref: "#/components/schemas/HVACParameters"
+            - $ref: "#/components/schemas/SolarInverterParameters"
+
+    Flexibility:
+      type: object
+      properties:
+        metaData:
+          $ref: "#/components/schemas/MetaData"
+        flexibility:
+          oneOf:
+            - $ref: "#/components/schemas/VehicleFlexibility"
+            - $ref: "#/components/schemas/ChargerFlexibility"
+            - $ref: "#/components/schemas/HVACFlexibility"
+            - $ref: "#/components/schemas/SolarInverterFlexibility"
+
     Client:
       type: object
       properties:
         schema:
           type: string
-          description: Client name 
+          description: Client name
         userId:
           type: string
-          description: A version 4 UUID user id associated with client. 
+          description: A version 4 UUID user id associated with client.
 
     MetaData:
       type: object
       properties:
         client:
-          $ref: '#/components/schemas/Client'
+          $ref: "#/components/schemas/Client"
         device:
-          $ref: '#/components/schemas/Device' 
+          $ref: "#/components/schemas/Device"
 
     FlexibilityCatagory:
       type: string
@@ -114,7 +138,7 @@ components:
           * Shiftable - Process which can be shifted in time, e.g. has a deadline (i.e., white goods)
           * Storage - Flexible in production / consumption level, but is bounded by a buffer (i.e., CHP, EV)
           * Adjustable - Flexible in production / consumption level and not constrained by a buffer (i.e., heat pumps, gas boilers)
-    
+
     DeviceClass:
       type: string
       enum:
@@ -122,19 +146,19 @@ components:
         - charger
         - inverter
         - hvac
-    
+
     Device:
       type: object
       properties:
         catagory:
-          $ref: '#/components/schemas/FlexibilityCatagory'
+          $ref: "#/components/schemas/FlexibilityCatagory"
         class:
-          $ref: '#/components/schemas/DeviceClass'
+          $ref: "#/components/schemas/DeviceClass"
         assetId:
           type: string
-          description: A version 4 UUID resource id. 
-              
-    VechileParameters:
+          description: A version 4 UUID resource id.
+
+    VehicleParameters:
       type: object
       properties:
         batteryCapacity:
@@ -146,14 +170,14 @@ components:
         minimumStateOfCharge:
           type: number
           description: Minimum state of Charge in percentage of battery capacity measured in kW
-    
+
     VehicleFlexibility:
       type: object
       properties:
         isActive:
           type: string
-          description: Indicates if asset is availible for flexbility support 
-          default: '0'
+          description: Indicates if asset is availible for flexbility support
+          default: "0"
         latitude:
           type: number
           description: Latitude in Decimal Degrees (DD) format
@@ -165,11 +189,11 @@ components:
         arrivalTime:
           type: string
           description: ISO 8601 timestamp of last observed state
-          default: '1970-01-01 00:00:00.000'
+          default: "1970-01-01 00:00:00.000"
         departureTime:
           type: string
           description: ISO 8601 timestamp of expected departure
-          default: '1970-01-01 00:00:00.000'
+          default: "1970-01-01 00:00:00.000"
         stateOfCharge:
           type: number
           description: State of charge in percentage of battery capacity
@@ -178,16 +202,16 @@ components:
           type: number
           description: Desriable state of charge in percentage of battery capacity at time of departure
           default: 0
-        chargeRate: 
+        chargeRate:
           type: number
-          description: Maximum charge rate of vehicle in kWh  
+          description: Maximum charge rate of vehicle in kWh
           default: 0
-          
+
     ChargerParameters:
       type: object
       properties:
         mode:
-          $ref: '#/components/schemas/ChargerModes'
+          $ref: "#/components/schemas/ChargerModes"
         ratedPower:
           type: number
           description: Rated Power of charger in kW
@@ -201,7 +225,7 @@ components:
         isActive:
           type: string
           description: Indicates if asset is availible for flexbility support
-          default: '0'
+          default: "0"
         latitude:
           type: number
           description: Latitude in Decimal Degrees (DD) format
@@ -218,13 +242,13 @@ components:
           type: number
           description: Desired max current in ampere, if set
           default: 0
-    
+
     HVACParameters:
       type: object
 
     HVACFlexibility:
       type: object
-    
+
     SolarInverterParameters:
       type: object
 
@@ -234,7 +258,7 @@ components:
     ChargerModes:
       type: string
       enum:
-        - Mode1 
+        - Mode1
         - Mode2
         - Mode3
         - Mode4
@@ -243,8 +267,8 @@ components:
           * Mode1 - Standard socket outlet - domestic installation (2.3 kW AC)
           * Mode2 - Standard socket outlet with an AC EV supply equipment– domestic (2.3 kW AC)
           * Mode3 - AC EV equipment permanently connected to an AC supply network (3.7-22 kW AC)
-          * Mode4 - DC EV Supply equipment ( 22-350 kW DC / 50 kW AC)    
-    
+          * Mode4 - DC EV Supply equipment ( 22-350 kW DC / 50 kW AC)
+
     Response:
       type: object
       properties:
@@ -269,13 +293,3 @@ components:
               description: Metadata summary for debugging
             headers:
               type: string
-
-            
-
-        
-
-        
-
-        
-      
-
