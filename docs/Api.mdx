@@ -1,9 +1,24 @@
-import Button from "../src/components/Button/";
+import ApiSchema from "@theme/ApiSchema";
 
-### How to use
+The Spark API is designed as a standard communication protocol between aggregators of smart energy devices and the Spark ecosystem.
+The Spark ecosystem can ingest one (or several) aggregators of smart energy devices. Smart energy devices are classified based on their nature of fascilitating enegy flexibilty.
 
-- Using our API is simple
-- Stuff will eventually be filled in here
-- In the meantime, here is a button that doesn't really do anything
+## Ingest a smart energy device associated to a client ID
 
-<Button />
+#### Request body
+
+<ApiSchema example pointer="#/components/schemas/Ingest" />
+
+#### Response
+
+<ApiSchema example pointer="#/components/schemas/Response" />
+
+## Flexibility
+
+#### Request body
+
+<ApiSchema example pointer="#/components/schemas/Flexibility" />
+
+#### Response
+
+<ApiSchema example pointer="#/components/schemas/Response" />

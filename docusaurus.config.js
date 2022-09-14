@@ -94,7 +94,7 @@ const config = {
             items: [
               {
                 label: "Api",
-                to: "/docs/ApiSchema",
+                to: "/docs/Api",
               },
             ],
           },
