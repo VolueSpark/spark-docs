@@ -24,7 +24,10 @@
     "redocusaurus": "^1.3.0"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "2.0.1"
+    "@docusaurus/eslint-plugin": "^2.1.0",
+    "@docusaurus/module-type-aliases": "^2.1.0",
+    "@tsconfig/docusaurus": "^1.0.6",
+    "typescript": "^4.8.3"
   },
   "browserslist": {
     "production": [
