@@ -2,7 +2,7 @@
 // Note: type annotations allow type checking and IDEs autocompletion
 
 const lightCodeTheme = require('prism-react-renderer/themes/github')
-// const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const darkCodeTheme = require('prism-react-renderer/themes/dracula')
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -68,8 +68,8 @@ const config = {
         ({
             colorMode: {
                 defaultMode: 'light',
-                disableSwitch: true,
-                respectPrefersColorScheme: false,
+                disableSwitch: false,
+                respectPrefersColorScheme: true,
             },
             navbar: {
                 title: 'Spark Asset API',
@@ -82,7 +82,7 @@ const config = {
                         type: 'doc',
                         docId: 'Api',
                         position: 'left',
-                        label: 'API',
+                        label: 'Documentation',
                     },
                     // {to: '/blog', label: 'Blog', position: 'left'},
                     // {
@@ -92,50 +92,50 @@ const config = {
                     // },
                 ],
             },
-            footer: {
-                style: 'dark',
-                links: [
-                    {
-                        title: 'Spark',
-                        items: [
-                            {
-                                label: 'Dashboard',
-                                to: 'https://spark-dashboard-volue-spark.vercel.app',
-                            },
-                        ],
-                    },
-                    {
-                        title: 'Docs',
-                        items: [
-                            {
-                                label: 'Api',
-                                to: '/docs/Api',
-                            },
-                        ],
-                    },
-                    // {
-                    //   title: "Other sites",
-                    //   items: [
-                    //     {
-                    //       label: "Stack Overflow",
-                    //       href: "https://stackoverflow.com/questions/tagged/docusaurus",
-                    //     },
-                    //     {
-                    //       label: "Discord",
-                    //       href: "https://discordapp.com/invite/docusaurus",
-                    //     },
-                    //     {
-                    //       label: "Twitter",
-                    //       href: "https://twitter.com/docusaurus",
-                    //     },
-                    //   ],
-                    // },
-                ],
-                // copyright: `Copyright © ${new Date().getFullYear()} Spark`,
-            },
+            // footer: {
+            //     style: 'light',
+            //     links: [
+            //         {
+            //             title: 'Spark',
+            //             items: [
+            //                 {
+            //                     label: 'Dashboard',
+            //                     to: 'https://spark-dashboard-volue-spark.vercel.app',
+            //                 },
+            //             ],
+            //         },
+            //         {
+            //             title: 'Docs',
+            //             items: [
+            //                 {
+            //                     label: 'Api',
+            //                     to: '/docs/Api',
+            //                 },
+            //             ],
+            //         },
+            //         // {
+            //         //   title: "Other sites",
+            //         //   items: [
+            //         //     {
+            //         //       label: "Stack Overflow",
+            //         //       href: "https://stackoverflow.com/questions/tagged/docusaurus",
+            //         //     },
+            //         //     {
+            //         //       label: "Discord",
+            //         //       href: "https://discordapp.com/invite/docusaurus",
+            //         //     },
+            //         //     {
+            //         //       label: "Twitter",
+            //         //       href: "https://twitter.com/docusaurus",
+            //         //     },
+            //         //   ],
+            //         // },
+            //     ],
+            //     // copyright: `Copyright © ${new Date().getFullYear()} Spark`,
+            // },
             prism: {
                 theme: lightCodeTheme,
-                // darkTheme: darkCodeTheme,
+                darkTheme: darkCodeTheme,
             },
         }),
 }
