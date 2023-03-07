@@ -57,7 +57,7 @@ const config = {
                 // Theme Options for modifying how redoc renders them
                 theme: {
                     // Change with your site colors
-                    primaryColor: '#1890ff',
+                    primaryColor: '#000',
                 },
             },
         ],
@@ -80,14 +80,19 @@ const config = {
                 items: [
                     {
                         type: 'doc',
-                        docId: 'Api',
+                        docId: 'GettingStarted',
                         position: 'left',
-                        label: 'API',
+                        label: 'Guides',
                     },
-                    // {to: '/blog', label: 'Blog', position: 'left'},
+                    // { to: '/blog', label: 'Blog', position: 'left' },
                     // {
-                    //   href: 'https://github.com/facebook/docusaurus',
-                    //   label: 'GitHub',
+                    //   href: 'https://<swagger-link>',
+                    //   label: 'OpenAPI',
+                    //   position: 'right',
+                    // },
+                    // {
+                    //   href: 'https://<Storybook link>',
+                    //   label: 'Storybook',
                     //   position: 'right',
                     // },
                 ],
@@ -108,8 +113,8 @@ const config = {
                         title: 'Docs',
                         items: [
                             {
-                                label: 'Api',
-                                to: '/docs/Api',
+                                label: 'Getting Started',
+                                to: '/docs/GettingStarted',
                             },
                         ],
                     },
@@ -117,16 +122,8 @@ const config = {
                     //   title: "Other sites",
                     //   items: [
                     //     {
-                    //       label: "Stack Overflow",
-                    //       href: "https://stackoverflow.com/questions/tagged/docusaurus",
-                    //     },
-                    //     {
-                    //       label: "Discord",
-                    //       href: "https://discordapp.com/invite/docusaurus",
-                    //     },
-                    //     {
-                    //       label: "Twitter",
-                    //       href: "https://twitter.com/docusaurus",
+                    //       label: "Github",
+                    //       href: "https://<github-link>",
                     //     },
                     //   ],
                     // },

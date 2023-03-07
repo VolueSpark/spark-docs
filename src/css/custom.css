@@ -29,4 +29,4 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
-@import '~@volue/wave/dist/core/wave.css';
+@import '~@voluespark/spark.elements/build/index.css';
