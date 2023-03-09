@@ -5,7 +5,12 @@ import { add, formatISO } from 'date-fns'
 export default function AdviceExample() {
     return (
         <div
-            style={{ width: '100%', display: 'flex', justifyContent: 'center' }}
+            style={{
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'center',
+                margin: '5rem 0',
+            }}
         >
             <PriceCoin
                 {...{

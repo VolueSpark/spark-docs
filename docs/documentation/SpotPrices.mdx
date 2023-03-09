@@ -1,40 +1,65 @@
-import ApiSchema from '@theme/ApiSchema'
 import SpotPriceExample from '../../src/components/SpotPriceExample'
+import AdviceExample from '../../src/components/AdviceExample'
 
 # Spot Prices
 
 Spot prices can be retrieved by making a call to `/api/spot-prices/{priceArea}`, where priceArea is one of the five price areas in Norway (NO1-5). One of the features of the API allows you to make requests to `/api/spot-prices/{priceArea}/advice` to get an opiniotaed advice on the best interval to charge using supplied parameters.
 
-## Schema
+## Quering Spot Prices
 
-### Spot Prices
+Getting individual spot prices for a given price area is covered in [GettingStarted](/docs/GettingStarted).
 
-#### SpotPricesEntry
+### Advice
 
-<ApiSchema example pointer="#/components/schemas/SpotPricesEntry" />
+The API can deliver the optimal charging interval given certain parameters. The result from this type of query serves as an opinionated advice on when to start charging. As of right now, price is the only variable taken into account, but additional variables will be taken into account in future iterations.
 
-#### SpotPricesResponse
+To make an API call simply run the following code:
 
-<ApiSchema example pointer="#/components/schemas/SpotPricesResponse" />
+```bash
+curl -X 'POST' \
+  'https://sandbox-spark-smartcharging.azurewebsites.net/api/spot-prices/NO1/advice' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "priceUnitParameters": {
+    "currency": "NOK",
+    "energyUnit": "kWh",
+    "vatRate": 1.25
+  },
+  "chargingSessionParameters": {
+    "power": 3.8,
+    "duration": 8
+  },
+  "startFrom": "2023-03-09T13:12:07.043Z"
+}'
+```
 
-### Spot Price Advice
+The result of this query will be a list of timeslots with total cost, as well as whether to avoid or not, for the next 24-hour period.
 
-#### AdviceSegmentType
-
-<ApiSchema pointer="#/components/schemas/AdviceSegmentType" />
-
-#### SpotPriceAdviceSegment
-
-<ApiSchema example pointer="#/components/schemas/SpotPriceAdviceSegment" />
-
-#### SpotPriceAdviceSegmentResponse
-
-<ApiSchema example pointer="#/components/schemas/SpotPricesAdviceResponse" />
-
-## Endpoints
-
-https://sandbox-spark-smartcharging.azurewebsites.net/api/spot-prices/{priceArea}
-https://sandbox-spark-smartcharging.azurewebsites.net/api/spot-prices/{priceArea}/advice
+```json
+{
+    "advice": [
+        {
+            "from": "2023-03-09T13:13:15.593Z",
+            "to": "2023-03-09T13:13:15.593Z",
+            "type": "Unknown",
+            "cost": 0,
+            "averagePrice": 0
+        }
+    ],
+    "spotPrices": [
+        {
+            "time": "2023-03-09T13:13:15.593Z",
+            "price": 0
+        }
+    ],
+    "priceArea": "NO1",
+    "currency": "EUR",
+    "energyUnit": "kWh",
+    "pricesIncludingVAT": true,
+    "vatRate": 0
+}
+```
 
 ## Examples
 

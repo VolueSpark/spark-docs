@@ -28,11 +28,6 @@ const sidebars = {
                 { type: 'doc', id: 'documentation/Forecast' },
             ],
         },
-        {
-            type: 'category',
-            label: 'API',
-            items: [{ type: 'doc', id: 'api/Requests' }],
-        },
     ],
     usecaseSidebar: [
         {

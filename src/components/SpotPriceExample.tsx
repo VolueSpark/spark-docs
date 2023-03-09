@@ -15,7 +15,7 @@ export default function SpotPriceExample() {
         value + chargeWindow < data.priceEntries.length
 
     return (
-        <div style={{ flex: 1, height: 400 }}>
+        <div style={{ flex: 1, height: 400, margin: '5rem 0' }}>
             <PriceGraph
                 {...{
                     priceUnit: 'øre',

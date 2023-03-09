@@ -17,11 +17,14 @@
     "@mdx-js/react": "^1.6.22",
     "@voluespark/spark.elements": "^0.0.16",
     "clsx": "^1.2.1",
+    "core-js": "^3.29.0",
     "date-fns": "^2.29.3",
+    "mobx": "^6.8.0",
     "prism-react-renderer": "^1.3.5",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "redocusaurus": "^1.3.0"
+    "redoc": "^2.0.0",
+    "styled-components": "^5.3.8"
   },
   "devDependencies": {
     "@docusaurus/eslint-plugin": "^2.1.0",
