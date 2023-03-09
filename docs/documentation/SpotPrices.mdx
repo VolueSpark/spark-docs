@@ -1,0 +1,49 @@
+import ApiSchema from '@theme/ApiSchema'
+import SpotPriceExample from '../../src/components/SpotPriceExample'
+
+# Spot Prices
+
+Spot prices can be retrieved by making a call to `/api/spot-prices/{priceArea}`, where priceArea is one of the five price areas in Norway (NO1-5). One of the features of the API allows you to make requests to `/api/spot-prices/{priceArea}/advice` to get an opiniotaed advice on the best interval to charge using supplied parameters.
+
+## Schema
+
+### Spot Prices
+
+#### SpotPricesEntry
+
+<ApiSchema example pointer="#/components/schemas/SpotPricesEntry" />
+
+#### SpotPricesResponse
+
+<ApiSchema example pointer="#/components/schemas/SpotPricesResponse" />
+
+### Spot Price Advice
+
+#### AdviceSegmentType
+
+<ApiSchema pointer="#/components/schemas/AdviceSegmentType" />
+
+#### SpotPriceAdviceSegment
+
+<ApiSchema example pointer="#/components/schemas/SpotPriceAdviceSegment" />
+
+#### SpotPriceAdviceSegmentResponse
+
+<ApiSchema example pointer="#/components/schemas/SpotPricesAdviceResponse" />
+
+## Endpoints
+
+https://sandbox-spark-smartcharging.azurewebsites.net/api/spot-prices/{priceArea}
+https://sandbox-spark-smartcharging.azurewebsites.net/api/spot-prices/{priceArea}/advice
+
+## Examples
+
+Below are examples on how the data might be visualized. These can also be viewed in storybook [insert link to storybook]
+
+### Spot Prices
+
+<SpotPriceExample />
+
+### Spot Price Advice
+
+<AdviceExample />

@@ -2,7 +2,7 @@
 // Note: type annotations allow type checking and IDEs autocompletion
 
 const lightCodeTheme = require('prism-react-renderer/themes/github')
-// const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const darkCodeTheme = require('prism-react-renderer/themes/dracula')
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -57,7 +57,7 @@ const config = {
                 // Theme Options for modifying how redoc renders them
                 theme: {
                     // Change with your site colors
-                    primaryColor: '#1890ff',
+                    primaryColor: '#000',
                 },
             },
         ],
@@ -68,7 +68,7 @@ const config = {
         ({
             colorMode: {
                 defaultMode: 'light',
-                disableSwitch: true,
+                // disableSwitch: true,
                 respectPrefersColorScheme: false,
             },
             navbar: {
@@ -80,16 +80,21 @@ const config = {
                 items: [
                     {
                         type: 'doc',
-                        docId: 'Api',
+                        docId: 'GettingStarted',
                         position: 'left',
-                        label: 'API',
+                        label: 'Documentation',
                     },
-                    // {to: '/blog', label: 'Blog', position: 'left'},
-                    // {
-                    //   href: 'https://github.com/facebook/docusaurus',
-                    //   label: 'GitHub',
-                    //   position: 'right',
-                    // },
+                    // { to: '/blog', label: 'Blog', position: 'left' },
+                    {
+                        href: '/',
+                        label: 'Swagger',
+                        position: 'right',
+                    },
+                    {
+                        href: '/',
+                        label: 'Storybook',
+                        position: 'right',
+                    },
                 ],
             },
             footer: {
@@ -99,17 +104,29 @@ const config = {
                         title: 'Spark',
                         items: [
                             {
-                                label: 'Dashboard',
-                                to: 'https://spark-dashboard-volue-spark.vercel.app',
+                                label: 'Ladeassistenten',
+                                to: 'https://www.ladeassistenten.no',
+                            },
+                            {
+                                label: 'Swagger',
+                                to: 'https://sandbox-spark-smartcharging.azurewebsites.net/swagger/index.html',
+                            },
+                            {
+                                label: 'Storybook',
+                                to: '/',
                             },
                         ],
                     },
                     {
-                        title: 'Docs',
+                        title: 'Documentation',
                         items: [
                             {
-                                label: 'Api',
-                                to: '/docs/Api',
+                                label: 'Getting Started',
+                                to: '/docs/GettingStarted',
+                            },
+                            {
+                                label: 'Documentation',
+                                to: '/docs/documentation/Authentication',
                             },
                         ],
                     },
@@ -117,16 +134,8 @@ const config = {
                     //   title: "Other sites",
                     //   items: [
                     //     {
-                    //       label: "Stack Overflow",
-                    //       href: "https://stackoverflow.com/questions/tagged/docusaurus",
-                    //     },
-                    //     {
-                    //       label: "Discord",
-                    //       href: "https://discordapp.com/invite/docusaurus",
-                    //     },
-                    //     {
-                    //       label: "Twitter",
-                    //       href: "https://twitter.com/docusaurus",
+                    //       label: "Github",
+                    //       href: "https://<github-link>",
                     //     },
                     //   ],
                     // },
@@ -135,7 +144,7 @@ const config = {
             },
             prism: {
                 theme: lightCodeTheme,
-                // darkTheme: darkCodeTheme,
+                darkTheme: darkCodeTheme,
             },
         }),
 }
