@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-A verified API-key is needed to make queries. As of this moment, you will need to contact us at <email@somethingsomething.com> to get one.
+A verified API-key is needed to make queries. As of this moment, you will need to contact us at <christian.brevik@volue.com> to get one.
 
 Disclaimer: The API-key is needed for every request and as such it must be kept secret on the server in your environment.
 
@@ -13,6 +13,8 @@ After acquiring a key, requests can be made to: https://sandbox-spark-smartcharg
 To test out the API, try making a call to `/spot-prices/{priceArea}`. You will need to include the Norwegian price area you want the current spot prices for in the requests. The response of this query will be a list of the current price for each individual hour in the day.
 
 ### Curl
+
+<!-- TODO: Update this to use the new API-key header -->
 
 ```bash
 curl -X 'GET' \
@@ -49,3 +51,7 @@ The documentation: /docs
 ### Swagger
 
 The Swagger file: https://sandbox-spark-smartcharging.azurewebsites.net/swagger/index.html
+
+### Check out our example application using this API
+
+Ladeassistenten: https://www.ladeassistenten.no
