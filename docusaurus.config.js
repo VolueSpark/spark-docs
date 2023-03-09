@@ -67,16 +67,16 @@ const config = {
                         position: 'left',
                         label: 'Documentation',
                     },
-                    // {
-                    //     type: 'doc',
-                    //     docId: 'usecase/First',
-                    //     position: 'left',
-                    //     label: 'Use Case',
-                    // },
                     {
                         to: '/specification',
                         label: 'API Specification',
                         position: 'left',
+                    },
+                    {
+                        type: 'doc',
+                        docId: 'usecase/SmartCharging',
+                        position: 'left',
+                        label: 'Use Case',
                     },
                     // { to: '/blog', label: 'Blog', position: 'left' },
                     {
