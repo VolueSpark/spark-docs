@@ -44,23 +44,6 @@ const config = {
                 },
             }),
         ],
-        [
-            'redocusaurus',
-            {
-                // Plugin Options for loading OpenAPI files
-                specs: [
-                    {
-                        spec: 'openapi/openapi.yaml',
-                        route: '/api/',
-                    },
-                ],
-                // Theme Options for modifying how redoc renders them
-                theme: {
-                    // Change with your site colors
-                    primaryColor: '#000',
-                },
-            },
-        ],
     ],
 
     themeConfig:
@@ -85,8 +68,13 @@ const config = {
                         label: 'Documentation',
                     },
                     {
+                        to: '/specification',
+                        label: 'API Specification',
+                        position: 'left',
+                    },
+                    {
                         type: 'doc',
-                        docId: 'usecase/First',
+                        docId: 'usecase/SmartCharging',
                         position: 'left',
                         label: 'Use Case',
                     },

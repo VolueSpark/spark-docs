@@ -28,27 +28,16 @@ const sidebars = {
                 { type: 'doc', id: 'documentation/Forecast' },
             ],
         },
-        {
-            type: 'category',
-            label: 'API',
-            items: [{ type: 'doc', id: 'api/Requests' }],
-        },
     ],
     usecaseSidebar: [
+        { type: 'doc', id: 'usecase/SmartCharging' },
         {
-            type: 'category',
-            label: 'Use Case',
-            items: [
-                { type: 'doc', id: 'usecase/First' },
-                {
-                    type: 'doc',
-                    id: 'usecase/Spotprices'
-                },
-                {
-                    type: 'doc',
-                    id: 'usecase/Forecasting'
-                },
-            ],
+            type: 'doc',
+            id: 'usecase/Spotprices',
+        },
+        {
+            type: 'doc',
+            id: 'usecase/Forecasting',
         },
     ],
 }
