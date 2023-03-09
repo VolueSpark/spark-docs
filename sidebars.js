@@ -21,12 +21,11 @@ const sidebars = {
         },
         {
             type: 'category',
-            label: 'Guides',
+            label: 'Documentation',
             items: [
-                { type: 'doc', id: 'guides/Authorization' },
-                { type: 'doc', id: 'guides/Forecast' },
-                { type: 'doc', id: 'guides/Advice' },
-                { type: 'doc', id: 'guides/SpotPrices' },
+                { type: 'doc', id: 'documentation/Authentication' },
+                { type: 'doc', id: 'documentation/SpotPrices' },
+                { type: 'doc', id: 'documentation/Forecast' },
             ],
         },
         {

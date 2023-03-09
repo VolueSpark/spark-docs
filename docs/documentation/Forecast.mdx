@@ -1,0 +1,27 @@
+import ApiSchema from '@theme/ApiSchema'
+import LongTermForecastExample from '../../src/components/LongTermForecastExample'
+
+# Forecast
+
+The current iteration of the API allows you to make requests to `/api/forecast/{priceArea}` to retrieve a forecast of electricity prices in each area. The forecast contains entries for the next seven days. The endpoint requires two query parameters:
+
+-   ChargingPower `double`: the expected power in kWh at which the vehicle will charge.
+-   ChargingLength `integer`: the expected time in hours the vehicle will charge.
+
+## Schema
+
+### Forecast
+
+#### PriceForecastResponse
+
+<ApiSchema example pointer="#/components/schemas/PriceForecastResponse" />
+
+# Endpoints
+
+https://sandbox-spark-smartcharging.azurewebsites.net/api/forecast/{priceArea}
+
+# Examples
+
+Below are examples on how the data might be visualized. These can also be viewed in storybook [insert link to storybook]
+
+<LongTermForecastExample />

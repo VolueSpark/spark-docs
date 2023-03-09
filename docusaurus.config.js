@@ -2,7 +2,7 @@
 // Note: type annotations allow type checking and IDEs autocompletion
 
 const lightCodeTheme = require('prism-react-renderer/themes/github')
-// const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const darkCodeTheme = require('prism-react-renderer/themes/dracula')
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -68,7 +68,7 @@ const config = {
         ({
             colorMode: {
                 defaultMode: 'light',
-                disableSwitch: true,
+                // disableSwitch: true,
                 respectPrefersColorScheme: false,
             },
             navbar: {
@@ -82,19 +82,19 @@ const config = {
                         type: 'doc',
                         docId: 'GettingStarted',
                         position: 'left',
-                        label: 'Guides',
+                        label: 'Documentation',
                     },
                     // { to: '/blog', label: 'Blog', position: 'left' },
-                    // {
-                    //   href: 'https://<swagger-link>',
-                    //   label: 'OpenAPI',
-                    //   position: 'right',
-                    // },
-                    // {
-                    //   href: 'https://<Storybook link>',
-                    //   label: 'Storybook',
-                    //   position: 'right',
-                    // },
+                    {
+                        href: '/',
+                        label: 'Swagger',
+                        position: 'right',
+                    },
+                    {
+                        href: '/',
+                        label: 'Storybook',
+                        position: 'right',
+                    },
                 ],
             },
             footer: {
@@ -104,17 +104,29 @@ const config = {
                         title: 'Spark',
                         items: [
                             {
-                                label: 'Dashboard',
-                                to: 'https://spark-dashboard-volue-spark.vercel.app',
+                                label: 'Ladeassistenten',
+                                to: 'https://www.ladeassistenten.no',
+                            },
+                            {
+                                label: 'Swagger',
+                                to: 'https://sandbox-spark-smartcharging.azurewebsites.net/swagger/index.html',
+                            },
+                            {
+                                label: 'Storybook',
+                                to: '/',
                             },
                         ],
                     },
                     {
-                        title: 'Docs',
+                        title: 'Documentation',
                         items: [
                             {
                                 label: 'Getting Started',
                                 to: '/docs/GettingStarted',
+                            },
+                            {
+                                label: 'Documentation',
+                                to: '/docs/documentation/Authentication',
                             },
                         ],
                     },
@@ -132,7 +144,7 @@ const config = {
             },
             prism: {
                 theme: lightCodeTheme,
-                // darkTheme: darkCodeTheme,
+                darkTheme: darkCodeTheme,
             },
         }),
 }
