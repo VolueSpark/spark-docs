@@ -38,7 +38,17 @@ const sidebars = {
         {
             type: 'category',
             label: 'Use Case',
-            items: [{ type: 'doc', id: 'usecase/First' }],
+            items: [
+                { type: 'doc', id: 'usecase/First' },
+                {
+                    type: 'doc',
+                    id: 'usecase/Spotprices'
+                },
+                {
+                    type: 'doc',
+                    id: 'usecase/Forecasting'
+                },
+            ],
         },
     ],
 }
