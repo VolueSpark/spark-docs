@@ -13,7 +13,7 @@
 
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 const sidebars = {
-    sideBar: [
+    documentationSidebar: [
         {
             type: 'category',
             label: 'Getting Started',
@@ -32,6 +32,13 @@ const sidebars = {
             type: 'category',
             label: 'API',
             items: [{ type: 'doc', id: 'api/Requests' }],
+        },
+    ],
+    usecaseSidebar: [
+        {
+            type: 'category',
+            label: 'Use Case',
+            items: [{ type: 'doc', id: 'usecase/First' }],
         },
     ],
 }

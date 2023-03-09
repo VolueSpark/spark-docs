@@ -84,6 +84,12 @@ const config = {
                         position: 'left',
                         label: 'Documentation',
                     },
+                    // {
+                    //     type: 'doc',
+                    //     docId: 'usecase/First',
+                    //     position: 'left',
+                    //     label: 'Use Case',
+                    // },
                     // { to: '/blog', label: 'Blog', position: 'left' },
                     {
                         href: '/',
