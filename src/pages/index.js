@@ -20,7 +20,7 @@ export default function Home() {
                     white-label solution provides smart charging optimised for a
                     week-long price forecast.]
                 </p>
-                <Link className={style.link_read_more} href="/about">
+                <Link className={style.link_read_more}>
                     Read more about Spark
                 </Link>
             </header>
