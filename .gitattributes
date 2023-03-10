@@ -1,0 +1,2 @@
+.env.local filter=git-crypt diff=git-crypt
+.npmrc filter=git-crypt diff=git-crypt
