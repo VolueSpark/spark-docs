@@ -8,9 +8,6 @@
 .docusaurus
 .cache-loader
 
-# Env variables
-.npmrc
-
 # Misc
 .DS_Store
 .env.local
