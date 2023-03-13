@@ -15,6 +15,12 @@
   --ifm-color-primary-lightest: #3cad6e;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+
+  --color-font-primary: #000;
+  --color-font-secondary: #fff;
+  --color-primary: #363C6E;
+  --color-background-secondary: #FDFEFC;
+  --color-border-primary: #E7E7E7;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -27,6 +33,12 @@
   --ifm-color-primary-lighter: #32d8b4;
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+
+  --color-font-primary: #fff;
+  --color-font-secondary: #000;
+  --color-primary: #D0D0FF;
+  --color-background-secondary: #1B1B1D;
+  --color-border-primary: #E7E7E7;
 }
 
 @import '~@voluespark/spark.elements/build/index.css';
