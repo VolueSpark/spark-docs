@@ -35,6 +35,8 @@ const config = {
                 docs: {
                     sidebarPath: require.resolve('./sidebars.js'),
                     breadcrumbs: false,
+                    editUrl:
+                        'https://github.com/VolueSpark/spark-asset-api-docs/tree/main',
                 },
                 blog: {
                     showReadingTime: true,
