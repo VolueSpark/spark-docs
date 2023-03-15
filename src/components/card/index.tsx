@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from '@docusaurus/Link'
-import ArrowForward from '../../assets/arrow_forward_ios.svg'
+import ArrowForward from '@site/static/icons/arrow_forward_ios.svg'
 
 import style from './card.module.css'
 
