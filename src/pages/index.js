@@ -40,13 +40,13 @@ export default function Home() {
                             icon={<Rocket />}
                             title="Get started"
                             description="Step-by-step guide for setting up your system and getting started"
-                            url="/docs/GettingStarted"
+                            baseUrl="/docs/GettingStarted"
                         />
                         <Card
                             icon={<Network />}
                             title="API specification"
                             description="Dig into the API details"
-                            url="/specification"
+                            baseUrl="/specification"
                         />
                         <Card
                             icon={<Puzzle />}
