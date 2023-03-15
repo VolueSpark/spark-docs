@@ -74,13 +74,14 @@
   color: var(--color-primary);
   /* TODO: move this to bottom, in order to do this the content height has to be 100% of the navbar size, need multiple css rule overrides */
   border-bottom: 2px solid var(--color-primary);
+  font-weight: 700;
 }
 
 .navbar__link:hover {
   color: var(--color-primary);
 }
 
-.navbar__title:hover {
+.navbar__title {
   color: var(--color-primary);
   font-family: "Krub", sans-serif;
 }
@@ -114,6 +115,7 @@
 
 .menu__link--active {
   color: var(--color-primary);
+  font-weight: 700;
 }
 
 .table-of-contents__link {
@@ -122,10 +124,23 @@
 
 .table-of-contents__link--active {
   color: var(--color-primary);
+  font-weight: 700;
 }
 
 .table-of-contents__link:hover {
   color: var(--color-primary);
+}
+
+h1 {
+  font-family: "Krub", sans-serif;
+}
+
+h2 {
+  font-family: "Krub", sans-serif;
+}
+
+h3 {
+  font-family: "Krub", sans-serif;
 }
 
 @import '~@voluespark/spark.elements/build/index.css';

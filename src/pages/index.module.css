@@ -9,6 +9,10 @@
   margin-top: 7rem;
 }
 
+.body {
+  margin-bottom: 7rem;
+}
+
 .header_title {
   color: var(--color-primary);
 }
@@ -17,16 +21,10 @@
   max-width: 60%;
 }
 
-.link_primary {
-  color: var(--color-font-primary);
-}
-
-.link_secondary {
-  color: var(--color-font-secondary);
-}
 
 .link_read_more {
   text-decoration: underline !important;
+  margin-bottom: 3rem;
 }
 
 .link_container {
@@ -36,9 +34,8 @@
 }
 
 
-
 .grid_container {
   display: grid;
-  grid-template-columns: repeat(2, auto);
+  grid-template-columns: repeat(2, 50%);
   gap: 1rem;
 }
