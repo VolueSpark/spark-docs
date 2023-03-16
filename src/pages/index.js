@@ -4,6 +4,10 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext'
 import Layout from '@theme/Layout'
 import Chip from '../components/chip'
 import Card from '../components/Card'
+import Lightning from '@site/static/icons/lightning.svg'
+import Network from '@site/static/icons/network.svg'
+import Puzzle from '@site/static/icons/puzzle.svg'
+import Rocket from '@site/static/icons/rocket.svg'
 
 import style from './index.module.css'
 
@@ -31,44 +35,30 @@ export default function Home() {
             </header>
             <main>
                 <div className={style.body}>
-                    <div className={style.link_container}>
-                        <Chip type="secondary">
-                            <Link
-                                href="/docs/GettingStarted"
-                                className={style.link_secondary}
-                            >
-                                Get started
-                            </Link>
-                        </Chip>
-                        <Chip>
-                            <Link
-                                href="https://storybook.sandbox.ladeassistent.no"
-                                className={style.link_primary}
-                            >
-                                Explore eamples
-                            </Link>
-                        </Chip>
-                    </div>
                     <div className={style.grid_container}>
                         <Card
-                            title="Quick Start"
-                            description="Follow this guide to make your first API call to Spark"
-                            url="/docs/GettingStarted"
+                            icon={<Rocket />}
+                            title="Get started"
+                            description="Step-by-step guide for setting up your system and getting started"
+                            baseUrl="/docs/GettingStarted"
                         />
                         <Card
-                            title="Demo App"
-                            description="View our demo application 'Ladeassistenten' to see features in action"
-                            url="https://sandbox.ladeassistent.no"
+                            icon={<Network />}
+                            title="API specification"
+                            description="Dig into the API details"
+                            baseUrl="/specification"
                         />
                         <Card
+                            icon={<Puzzle />}
                             title="Design Library"
-                            description="Check out our example components in Storybook"
+                            description="Check out and play around with our example components in Storybook"
                             url="https://storybook.sandbox.ladeassistent.no"
                         />
                         <Card
-                            title="API Documentation"
-                            description="Dig into the API documentation to read up on features of the API"
-                            url="/docs/documentation/Authentication"
+                            icon={<Lightning />}
+                            title="Demo App"
+                            description="Ladeassistenten"
+                            url="https://sandbox.ladeassistent.no"
                         />
                     </div>
                 </div>

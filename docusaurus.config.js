@@ -68,33 +68,41 @@ const config = {
                         docId: 'GettingStarted',
                         position: 'left',
                         label: 'Documentation',
+                        className: 'navbar__item',
                     },
                     {
                         to: '/specification',
                         label: 'API Specification',
                         position: 'left',
+                        className: 'navbar__item',
                     },
                     {
                         type: 'doc',
                         docId: 'usecase/SmartCharging',
                         position: 'left',
                         label: 'Use Case',
+                        className: 'navbar__item',
                     },
                     // { to: '/blog', label: 'Blog', position: 'left' },
                     {
                         href: '/',
                         label: 'Swagger',
                         position: 'right',
+                        className: 'navbar__item',
                     },
                     {
                         href: '/',
                         label: 'Storybook',
                         position: 'right',
+                        className: 'navbar__item',
                     },
                 ],
             },
             footer: {
                 style: 'dark',
+                logo: {
+                    src: '/logo/spark.svg',
+                },
                 links: [
                     {
                         title: 'Spark',
