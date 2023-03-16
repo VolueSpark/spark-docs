@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula')
 const config = {
     title: 'Spark Asset API Docs',
     tagline: 'We are making stuff',
-    url: 'https://github.com/VolueSpark/spark-asset-api-docs',
+    url: 'https://thankful-sea-0ddc91f03.2.azurestaticapps.net',
     baseUrl: '/',
     onBrokenLinks: 'throw',
     onBrokenMarkdownLinks: 'warn',
