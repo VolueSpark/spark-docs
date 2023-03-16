@@ -50,6 +50,7 @@
   --color-background-secondary: #FDFEFC;
   --color-border-primary: #E7E7E7;
   --ifm-font-family-base: "Nunito-Sans", sans-serif;
+  --ifm-link-color: #363C6E;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -68,6 +69,7 @@
   --color-primary: #D0D0FF;
   --color-background-secondary: #1B1B1D;
   --color-border-primary: #E7E7E7;
+  --ifm-link-color: #D0D0FF;
 }
 
 .navbar__link--active {

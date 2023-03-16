@@ -15,6 +15,10 @@ export default function LongTermForecastExample() {
                 justifyContent: 'center',
                 alignItems: 'center',
                 gap: '2rem',
+                backgroundColor: '#fdfefc',
+                borderRadius: '0.5rem',
+                padding: '3rem 1rem',
+                color: '#000',
             }}
         >
             {/* TODO: need to wrap this component in a position relative inside of the component library, 
