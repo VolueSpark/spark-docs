@@ -1,10 +1,10 @@
 # Authentication
 
-This page outlines how to authenticate with our service using OAuth 2.0 client credentials. Before starting, please note that this is the only allowed authentication flow for our service, as all our services are meant to be implemented as machine-to-machine services.
+This page outlines how to authenticate with our service using OAuth 2.0 client credentials. Before starting, please note that "client credentials" is the only allowed authentication flow for our service, as all our services are meant to be implemented as machine-to-machine services.
 
 The identity server used is a central authority for Volue called Volue Identity, if you are an existing partner using other Volue services please note that onboarding to Spark might require some additional configuration.
 
-## Getting Started
+## Getting started
 
 To get started, you will need to contact us at <christian.brevik@volue.com> to be onboarded as a partner and receive your credentials.
 
@@ -14,7 +14,7 @@ Once you have received your credentials, you will need to securely store them as
 
 To authenticate with our service using OAuth 2.0 client credentials, you will need to follow these steps:
 
-1. Request an access token from the Smart Identity authorization server by sending a POST request to the token endpoint with the following parameters:
+1. Request an access token from the Volue Identity authorization server by sending a POST request to the token endpoint with the following parameters:
 
 -   grant_type: `client_credentials`
 -   scope: `spk.spotprice spk.forecast`
@@ -38,7 +38,7 @@ curl --location 'https://auth.identity.volue.com/connect/token' \
 
 `Authorization: Bearer <access_token>`
 
-The access_token is valid for an hour, so you will need to renew it before expiry.
+The `access_token` is valid for an hour, so you will need to renew it before expiry.
 
 ## Sample call
 
