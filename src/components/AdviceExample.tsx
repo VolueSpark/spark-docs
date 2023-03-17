@@ -10,6 +10,10 @@ export default function AdviceExample() {
                 display: 'flex',
                 justifyContent: 'center',
                 margin: '5rem 0',
+                backgroundColor: '#fdfefc',
+                borderRadius: '0.5rem',
+                padding: '3rem 1rem',
+                color: '#000',
             }}
         >
             <PriceCoin
