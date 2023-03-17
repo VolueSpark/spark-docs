@@ -1,3 +1,51 @@
 # Authentication
 
-As of now, the only authentication needed is a valid API key. This can be acquired by emailing us at <christian.brevik@volue.com>. The key should be kept secret on your server and is required with every request made to the API. It should not be shared outside your organization.
+This page outlines how to authenticate with our service using OAuth 2.0 client credentials. Before starting, please note that this is the only allowed authentication flow for our service, as all our services are meant to be implemented as machine-to-machine services.
+
+The identity server used is a central authority for Volue called Volue Identity, if you are an existing partner using other Volue services please note that onboarding to Spark might require some additional configuration.
+
+## Getting Started
+
+To get started, you will need to contact us at <christian.brevik@volue.com> to be onboarded as a partner and receive your credentials.
+
+Once you have received your credentials, you will need to securely store them as they will be used to authenticate all requests made to our service.
+
+## Implementing authentication
+
+To authenticate with our service using OAuth 2.0 client credentials, you will need to follow these steps:
+
+1. Request an access token from the Smart Identity authorization server by sending a POST request to the token endpoint with the following parameters:
+
+-   grant_type: `client_credentials`
+-   scope: `spk.spotprice spk.forecast`
+-   client_id: the client identifier provided to you by us
+-   client_secret: the client secret provided to you by us
+
+The response to this request will include an access token, which you will need to include in all subsequent requests to our service. The scopes added here will give you access to the Spot Price and Forecast API-endpoints.
+
+Here is an example of what the request would look like using curl:
+
+```bash
+curl --location 'https://auth.identity.volue.com/connect/token' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'grant_type=client_credentials' \
+--data-urlencode 'scope=spk.spotprice spk.forecast' \
+--data-urlencode 'client_id=<your_client_id>' \
+--data-urlencode 'client_secret=<your_client_secret>'
+```
+
+2. Include the access token in the Authorization header of all subsequent requests to our service using the Bearer scheme. For example:
+
+`Authorization: Bearer <access_token>`
+
+The access_token is valid for an hour, so you will need to renew it before expiry.
+
+## Sample call
+
+Here is an example of how to make a sample call to our service using the access token obtained in the previous step:
+
+```bash
+curl -H "Authorization: Bearer <access_token>" https://api.sandbox.voluespark.com/api/spot-prices/NO1
+```
+
+This call will retrieve a list of the current Spot Prices in the `NO1` price region. Make sure to replace `<access_token>` with the actual access token obtained from the Volue Identity authorization server.

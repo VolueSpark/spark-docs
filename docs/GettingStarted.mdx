@@ -2,11 +2,9 @@
 
 ## Prerequisites
 
-A verified API-key is needed to make queries. As of this moment, you will need to [contact us](mailto:christian.brevik@volue.com) to get one.
+Valid client credentials are required to make calls to our API. As of this moment, you will need to [contact us](mailto:christian.brevik@volue.com) to get onboarded as a partner. See [our Authentication guide](./documentation/Authentication) for more details about authentication.
 
-Disclaimer: The API-key is needed for every request and as such it must be kept secret on the server in your environment.
-
-After acquiring a key, requests can be made to: https://sandbox-spark-smartcharging.azurewebsites.net/api.
+After acquiring valid client credentials, requests can be made to our API. See our [Swagger UI](https://api.sandbox.voluespark.com/swagger) for details about endpoints.
 
 ## Making your first API call
 
@@ -18,8 +16,9 @@ To test out the API, try making a call to `/spot-prices/{priceArea}`. You will n
 
 ```bash
 curl -X 'GET' \
-  'https://sandbox-spark-smartcharging.azurewebsites.net/api/spot-prices/NO1' \
-  -H 'accept: application/json'
+  -H "Authorization: Bearer <access_token>" \
+  -H 'accept: application/json' \
+  'https://api.sandbox.voluespark.com/api/spot-prices/NO1'
 ```
 
 ### Response
@@ -46,11 +45,14 @@ curl -X 'GET' \
 
 ### Visit the documentation for examples on usage
 
-The documentation: /docs
+The documentation:
+
+-   [Spot Price API](./documentation/SpotPrices)
+-   [Forecast API](./documentation/Forecast)
 
 ### Swagger
 
-The Swagger file: https://sandbox-spark-smartcharging.azurewebsites.net/swagger/index.html
+Our Swagger UI is hosted at: https://api.sandbox.voluespark.com/swagger
 
 ### Check out our example application using this API
 
