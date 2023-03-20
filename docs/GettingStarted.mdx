@@ -8,11 +8,9 @@ After acquiring valid client credentials, requests can be made to our API. See o
 
 ## Making your first API call
 
-To test out the API, try making a call to `/spot-prices/{priceArea}`. You will need to include the Norwegian price area you want the current spot prices for in the requests. The response of this query will be a list of the current price for each individual hour in the day.
+To test out the API, try making a call to `/api/spot-prices/{priceArea}`. You will need to include the Norwegian price area you want the current spot prices for in the requests. The response of this query will be a list of the current price for each individual hour in the day.
 
-### Curl
-
-<!-- TODO: Update this to use the new API-key header -->
+### Request
 
 ```bash
 curl -X 'GET' \
