@@ -85,13 +85,13 @@ const config = {
                     },
                     // { to: '/blog', label: 'Blog', position: 'left' },
                     {
-                        href: '/',
+                        href: 'https://api.sandbox.voluespark.com/swagger/index.html',
                         label: 'Swagger',
                         position: 'right',
                         className: 'navbar__item',
                     },
                     {
-                        href: '/',
+                        href: 'https://storybook.sandbox.ladeassistent.no/',
                         label: 'Storybook',
                         position: 'right',
                         className: 'navbar__item',
@@ -109,15 +109,15 @@ const config = {
                         items: [
                             {
                                 label: 'Ladeassistenten',
-                                to: 'https://www.ladeassistenten.no',
+                                to: 'https://www.ladeassistent.no/nb',
                             },
                             {
                                 label: 'Swagger',
-                                to: 'https://sandbox-spark-smartcharging.azurewebsites.net/swagger/index.html',
+                                to: 'https://api.sandbox.voluespark.com/swagger/index.html',
                             },
                             {
                                 label: 'Storybook',
-                                to: '/',
+                                to: 'https://storybook.sandbox.ladeassistent.no/',
                             },
                         ],
                     },
