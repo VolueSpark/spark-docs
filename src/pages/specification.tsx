@@ -1,7 +1,7 @@
 import React from 'react'
-import { RedocStandalone } from 'redoc'
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext'
 import Layout from '@theme/Layout'
+import Redoc from '../components/redoc'
 
 export default function Specification() {
     const { siteConfig } = useDocusaurusContext()
@@ -11,17 +11,7 @@ export default function Specification() {
             description="Description will go into a meta tag in <head />"
         >
             <main>
-                <RedocStandalone
-                    specUrl="https://sandbox-spark-smartcharging.azurewebsites.net/swagger/v1/swagger.json"
-                    options={{
-                        nativeScrollbars: true,
-                        theme: {
-                            colors: {
-                                primary: { main: '#000' },
-                            },
-                        },
-                    }}
-                />
+                <Redoc />
             </main>
         </Layout>
     )
