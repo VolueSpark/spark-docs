@@ -9,7 +9,7 @@ export default function Redoc() {
     return (
         <div style={{ backgroundColor: Colors.bg.bgLight }}>
             <RedocStandalone
-                specUrl="https://sandbox-spark-smartcharging.azurewebsites.net/swagger/v1/swagger.json"
+                specUrl="https://api.sandbox.voluespark.com/swagger/v1/swagger.json"
                 options={{
                     nativeScrollbars: true,
                     theme: {

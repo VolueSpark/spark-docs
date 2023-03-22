@@ -91,7 +91,7 @@ const config = {
                         className: 'navbar__item',
                     },
                     {
-                        href: 'https://storybook.sandbox.ladeassistent.no/',
+                        href: 'https://storybook.sandbox.voluespark.com',
                         label: 'Storybook',
                         position: 'right',
                         className: 'navbar__item',
@@ -117,7 +117,7 @@ const config = {
                             },
                             {
                                 label: 'Storybook',
-                                to: 'https://storybook.sandbox.ladeassistent.no/',
+                                to: 'https://storybook.sandbox.voluespark.com',
                             },
                         ],
                     },
