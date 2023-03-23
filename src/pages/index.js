@@ -8,7 +8,7 @@ import Network from '@site/static/icons/network.svg'
 import Puzzle from '@site/static/icons/puzzle.svg'
 import Rocket from '@site/static/icons/rocket.svg'
 
-import style from './index.module.css'
+import style from './landing.module.css'
 
 export default function Home() {
     const { siteConfig } = useDocusaurusContext()
@@ -20,9 +20,14 @@ export default function Home() {
             <header className={style.header}>
                 <h1 className={style.header_title}>This is Spark</h1>
                 <p className={style.header_description}>
-                The SmartCharging API from Spark provides you with smart charging recommendations that are optimized for cost and efficiency. Independent of your customer's power supplier, our API is also optimized for a week-long price forecast, helping your customers save money on their EV charging.
-
-                Our API is designed to be flexible and easy to integrate into your existing platform, making it easy for you to add value to your EV charging services.
+                    The SmartCharging API from Spark provides you with smart
+                    charging recommendations that are optimized for cost and
+                    efficiency. Independent of your customer's power supplier,
+                    our API is also optimized for a week-long price forecast,
+                    helping your customers save money on their EV charging. Our
+                    API is designed to be flexible and easy to integrate into
+                    your existing platform, making it easy for you to add value
+                    to your EV charging services.
                 </p>
                 <Link
                     href="https://www.volue.com/spark"
