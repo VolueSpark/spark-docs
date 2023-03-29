@@ -3,7 +3,7 @@ import AdviceExample from '../../src/components/AdviceExample'
 
 # Spot Prices
 
-Spot prices can be retrieved by making a call to `/api/spot-prices/{priceArea}`, where priceArea is one of the five price areas in Norway (NO1-5). One of the features of the API allows you to make requests to `/api/spot-prices/{priceArea}/advice` to get an opinionated advice on the best interval to charge using supplied parameters.
+Spot prices can be retrieved by making a call to `/smart/v1/prices/actual/{priceArea}`, where priceArea is one of the five price areas in Norway (NO1-5). One of the features of the API allows you to make requests to `/smart/v1/prices/actual/{priceArea}/advice` to get an opinionated advice on the best interval to charge using supplied parameters.
 
 ## Querying Spot Prices
 
@@ -17,7 +17,7 @@ To make an API call simply run the following code:
 
 ```bash
 curl -X 'POST' \
-  'https://api.sandbox.voluespark.com/api/spot-prices/NO1/advice' \
+  'https://api.voluespark.com/smart/v1/prices/actual/NO1/advice' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
   -d '{
@@ -63,7 +63,7 @@ The result of this query will be a list of timeslots with total cost, as well as
 
 ## Examples
 
-Below are examples on how the data might be visualized. These can also be viewed in [Storybook](https://thankful-sea-0ddc91f03.2.azurestaticapps.net/#tag/SpotPrice/operation/GetSpotPricesAdvice).
+Below are examples on how the data might be visualized. These can also be viewed in [Storybook](https://storybook.voluespark.com/?path=/story/spot-price-advice-graph--default).
 
 ### Spot Prices
 

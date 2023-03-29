@@ -4,11 +4,11 @@
 
 Valid client credentials are required to make calls to our API. As of this moment, you will need to [contact us](mailto:christian.brevik@volue.com) to get onboarded as a partner. See [our Authentication guide](./documentation/Authentication) for more details about authentication.
 
-After acquiring valid client credentials, requests can be made to our API. See our [Swagger UI](https://api.sandbox.voluespark.com/swagger) for details about endpoints.
+After acquiring valid client credentials, requests can be made to our API. See our [Swagger UI](https://api.voluespark.com/smart/v1/swagger) for details about endpoints.
 
 ## Making your first API call
 
-To test out the API, try making a call to `/api/spot-prices/{priceArea}`. You will need to include the Norwegian price area you want the current spot prices for in the requests. The response of this query will be a list of the current price for each individual hour in the day.
+To test out the API, try making a call to `/smart/v1/prices/actual/{priceArea}`. You will need to include the Norwegian price area you want the current spot prices for in the requests. The response of this query will be a list of the current price for each individual hour in the day.
 
 ### Request
 
@@ -16,7 +16,7 @@ To test out the API, try making a call to `/api/spot-prices/{priceArea}`. You wi
 curl -X 'GET' \
   -H "Authorization: Bearer <access_token>" \
   -H 'accept: application/json' \
-  'https://api.sandbox.voluespark.com/api/spot-prices/NO1'
+  'https://api.voluespark.com/smart/v1/prices/actual/NO1'
 ```
 
 ### Response
@@ -42,11 +42,14 @@ curl -X 'GET' \
 ## Next steps
 
 1. Visit the documentation for examples on usage
+
 -   [Spot Price API](./documentation/SpotPrices)
 -   [Forecast API](./documentation/Forecast)
 
 2. Check out Swagger
-- [Swagger UI](https://api.sandbox.voluespark.com/swagger)
+
+-   [Swagger UI](https://api.voluespark.com/smart/v1/swagger)
 
 3. Check out our example application using this API
-- [Ladeassistenten](https://www.ladeassistent.no)
+
+-   [Ladeassistenten](https://www.ladeassistent.no)
