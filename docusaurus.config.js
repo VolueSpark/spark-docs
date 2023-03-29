@@ -37,10 +37,9 @@ const config = {
                     breadcrumbs: false,
                     editUrl:
                         'https://github.com/VolueSpark/spark-asset-api-docs/tree/main',
+                    routeBasePath: '/',
                 },
-                blog: {
-                    showReadingTime: true,
-                },
+                blog: false,
                 theme: {
                     customCss: require.resolve('./src/css/custom.css'),
                 },
