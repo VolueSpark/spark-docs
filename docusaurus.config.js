@@ -70,8 +70,7 @@ const config = {
                         className: 'navbar__item',
                     },
                     {
-                        type: 'doc',
-                        docId: "Specification",
+                        to: '/specification',
                         label: 'API Specification',
                         position: 'left',
                         className: 'navbar__item',
