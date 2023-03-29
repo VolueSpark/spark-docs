@@ -147,7 +147,7 @@ h3 {
 
 /* TODO: remove this and fix sidebar, temp fix for displaying navbar items */
 @media (max-width: 996px) {
-  .navbar__item {
+  .menu__link {
     display: inherit;
   }
 }
