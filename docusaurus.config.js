@@ -56,7 +56,7 @@ const config = {
                 respectPrefersColorScheme: false,
             },
             navbar: {
-                title: 'Spark Asset API',
+                title: 'Spark API',
                 // logo: {
                 //   alt: 'My Site Logo',
                 //   src: 'img/logo.svg',
@@ -70,7 +70,8 @@ const config = {
                         className: 'navbar__item',
                     },
                     {
-                        to: '/specification',
+                        type: 'doc',
+                        docId: "Specification",
                         label: 'API Specification',
                         position: 'left',
                         className: 'navbar__item',

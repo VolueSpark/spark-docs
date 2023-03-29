@@ -145,4 +145,11 @@ h3 {
   font-family: "Krub", sans-serif;
 }
 
+/* TODO: remove this and fix sidebar, temp fix for displaying navbar items */
+@media (max-width: 996px) {
+  .navbar__item {
+    display: inherit;
+  }
+}
+
 @import '~@voluespark/spark.elements/build/index.css';
