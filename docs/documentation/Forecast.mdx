@@ -2,7 +2,7 @@ import LongTermForecastExample from '../../src/components/LongTermForecastExampl
 
 # Forecast
 
-The current iteration of the API allows you to make requests to `/api/forecast/{priceArea}` to retrieve a forecast of electricity prices in each area. The forecast contains entries for the next seven days. The endpoint requires two query parameters:
+The current iteration of the API allows you to make requests to `/smart/v1/prices/forecast/{priceArea}` to retrieve a forecast of electricity prices in each area. The forecast contains entries for the next seven days. The endpoint requires two query parameters:
 
 -   ChargingPower `double`: the expected power in kWh at which the vehicle will charge.
 -   ChargingLength `integer`: the expected time in hours the vehicle will charge.
@@ -11,11 +11,11 @@ The current iteration of the API allows you to make requests to `/api/forecast/{
 
 Forecast data consists of spot prices for the next seven days. Upon calling the forecast endpoint, the currency and exchange rate can be supplies to get the spot prices in the desired format.
 
-A post request to `/api/forecast/${priceArea}` can be made with the following code:
+A post request to `/smart/v1/prices/forecast/${priceArea}` can be made with the following code:
 
 ```bash
 curl -X 'GET' \
-  'https://api.sandbox.voluespark.com/api/forecast/NO1?Currency=nok&EnergyUnit=kWh&VATRate=1.25' \
+  'https://api.voluespark.com/smart/v1/prices/forecast/NO1?Currency=nok&EnergyUnit=kWh&VATRate=1.25' \
   -H 'accept: application/json'
 ```
 
