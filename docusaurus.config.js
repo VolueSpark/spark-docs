@@ -9,7 +9,7 @@ const config = {
     title: 'Spark Asset API Docs',
     tagline: 'We are making stuff',
     url: 'https://thankful-sea-0ddc91f03.2.azurestaticapps.net',
-    baseUrl: '/docs/',
+    baseUrl: '/',
     onBrokenLinks: 'throw',
     onBrokenMarkdownLinks: 'warn',
     favicon: 'img/favicon.ico',
@@ -126,11 +126,11 @@ const config = {
                         items: [
                             {
                                 label: 'Getting Started',
-                                to: '/docs/GettingStarted',
+                                to: '/GettingStarted',
                             },
                             {
                                 label: 'Documentation',
-                                to: '/docs/documentation/Authentication',
+                                to: '/documentation/Authentication',
                             },
                         ],
                     },
