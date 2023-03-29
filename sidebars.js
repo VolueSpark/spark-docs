@@ -15,6 +15,11 @@
 const sidebars = {
     documentationSidebar: [
         {
+            type: "category",
+            label: "Introduction",
+            items: [{type: "doc", id: "index"}],
+        },
+        {
             type: 'category',
             label: 'Getting Started',
             items: [{ type: 'doc', id: 'GettingStarted' }],
