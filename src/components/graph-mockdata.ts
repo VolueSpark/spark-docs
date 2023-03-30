@@ -12,7 +12,7 @@ import {
     ChargingPlanType,
     PriceTimeRangeAdvice,
 } from '@voluespark/spark.elements/build/components/types'
-import { ForecastEntry } from '@voluespark/spark.elements/build/components/LongTermForecast'
+import { ForecastEntry } from '@voluespark/spark.elements/build/components/ForecastTable'
 
 function randomNumber(min: number, max: number) {
     return Math.random() * (max - min) + min
@@ -128,7 +128,7 @@ function generateAdvice(
             from: priceEntries[0].time,
             to: priceEntries[chargingWindowSize - 1].time,
             cost: 0,
-            type: 'now',
+            type: 'Now',
         },
         {
             from: priceEntries[Math.max(maxPriceIndex - chargingWindowSize, 0)]
@@ -140,7 +140,7 @@ function generateAdvice(
                 )
             ].time,
             cost: 0,
-            type: 'avoid',
+            type: 'Avoid',
         },
     ]
 }
@@ -186,6 +186,7 @@ export function createMockForecastEntries() {
     const windowInHours = 6
     for (let i = 0; i < days; i++) {
         for (let j = 0; j < hoursInDay / windowInHours; j++) {
+            const averagePrice = Math.random() * 100
             result.push({
                 from: add(startOfDay(new Date()), {
                     days: i,
@@ -195,7 +196,14 @@ export function createMockForecastEntries() {
                     days: i,
                     hours: (j + 1) * windowInHours,
                 }).toISOString(),
-                averagePrice: Math.random() * 100,
+                averagePrice: averagePrice,
+                loss: 0,
+                type:
+                    averagePrice < 33
+                        ? 'Good'
+                        : averagePrice > 66
+                        ? 'Avoid'
+                        : 'Normal',
             })
         }
     }

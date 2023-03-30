@@ -1,5 +1,5 @@
 import React from 'react'
-import { PriceCoin } from '@voluespark/spark.elements'
+import { Coin } from '@voluespark/spark.elements'
 import { add, formatISO } from 'date-fns'
 
 export default function AdviceExample() {
@@ -16,14 +16,14 @@ export default function AdviceExample() {
                 color: '#000',
             }}
         >
-            <PriceCoin
+            <Coin
                 {...{
                     price: 24,
                     priceUnit: 'kr',
                     advice: {
                         from: formatISO(new Date()),
                         to: formatISO(add(new Date(), { hours: 4 })),
-                        type: 'now',
+                        type: 'Now',
                         cost: 24,
                     },
                     details: 'inkl. MVA',

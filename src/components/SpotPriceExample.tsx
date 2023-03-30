@@ -1,4 +1,4 @@
-import { PriceGraph } from '@voluespark/spark.elements'
+import { AdviceGraph } from '@voluespark/spark.elements'
 import React, { useState } from 'react'
 import { createMockChargingPlan } from './graph-mockdata'
 
@@ -26,18 +26,12 @@ export default function SpotPriceExample() {
                 color: '#000',
             }}
         >
-            <PriceGraph
+            <AdviceGraph
                 {...{
                     priceUnit: 'øre',
                     energyUnit: 'kWh',
                     advice: data.advice,
                     data: data.priceEntries,
-                    legend: {
-                        now: 'Nå',
-                        best: 'Beste tidspunkt',
-                        worst: 'Verste tidspunkt',
-                        avoid: 'Bør unngås',
-                    },
                     setChargeWindowStartIndex,
                     isInChargeWindow,
                     isInDataRange,
