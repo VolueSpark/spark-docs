@@ -1,22 +1,21 @@
 import LongTermForecastExample from '../../src/components/LongTermForecastExample'
 
-# Forecast
+# Forecast Prices
 
-The current iteration of the API allows you to make requests to `/smart/v1/prices/forecast/{priceArea}` to retrieve a forecast of electricity prices in each area. The forecast contains entries for the next seven days. The endpoint requires two query parameters:
+The Smart Charging API is located under https://api.voluespark.com/smart/v1, this should be used as the base URL for all calls to the API.
 
--   ChargingPower `double`: the expected power in kWh at which the vehicle will charge.
--   ChargingLength `integer`: the expected time in hours the vehicle will charge.
+## Fetch forecast prices
 
-## Querying Forecast data
+Forecast prices consists of spot prices for the next seven days. The data is segmented into 6 hour intervals by default, but this can be adjusted to interval-lengths which are divisible by 24 hours by using the `segmentSize` query parameter.
 
-Forecast data consists of spot prices for the next seven days. Upon calling the forecast endpoint, the currency and exchange rate can be supplies to get the spot prices in the desired format.
-
-A post request to `/smart/v1/prices/forecast/${priceArea}` can be made with the following code:
+A request to `/prices/forecast/${priceArea}` can be made with the following code:
 
 ```bash
 curl -X 'GET' \
-  'https://api.voluespark.com/smart/v1/prices/forecast/NO1?Currency=nok&EnergyUnit=kWh&VATRate=1.25' \
-  -H 'accept: application/json'
+  'https://api.voluespark.com/smart/v1/prices/forecast/NO1?segmentSize=6' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -H 'Authorization: Bearer <access_token>'
 ```
 
 The response of this API call will be a JSON object containing the following properties:
@@ -24,21 +23,107 @@ The response of this API call will be a JSON object containing the following pro
 ```json
 {
   "priceArea": "NO1",
-  "currency": "EUR",
-  "energyUnit": "mWh",
-  "prices": {
-    "2023-03-10T23:00:00+01:00": 96.27,
-    "2023-03-11T00:00:00+01:00": 95.41,
-    "2023-03-11T01:00:00+01:00": 94.57,
-    "2023-03-11T02:00:00+01:00": 94.05,
-    ...,
-    "2023-03-18T22:00:00+01:00": 81.05
+  "priceUnits": {
+    "currency": "EUR",
+    "vat": {
+      "rate": 1,
+      "hasVAT": false
+    },
+    "energyUnit": "kWh"
+  },
+  "segmentOptions": {
+    "segmentSize": 6
+  },
+  "forecastSegments": [
+    {
+      "from": "2023-03-31T22:00:00+00:00",
+      "to": "2023-04-01T03:00:00+00:00",
+      "averagePrice": 0.07109166666666666
+    },
+    {
+      "from": "2023-04-01T04:00:00+00:00",
+      "to": "2023-04-01T09:00:00+00:00",
+      "averagePrice": 0.07731166666666667
+    },
+    {
+      "from": "2023-04-01T10:00:00+00:00",
+      "to": "2023-04-01T15:00:00+00:00",
+      "averagePrice": 0.07192
+    },
+    ...
+  ]
+}
+```
+
+## Fetch advice regarding forecast prices
+
+The API can give you advice regarding the forecast intervals. The result from this type of query serves as an opinionated advice on when to use electricity, and when to avoid.
+
+To make an API call simply run the following code (substitute parameters with your own values):
+
+```bash
+curl -X 'POST' \
+  'https://api.voluespark.com/smart/v1/prices/forecast/NO1/advice' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -H 'Authorization: Bearer <access_token>' \
+  -d '{
+  "priceUnitsParameters": {
+    "currency": "EUR",
+    "energyUnit": "kWh",
+    "vatRate": null
+  },
+  "segmentOptionsParameters": {
+    "segmentSize": 6
   }
+}'
+```
+
+The response of this API call will be a JSON object containing the following properties:
+
+```json
+{
+  "priceArea": "NO1",
+  "priceUnits": {
+    "currency": "EUR",
+    "vat": {
+      "rate": 1,
+      "hasVAT": false
+    },
+    "energyUnit": "kWh"
+  },
+  "segmentOptions": {
+    "segmentSize": 6
+  },
+  "forecastAdvice": [
+    {
+      "from": "2023-04-02T10:00:00+00:00",
+      "to": "2023-04-02T15:00:00+00:00",
+      "averagePrice": 0.06794,
+      "loss": -0.01134333333333333,
+      "type": "Good"
+    },
+    {
+      "from": "2023-04-02T16:00:00+00:00",
+      "to": "2023-04-02T21:00:00+00:00",
+      "averagePrice": 0.09430833333333333,
+      "loss": 0.015024999999999997,
+      "type": "Good"
+    },
+    {
+      "from": "2023-04-02T22:00:00+00:00",
+      "to": "2023-04-03T03:00:00+00:00",
+      "averagePrice": 0.10157833333333334,
+      "loss": 0,
+      "type": "Avoid"
+    },
+    ...
+  ]
 }
 ```
 
 ## Examples
 
-Below are examples on how the data might be visualized. These can also be viewed in storybook [insert link to storybook]
+Below are examples on how the data might be visualized. These can also be viewed in [Storybook](https://storybook.voluespark.com/?path=/story/forecast-forcast-table--default).
 
 <LongTermForecastExample />

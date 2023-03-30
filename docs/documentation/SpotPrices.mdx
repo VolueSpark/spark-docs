@@ -1,74 +1,98 @@
 import SpotPriceExample from '../../src/components/SpotPriceExample'
 import AdviceExample from '../../src/components/AdviceExample'
 
-# Spot Prices
+# Actual Prices
 
-Spot prices can be retrieved by making a call to `/smart/v1/prices/actual/{priceArea}`, where priceArea is one of the five price areas in Norway (NO1-5). One of the features of the API allows you to make requests to `/smart/v1/prices/actual/{priceArea}/advice` to get an opinionated advice on the best interval to charge using supplied parameters.
+The Smart Charging API is located under https://api.voluespark.com/smart/v1, this should be used as the base URL for all calls to the API.
 
-## Querying Spot Prices
+## Fetch actual spot prices
 
-Getting individual spot prices for a given price area is covered in [GettingStarted](/GettingStarted).
+Actual spot prices can be retrieved by making a call to `/prices/actual/{priceArea}`, where `priceArea` is one of the five price areas in Norway (NO1-5).
 
-### Advice
+Getting actual spot prices for a given price area is covered in the [Getting started](/GettingStarted)-section.
 
-The API can deliver the optimal charging interval given certain parameters. The result from this type of query serves as an opinionated advice on when to start charging. As of right now, price is the only variable taken into account, but additional variables will be taken into account in future iterations.
+## Fetch advice regarding prices
 
-To make an API call simply run the following code:
+The API can give you the optimal charging interval given certain parameters, which can be retrieved making a call to `/prices/actual/{priceArea}/advice` The result from this type of query serves as an opinionated advice on when to start charging, and when to avoid.
+
+As of right now, the algorithm takes advantage of both actual prices and forecast prices to generate charging advice, but additional variables will be taken into account in future iterations.
+
+To make an API call simply run the following code (substitute parameters with your own values):
 
 ```bash
 curl -X 'POST' \
   'https://api.voluespark.com/smart/v1/prices/actual/NO1/advice' \
-  -H 'accept: application/json' \
+  -H 'Accept: application/json' \
   -H 'Content-Type: application/json' \
+  -H 'Authorization: Bearer <access_token>' \
   -d '{
-  "priceUnitParameters": {
+  "priceUnitsParameters": {
     "currency": "NOK",
     "energyUnit": "kWh",
     "vatRate": 1.25
   },
   "chargingSessionParameters": {
-    "power": 3.8,
-    "duration": 8
+    "powerInKiloWatts": 3.6,
+    "duration": "06:00:00"
   },
-  "startFrom": "2023-03-09T13:12:07.043Z"
+  "startFrom": "2023-03-30T11:25:58.731Z"
 }'
 ```
 
-The result of this query will be a list of timeslots with total cost, as well as whether to avoid or not, for the next 24-hour period.
+The result of this query will be a list of advices with total cost of the whole window, average price for the charging windows, as well as a describing how we categorized (`type`) the window. Advice will be given for the whole actual price-window (the next day or two), starting from the time specified in the `startFrom` parameter.
 
 ```json
 {
-    "advice": [
-        {
-            "from": "2023-03-09T13:13:15.593Z",
-            "to": "2023-03-09T13:13:15.593Z",
-            "type": "Unknown",
-            "cost": 0,
-            "averagePrice": 0
-        }
-    ],
-    "spotPrices": [
-        {
-            "time": "2023-03-09T13:13:15.593Z",
-            "price": 0
-        }
-    ],
-    "priceArea": "NO1",
-    "currency": "EUR",
-    "energyUnit": "kWh",
-    "pricesIncludingVAT": true,
-    "vatRate": 0
+  "advice": [
+    {
+      "cost": 25.7748632505,
+      "averagePrice": 1.1932807060416666,
+      "from": "2023-03-30T11:00:00+00:00",
+      "to": "2023-03-30T16:00:00+00:00",
+      "type": "Best"
+    },
+    {
+      "cost": 35.741399234,
+      "averagePrice": 1.4232129275,
+      "from": "2023-03-30T05:00:00+00:00",
+      "to": "2023-03-30T06:00:00+00:00",
+      "type": "Avoid"
+    },
+    ...
+  ],
+  "spotPrices": [
+    {
+      "time": "2023-03-30T11:00:00+00:00",
+      "price": 1.14441452125
+    },
+    ...
+  ],
+  "priceArea": "NO1",
+  "priceUnits": {
+    "currency": "NOK",
+    "vat": {
+      "rate": 1.25,
+      "hasVAT": true
+    },
+    "energyUnit": "kWh"
+  },
+  "chargingSession": {
+    "powerInKiloWatts": 3.6,
+    "duration": "06:00:00"
+  }
 }
 ```
 
 ## Examples
 
-Below are examples on how the data might be visualized. These can also be viewed in [Storybook](https://storybook.voluespark.com/?path=/story/spot-price-advice-graph--default).
+Below are examples on how the data might be visualized. Here we use `spotPrices` to generate the bars, and colorize the bars depending on if they fall within a certain `advice`-window.
 
-### Spot Prices
+These examples can also be viewed in [Storybook](https://storybook.voluespark.com/?path=/story/spot-price-advice-graph--default).
+
+### Spot prices advice graph
 
 <SpotPriceExample />
 
-### Spot Price Advice
+### Spot price "charge right now" coin
 
 <AdviceExample />
