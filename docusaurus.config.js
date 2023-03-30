@@ -106,8 +106,8 @@ const config = {
                         title: 'Spark',
                         items: [
                             {
-                                label: 'Ladeassistenten',
-                                to: 'https://www.ladeassistent.no/nb',
+                                label: 'Ladeassistent',
+                                to: 'https://www.ladeassistent.no/en',
                             },
                             {
                                 label: 'Swagger',
