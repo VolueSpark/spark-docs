@@ -120,14 +120,14 @@ const config = {
                         ],
                     },
                     {
-                        title: 'Documentation',
+                        title: 'Getting Started',
                         items: [
                             {
-                                label: 'Getting Started',
-                                to: '/GettingStarted',
+                                label: 'Requirements',
+                                to: 'getting-started/Requirements',
                             },
                             {
-                                label: 'Documentation',
+                                label: 'Authentication',
                                 to: '/getting-started/Authentication',
                             },
                         ],
