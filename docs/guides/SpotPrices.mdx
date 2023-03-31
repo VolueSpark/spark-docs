@@ -9,7 +9,35 @@ The Smart Charging API is located under https://api.voluespark.com/smart/v1, thi
 
 Actual spot prices can be retrieved by making a call to `/prices/actual/{priceArea}`, where `priceArea` is one of the five price areas in Norway (NO1-5).
 
-Getting actual spot prices for a given price area is covered in the [Getting started](/GettingStarted)-section.
+```bash
+curl -X 'GET' \
+  -H "Authorization: Bearer <access_token>" \
+  -H 'Accept: application/json' \
+  'https://api.voluespark.com/smart/v1/prices/actual/NO1'
+```
+
+The response of this query will be a list of the current price for each individual hour in the day.
+
+```json
+{
+  "priceArea": "NO1",
+  "priceUnits": {
+    "currency": "EUR",
+    "vat": {
+      "rate": 1,
+      "hasVAT": false
+    },
+    "energyUnit": "kWh"
+  },
+  "prices": {
+    "2023-03-29T22:00:00+00:00": 0.08971,
+    "2023-03-29T23:00:00+00:00": 0.08489,
+    "2023-03-30T00:00:00+00:00": 0.08333,
+    ...,
+    "2023-03-31T21:00:00+00:00": 0.08318
+  }
+}
+```
 
 ## Fetch advice regarding prices
 

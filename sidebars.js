@@ -15,22 +15,23 @@
 const sidebars = {
     documentationSidebar: [
         {
-            type: "category",
+            type: "doc",
             label: "Introduction",
-            items: [{type: "doc", id: "index"}],
+            id: "index",
         },
         {
             type: 'category',
             label: 'Getting Started',
-            items: [{ type: 'doc', id: 'GettingStarted' }],
+            collapsible: false,
+            items: [{ type: 'doc', id: 'getting-started/Requirements' }, { type: 'doc', id: 'getting-started/Authentication' }],
         },
         {
             type: 'category',
-            label: 'Documentation',
+            label: 'Guides',
+            collapsible: false,
             items: [
-                { type: 'doc', id: 'documentation/Authentication' },
-                { type: 'doc', id: 'documentation/SpotPrices' },
-                { type: 'doc', id: 'documentation/Forecast' },
+                { type: 'doc', id: 'guides/SpotPrices' },
+                { type: 'doc', id: 'guides/Forecast' },
             ],
         },
     ],

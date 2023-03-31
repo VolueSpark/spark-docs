@@ -128,7 +128,7 @@ const config = {
                             },
                             {
                                 label: 'Documentation',
-                                to: '/documentation/Authentication',
+                                to: '/getting-started/Authentication',
                             },
                         ],
                     },
