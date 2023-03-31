@@ -2462,20 +2462,6 @@
     prop-types "^15.5.10"
     react-use-measure "^2.0.4"
 
-"@visx/axis@2.14.0":
-  version "2.14.0"
-  resolved "https://registry.npmjs.org/@visx/axis/-/axis-2.14.0.tgz#4fe3bf42c20aae599dc94ef5387dfcb1ba3a85ea"
-  integrity sha512-/mJuPiAUN/YdatSlXkkXD/8Pb4gVclbucNZkpUk6JVhnrmow0a1x73QiMXKuH2qDO5GDaqQS0C3Ly9lI3qTQ5Q==
-  dependencies:
-    "@types/react" "*"
-    "@visx/group" "2.10.0"
-    "@visx/point" "2.6.0"
-    "@visx/scale" "2.2.2"
-    "@visx/shape" "2.12.2"
-    "@visx/text" "2.12.2"
-    classnames "^2.3.1"
-    prop-types "^15.6.0"
-
 "@visx/axis@2.18.0":
   version "2.18.0"
   resolved "https://registry.npmjs.org/@visx/axis/-/axis-2.18.0.tgz#9175e9d969df420592082b1ea64c16422377b389"
@@ -2519,14 +2505,6 @@
   dependencies:
     "@types/react" "*"
     prop-types "^15.5.10"
-
-"@visx/curve@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.npmjs.org/@visx/curve/-/curve-2.1.0.tgz#f614bfe3db66df7db7382db7a75ced1506b94602"
-  integrity sha512-9b6JOnx91gmOQiSPhUOxdsvcnW88fgqfTPKoVgQxidMsD/I3wksixtwo8TR/vtEz2aHzzsEEhlv1qK7Y3yaSDw==
-  dependencies:
-    "@types/d3-shape" "^1.3.1"
-    d3-shape "^1.0.6"
 
 "@visx/curve@2.17.0":
   version "2.17.0"
@@ -2598,15 +2576,6 @@
     "@visx/point" "2.17.0"
     "@visx/scale" "2.18.0"
     "@visx/shape" "2.18.0"
-    classnames "^2.3.1"
-    prop-types "^15.6.2"
-
-"@visx/group@2.10.0":
-  version "2.10.0"
-  resolved "https://registry.npmjs.org/@visx/group/-/group-2.10.0.tgz#95839851832545621eb0d091866a61dafe552ae1"
-  integrity sha512-DNJDX71f65Et1+UgQvYlZbE66owYUAfcxTkC96Db6TnxV221VKI3T5l23UWbnMzwFBP9dR3PWUjjqhhF12N5pA==
-  dependencies:
-    "@types/react" "*"
     classnames "^2.3.1"
     prop-types "^15.6.2"
 
@@ -2695,11 +2664,6 @@
   resolved "https://registry.npmjs.org/@visx/point/-/point-2.17.0.tgz#c11f1efee5241bcd612a29f3b3099cb435c9604e"
   integrity sha512-fUdGQBLGaSVbFTbQ6k+1nPisbqYjTjAdo9FhlwLd3W3uyXN/39Sx2z3N2579sVNBDzmCKdYNQIU0HC+/3Vqo6w==
 
-"@visx/point@2.6.0":
-  version "2.6.0"
-  resolved "https://registry.npmjs.org/@visx/point/-/point-2.6.0.tgz#c4316ca409b5b829c5455f07118d8c14a92cc633"
-  integrity sha512-amBi7yMz4S2VSchlPdliznN41TuES64506ySI22DeKQ+mc1s1+BudlpnY90sM1EIw4xnqbKmrghTTGfy6SVqvQ==
-
 "@visx/react-spring@2.18.0":
   version "2.18.0"
   resolved "https://registry.npmjs.org/@visx/react-spring/-/react-spring-2.18.0.tgz#c19c8f64213dae9d62147ae1f99321f6c63c1c91"
@@ -2735,36 +2699,6 @@
     d3-interpolate "^1.4.0"
     d3-scale "^3.3.0"
     d3-time "^2.1.1"
-
-"@visx/scale@2.2.2":
-  version "2.2.2"
-  resolved "https://registry.npmjs.org/@visx/scale/-/scale-2.2.2.tgz#b8eafabdcf92bb45ab196058fe184772ad80fd25"
-  integrity sha512-3aDySGUTpe6VykDQmF+g2nz5paFu9iSPTcCOEgkcru0/v5tmGzUdvivy8CkYbr87HN73V/Jc53lGm+kJUQcLBw==
-  dependencies:
-    "@types/d3-interpolate" "^1.3.1"
-    "@types/d3-scale" "^3.3.0"
-    "@types/d3-time" "^2.0.0"
-    d3-interpolate "^1.4.0"
-    d3-scale "^3.3.0"
-    d3-time "^2.1.1"
-
-"@visx/shape@2.12.2":
-  version "2.12.2"
-  resolved "https://registry.npmjs.org/@visx/shape/-/shape-2.12.2.tgz#81ed88bf823aa84a4f5f32a9c9daf8371a606897"
-  integrity sha512-4gN0fyHWYXiJ+Ck8VAazXX0i8TOnLJvOc5jZBnaJDVxgnSIfCjJn0+Nsy96l9Dy/bCMTh4DBYUBv9k+YICBUOA==
-  dependencies:
-    "@types/d3-path" "^1.0.8"
-    "@types/d3-shape" "^1.3.1"
-    "@types/lodash" "^4.14.172"
-    "@types/react" "*"
-    "@visx/curve" "2.1.0"
-    "@visx/group" "2.10.0"
-    "@visx/scale" "2.2.2"
-    classnames "^2.3.1"
-    d3-path "^1.0.5"
-    d3-shape "^1.2.0"
-    lodash "^4.17.21"
-    prop-types "^15.5.10"
 
 "@visx/shape@2.18.0":
   version "2.18.0"
@@ -2924,17 +2858,19 @@
     "@visx/event" "2.17.0"
     prop-types "^15.6.2"
 
-"@voluespark/spark.elements@^0.0.16":
-  version "0.0.16"
-  resolved "https://npm.pkg.github.com/download/@voluespark/spark.elements/0.0.16/f5e463f58efdc88f8a10fece17349f7c9f213a65#f5e463f58efdc88f8a10fece17349f7c9f213a65"
-  integrity sha512-kx0UCNeehvZAjZfPX9LxnIsS7EQBdMpG8wa47uZu0nzGbThfMjAdTWDxKlmF4pryXHHCQJZk4hD6HNpQxPcdcA==
+"@voluespark/spark.elements@^0.0.24":
+  version "0.0.24"
+  resolved "https://npm.pkg.github.com/download/@voluespark/spark.elements/0.0.24/b0ada1994427cbe71d5709fdff310fcd11ce9ad4#b0ada1994427cbe71d5709fdff310fcd11ce9ad4"
+  integrity sha512-eQPeXh4czdQ2QTuRpHOmfusOTKJ71JIbna0HkiL9Bfcv95Y9DTrFDV5tQHHyO43fmyB/flgB6jjCFVpG6u8Rfw==
   dependencies:
     "@react-hook/size" "^2.1.2"
     "@types/node" "18.11.18"
-    "@visx/axis" "2.14.0"
+    "@visx/axis" "2.18.0"
     "@visx/text" "2.12.2"
     "@visx/visx" "^2.18.0"
     date-fns "^2.29.3"
+    date-fns-tz "^2.0.0"
+    postcss-url "^10.1.3"
 
 "@webassemblyjs/ast@1.11.1":
   version "1.11.1"
@@ -4122,6 +4058,11 @@ csstype@^3.0.2:
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.1.0.tgz#4ddcac3718d787cf9df0d1b7d15033925c8f29f2"
   integrity sha512-uX1KG+x9h5hIJsaKR9xHUeUraxf8IODOwq9JLNPq6BwB04a/xgpq3rcx47l5BZu5zBPlgD342tdke3Hom/nJRA==
 
+cuint@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/cuint/-/cuint-0.2.2.tgz#408086d409550c2631155619e9fa7bcadc3b991b"
+  integrity sha512-d4ZVpCW31eWwCMe1YT3ur7mUDnTXbgwyzaL320DrcRT45rfjYxkt5QWLrmOJ+/UEAI2+fQgKe/fCjR8l4TpRgw==
+
 d3-array@1:
   version "1.2.4"
   resolved "https://registry.npmjs.org/d3-array/-/d3-array-1.2.4.tgz#635ce4d5eea759f6f605863dbcfc30edc737f71f"
@@ -4250,6 +4191,11 @@ d3-voronoi@^1.1.2:
   version "1.1.4"
   resolved "https://registry.npmjs.org/d3-voronoi/-/d3-voronoi-1.1.4.tgz#dd3c78d7653d2bb359284ae478645d95944c8297"
   integrity sha512-dArJ32hchFsrQ8uMiTBLq256MpnZjeuBtdHpaDlYuQyjU0CVzCJl/BVW+SkszaAeH95D/8gxqAhgx0ouAWAfRg==
+
+date-fns-tz@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/date-fns-tz/-/date-fns-tz-2.0.0.tgz#1b14c386cb8bc16fc56fe333d4fc34ae1d1099d5"
+  integrity sha512-OAtcLdB9vxSXTWHdT8b398ARImVwQMyjfYGkKD2zaGpHseG2UPHbHjXELReErZFxWdSLph3c2zOaaTyHfOhERQ==
 
 date-fns@^2.29.3:
   version "2.29.3"
@@ -5978,7 +5924,7 @@ lunr@^2.3.9:
   resolved "https://registry.npmjs.org/lunr/-/lunr-2.3.9.tgz#18b123142832337dd6e964df1a5a7707b25d35e1"
   integrity sha512-zTU3DaZaF3Rt9rhN3uBMGQD3dD2/vFQqnvZCDv4dl5iOzq2IZQqTxu90r4E5J+nP70J3ilqVCrbho2eWaeW8Ow==
 
-make-dir@^3.0.0, make-dir@^3.0.2, make-dir@^3.1.0:
+make-dir@^3.0.0, make-dir@^3.0.2, make-dir@^3.1.0, make-dir@~3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/make-dir/-/make-dir-3.1.0.tgz#415e967046b3a7f1d185277d84aa58203726a13f"
   integrity sha512-g3FeP20LNwhALb/6Cz6Dd4F2ngze0jz7tbzrD2wAV+o9FeNHe4rL+yK2md0J/fiSf1sa1ADhXqi5+oVwOM/eGw==
@@ -6117,6 +6063,11 @@ mime@1.6.0:
   resolved "https://registry.yarnpkg.com/mime/-/mime-1.6.0.tgz#32cd9e5c64553bd58d19a568af452acff04981b1"
   integrity sha512-x0Vn8spI+wuJ1O6S7gnbaQg8Pxh4NNHb7KSINmEWKiPE4RKOplvijn+NkmYmmRgP68mc70j2EbeTFRsrswaQeg==
 
+mime@~2.5.2:
+  version "2.5.2"
+  resolved "https://registry.yarnpkg.com/mime/-/mime-2.5.2.tgz#6e3dc6cc2b9510643830e5f19d5cb753da5eeabe"
+  integrity sha512-tqkh47FzKeCPD2PUiPB6pkbMzsCasjxAfC62/Wap5qrUWcb+sFasXUC5I3gYM5iBM8v/Qpn4UK0x+j0iHyFPDg==
+
 mimic-fn@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/mimic-fn/-/mimic-fn-2.1.0.tgz#7ed2c2ccccaf84d3ffcb7a69b57711fc2083401b"
@@ -6167,6 +6118,13 @@ minimatch@^5.0.1:
   integrity sha512-9TPBGGak4nHfGZsPBohm9AWg6NoT7QTCehS3BIJABslyZbzxfV78QM2Y6+i741OPZIafFAaiiEMh5OyIrJPgtg==
   dependencies:
     brace-expansion "^2.0.1"
+
+minimatch@~3.0.4:
+  version "3.0.8"
+  resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-3.0.8.tgz#5e6a59bd11e2ab0de1cfb843eb2d82e546c321c1"
+  integrity sha512-6FsRAQsxQ61mw+qP1ZzbL9Bc78x2p5OqNgNpnoAFLTrX8n5Kxph0CsnhmKKNXTWjXqU5L0pGPR7hYk+XWZr60Q==
+  dependencies:
+    brace-expansion "^1.1.7"
 
 minimist@^1.2.0, minimist@^1.2.5:
   version "1.2.6"
@@ -6960,6 +6918,16 @@ postcss-unique-selectors@^5.1.1:
   integrity sha512-5JiODlELrz8L2HwxfPnhOWZYWDxVHWL83ufOv84NrcgipI7TaeRsatAhK4Tr2/ZiYldpK/wBvw5BD3qfaK96GA==
   dependencies:
     postcss-selector-parser "^6.0.5"
+
+postcss-url@^10.1.3:
+  version "10.1.3"
+  resolved "https://registry.yarnpkg.com/postcss-url/-/postcss-url-10.1.3.tgz#54120cc910309e2475ec05c2cfa8f8a2deafdf1e"
+  integrity sha512-FUzyxfI5l2tKmXdYc6VTu3TWZsInayEKPbiyW+P6vmmIrrb4I6CGX0BFoewgYHLK+oIL5FECEK02REYRpBvUCw==
+  dependencies:
+    make-dir "~3.1.0"
+    mime "~2.5.2"
+    minimatch "~3.0.4"
+    xxhashjs "~0.2.2"
 
 postcss-value-parser@^4.0.2, postcss-value-parser@^4.1.0, postcss-value-parser@^4.2.0:
   version "4.2.0"
@@ -8911,6 +8879,13 @@ xtend@^4.0.0, xtend@^4.0.1:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/xtend/-/xtend-4.0.2.tgz#bb72779f5fa465186b1f438f674fa347fdb5db54"
   integrity sha512-LKYU1iAXJXUgAXn9URjiu+MWhyUXHsvfp7mcuYm9dSUKK0/CjtrUwFAxD82/mCWbtLsGjFIad0wIsod4zrTAEQ==
+
+xxhashjs@~0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/xxhashjs/-/xxhashjs-0.2.2.tgz#8a6251567621a1c46a5ae204da0249c7f8caa9d8"
+  integrity sha512-AkTuIuVTET12tpsVIQo+ZU6f/qDmKuRUcjaqR+OIvm+aCBsZ95i7UVY5WJ9TMsSaZ0DA2WxoZ4acu0sPH+OKAw==
+  dependencies:
+    cuint "^0.2.2"
 
 y18n@^5.0.5:
   version "5.0.8"
