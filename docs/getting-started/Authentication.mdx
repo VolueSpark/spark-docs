@@ -17,11 +17,10 @@ To authenticate with our service using OAuth 2.0 client credentials, you will ne
 1. Request an access token from the Volue Identity authorization server by sending a POST request to the token endpoint with the following parameters:
 
 -   grant_type: `client_credentials`
--   scope: `spk.spotprice spk.forecast`
 -   client_id: the client identifier provided to you by us
 -   client_secret: the client secret provided to you by us
 
-The response to this request will include an access token, which you will need to include in all subsequent requests to our service. The scopes added here will give you access to the Spot Price and Forecast API-endpoints.
+The response to this request will include an access token, which you will need to include in all subsequent requests to our service.
 
 Here is an example of what the request would look like using curl:
 
@@ -29,7 +28,6 @@ Here is an example of what the request would look like using curl:
 curl --location 'https://auth.identity.volue.com/connect/token' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
 --data-urlencode 'grant_type=client_credentials' \
---data-urlencode 'scope=spk.spotprice spk.forecast' \
 --data-urlencode 'client_id=<your_client_id>' \
 --data-urlencode 'client_secret=<your_client_secret>'
 ```
