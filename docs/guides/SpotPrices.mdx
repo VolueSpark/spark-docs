@@ -7,7 +7,7 @@ The Smart Charging API is located under https://api.voluespark.com/smart/v1, thi
 
 ## Fetch actual spot prices
 
-Actual spot prices can be retrieved by making a call to `/prices/actual/{priceArea}`, where `priceArea` is one of the five price areas in Norway (NO1-5).
+Actual spot prices can be retrieved by making a call to `/prices/actual/{priceArea}`, where `priceArea` is one of the five price areas in Norway (NO1, ..., NO5).
 
 ```bash
 curl -X 'GET' \
@@ -39,7 +39,7 @@ The response of this query will be a list of the current price for each individu
 }
 ```
 
-## Fetch advice regarding prices
+## Fetch advice about spot prices
 
 The API can give you the optimal charging interval given certain parameters, which can be retrieved making a call to `/prices/actual/{priceArea}/advice` The result from this type of query serves as an opinionated advice on when to start charging, and when to avoid.
 
