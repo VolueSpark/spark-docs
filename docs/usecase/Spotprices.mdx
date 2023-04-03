@@ -2,6 +2,8 @@
 displayed_sidebar: usecaseSidebar
 ---
 
+import Flex from '../../src/components/Flex'
+
 # Near future - actual prices
 
 > #### When there's a need for charging within the same day, or the day after
@@ -10,15 +12,46 @@ The Spot Prices API provides electric vehicle (EV) owners with real-time informa
 
 The dataset includes information on the best charging windows and prices for the present. Additionally, it provides information on hours to avoid charging to ensure that EV owners are not charged exorbitant rates.
 
-## Customer value
-
-Spot prices can fluctuate throughout the day and night, with prices usually being lower during off-peak periods when there is less demand for electricity. When combining actual spot prices with forecasted price data, we can give users the ability to identify the most cost-effective times to charge and take advantage of lower prices in the near future.
-
-In addition, by charging during off-peak periods, users can take advantage of the excess capacity in the grid, resulting in a more stable and reliable supply of electricity. This can also help to reduce the strain on the grid during high-demand periods, leading to a more sustainable energy system.
-
-## Connection to EV data
-
-We are working towards delivering individualized optimized charge plans that build upon data provided by EVs. By leveraging EV data, we can create tailored charge plans that consider factors such as battery health, state of charge, driving habits, and personal preferences.
+<div style={{ marginTop: '3.5rem' }}>
+    <Flex id="actual-prices">
+        <div>
+            <div style={{ marginBottom: '7.5rem' }}>
+                <h2>Customer value</h2>
+                <p>
+                    Spot prices can fluctuate throughout the day and night, with
+                    prices usually being lower during off-peak periods when
+                    there is less demand for electricity. When combining actual
+                    spot prices with forecasted price data, we can give users
+                    the ability to identify the most cost-effective times to
+                    charge and take advantage of lower prices in the near
+                    future.
+                </p>
+                <p>
+                    In addition, by charging during off-peak periods, users can
+                    take advantage of the excess capacity in the grid, resulting
+                    in a more stable and reliable supply of electricity. This
+                    can also help to reduce the strain on the grid during
+                    high-demand periods, leading to a more sustainable energy
+                    system.
+                </p>
+            </div>
+            <span>
+                <h2>Connection to EV data</h2>
+                <p>
+                    We are working towards delivering individualized optimized
+                    charge plans that build upon data provided by EVs. By
+                    leveraging EV data, we can create tailored charge plans that
+                    consider factors such as battery health, state of charge,
+                    driving habits, and personal preferences.
+                </p>
+            </span>
+        </div>
+        <img
+            src="/img/actual-prices.png"
+            alt="Picture showing data and component examples for actual prices"
+        />
+    </Flex>
+</div>
 
 ## Resources
 
