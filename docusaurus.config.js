@@ -116,41 +116,66 @@ const config = {
             footer: {
                 style: 'dark',
                 logo: {
-                    src: '/logo/spark.svg',
+                    src: '/logo/spark-volue-logo.svg',
                 },
                 links: [
+                    // {
+                    //     title: "Support",
+                    //     items: [
+                    //         {
+                    //             label: "FAQ",
+                    //             to: "/"
+                    //         },
+                    //         {
+                    //             label: "Dictionary",
+                    //             to: "/"
+                    //         },
+                    //         {
+                    //             label: "[Discord/Slack]",
+                    //             to: "/"
+                    //         }
+                    //     ]
+                    // },
                     {
-                        title: 'Spark',
+                        title: 'Resources',
                         items: [
                             {
-                                label: 'Ladeassistent',
-                                to: 'https://www.ladeassistent.no/en',
+                                html: `
+                                <a href="https://www.ladeassistent.no/en" target="_blank">
+                                Demo app 
+                                <img src="icons/external-link.svg" width="16" height="16" />
+                                </a>`
                             },
                             {
-                                label: 'Swagger',
-                                to: 'https://api.voluespark.com/smart/v1/swagger/index.html',
-                            },
-                            {
-                                label: 'Storybook',
-                                to: 'https://storybook.voluespark.com',
-                            },
-                        ],
+                                html: `
+                                <a href="https://github.com/VolueSpark/ladeassistent.no" target="_blank">
+                                Github 
+                                <img src="icons/external-link.svg" width="16" height="16" />
+                                </a>`
+                            }
+                        ]
                     },
                     {
-                        title: 'Getting Started',
+                        title: 'Other',
                         items: [
                             {
-                                label: 'Requirements',
-                                to: 'getting-started/Requirements',
+                                label: "About Spark",
+                                to: "https://www.volue.com/spark"
                             },
                             {
-                                label: 'Authentication',
-                                to: '/getting-started/Authentication',
+                                html: `
+                                <a href="pdf/spark-terms-and-conditions.pdf" target="_blank">
+                                Terms and Conditions
+                                <img src="icons/external-link.svg" width="16" height="16" />
+                                </a>`
                             },
-                        ],
-                    },
-                    
-                ],
+                            // {
+                            //     label: "Release notes",
+                            //     to: "/"
+                            // }
+                        ]
+                    }
+                ]
             },
             prism: {
                 theme: lightCodeTheme,
