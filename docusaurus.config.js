@@ -45,6 +45,23 @@ const config = {
                 },
             }),
         ],
+        [
+          'redocusaurus',
+          {
+            // Plugin Options for loading OpenAPI files
+            specs: [
+              {
+                spec: 'https://api.voluespark.com/smart/v1/swagger/v1/swagger.yaml',
+                route: '/specification/',
+              },
+            ],
+            // Theme Options for modifying how redoc renders them
+            theme: {
+              // Change with your site colors
+              primaryColor: '#1890ff',
+            },
+          },
+        ], 
     ],
 
     themeConfig:
