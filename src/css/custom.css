@@ -128,7 +128,11 @@ h3 {
 
 /* Need to override hoved color */
 .footer__item a:hover {
-  color: #D0D0FF;
+  color: inherit;
+}
+
+.footer__item a:visited {
+  color: inherit;
 }
 
 
