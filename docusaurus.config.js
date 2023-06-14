@@ -46,27 +46,34 @@ const config = {
             }),
         ],
         [
-          'redocusaurus',
-          {
-            // Plugin Options for loading OpenAPI files
-            specs: [
-              {
-                spec: 'https://api.voluespark.com/smart/v1/swagger/v1/swagger.yaml',
-                route: '/specification/',
-              },
-            ],
-            // Theme Options for modifying how redoc renders them
-            theme: {
-              // Change with your site colors
-              primaryColor: '#1890ff',
+            'redocusaurus',
+            {
+                // Plugin Options for loading OpenAPI files
+                specs: [
+                    {
+                        spec: 'https://api.voluespark.com/smart/v1/swagger/v1/swagger.yaml',
+                        route: '/specification/',
+                    },
+                ],
+                // Theme Options for modifying how redoc renders them
+                theme: {
+                    // Change with your site colors
+                    primaryColor: '#1890ff',
+                },
             },
-          },
-        ], 
+        ],
     ],
 
     themeConfig:
         /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
         ({
+            metadata: [
+                {
+                    name: 'keywords',
+                    content:
+                        'spark, volue, api, documentation, green transition, electric vehicle, ev, charging, smart charging, smart, charging, solar, charge, energy, price, forecast, grid aware',
+                },
+            ],
             colorMode: {
                 defaultMode: 'light',
                 // disableSwitch: true,
@@ -144,38 +151,38 @@ const config = {
                                 <a href="https://www.ladeassistent.no/en" target="_blank">
                                 Demo app 
                                 <img src="icons/external-link.svg" width="16" height="16" />
-                                </a>`
+                                </a>`,
                             },
                             {
                                 html: `
                                 <a href="https://github.com/VolueSpark/ladeassistent.no" target="_blank">
                                 Github 
                                 <img src="icons/external-link.svg" width="16" height="16" />
-                                </a>`
-                            }
-                        ]
+                                </a>`,
+                            },
+                        ],
                     },
                     {
                         title: 'Other',
                         items: [
                             {
-                                label: "About Spark",
-                                to: "https://www.volue.com/spark"
+                                label: 'About Spark',
+                                to: 'https://www.volue.com/spark',
                             },
                             {
                                 html: `
                                 <a href="pdf/spark-terms-and-conditions.pdf" target="_blank">
                                 Terms and Conditions
                                 <img src="icons/external-link.svg" width="16" height="16" />
-                                </a>`
+                                </a>`,
                             },
                             // {
                             //     label: "Release notes",
                             //     to: "/"
                             // }
-                        ]
-                    }
-                ]
+                        ],
+                    },
+                ],
             },
             prism: {
                 theme: lightCodeTheme,
