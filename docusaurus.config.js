@@ -51,8 +51,14 @@ const config = {
                 // Plugin Options for loading OpenAPI files
                 specs: [
                     {
+                        id: 'smart-charging-definition',
                         spec: 'https://api.voluespark.com/smart/v1/swagger/v1/swagger.yaml',
-                        route: '/specification/',
+                        route: '/smart-charging/spec',
+                    },
+                    {
+                        id: 'openadr-vtn-definition',
+                        spec: 'static/definitions/vtn.yaml',
+                        route: '/openadr/vtn/spec',
                     },
                 ],
                 // Theme Options for modifying how redoc renders them
@@ -94,8 +100,14 @@ const config = {
                         className: 'navbar__item',
                     },
                     {
-                        to: '/specification',
-                        label: 'API Specification',
+                        to: '/smart-charging/spec',
+                        label: 'Smart Charging API',
+                        position: 'left',
+                        className: 'navbar__item',
+                    },
+                    {
+                        to: '/openadr/vtn/spec',
+                        label: 'VTN API',
                         position: 'left',
                         className: 'navbar__item',
                     },
