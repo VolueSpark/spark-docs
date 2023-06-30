@@ -1,41 +1,51 @@
 ---
 title: Introduction
-description: Documentation on how to use the reports endpoints of the VTN API
+description: Documentation on how to use the reports endpoints of the SparkADR API.
 keywords: [api, documentation, vtn, introduction]
 ---
 
 # Introduction
 
-This API is inspired by the OpenADR 3.0 draft and much of the terminology mirrors that of the OpenADR 3.0 specification. However, this API is not OpenADR 3.0 compliant.
+The purpose of this API is to coordinate the energy resources of our partners to help balance energy needs on the grid.
+The API is designed to be used by partners who have energy resources that can be controlled by software.
+When the grid is under stress, we will send out events to our partners to request them to act on their energy resources.
+It is then up to the partner to decide how to act on the event, and afterwards send a report back to us about the actions taken.
+
+We have taken a lot of inspiration from the OpenADR 3.0 draft and much of the terminology mirrors that of the OpenADR 3.0 specification. However, this API is not OpenADR 3.0 compliant.
 After careful consideration we have concluded that the full specification of the OpenADR is too complex for our use case. We have therefore decided to implement a subset of the OpenADR specification.
 We still use the same terminology and have an open mind to implement more of the OpenADR specification in the future based on the needs of our partners.
-Some of the terminology we use, which might be unfamiliar to certain of our partners, is explained in the glossary below.
+A lot of the terminology we use is explained in the glossary below.
 
 ## Glossary
 
 ### Virtual Top Node
 
-We have implemented a Virtual top node (VTN) server. In essence that is what this API is.
-A VTN is a server that is responsible for managing the energy resources of a VEN.
-The VTN is responsible for sending signals to the VEN to control the energy resources of the VEN.
-The VTN is also responsible for receiving reports from the VEN about the energy resources of the VEN.
+In essence, this API is a virtual top node (VTN) server.
+The role of a VTN is to monitor the needs of the grid and send out signals to the virtual end nodes (VEN) with requests to act on their energy resources.
+The VTN is also responsible for receiving reports from the VENs about the actions taken in response to the signals.
 
 ### Virtual End Node
 
-You as a partner is responsible for implementation of the VEN client.
-The VEN is responsible for receiving signals from the VTN and sending reports to the VTN.
-The VEN is also responsible for managing the energy resources and responding on events from the VTN.
+You as a partner are responsible for the implementation of a "virtual end node" (VEN) client.
+The job of a VEN is to receive signals from the VTN and deciding how to act on those signals.
+Whenever a VEN server receives a signal from the VTN, it should respond with a report about the actions taken in response to the signal.
+It should also send out reports about the state of the energy resources it controls on a regular basis.
 
 ### Events
 
-Our server will send out events. An event is a request for the VEN to act on various energy resources.
-It is up to the VEN to decide how to act on the event. The VEN can choose to ignore the event or act on it.
+The signals sent out by the VTN are called events.
+An event is a simply a request for a VEN to act on various energy resources.
+It is up to the VEN to decide how to act on the event, and they are free to ignore the event if they decide that it is not in their best interest to act on it.
 
 ### Reports
 
-The VEN should respond to events by sending reports to the VTN.
-The reports should contain information about the energy resources of the VEN and the actions taken in response to the event.
+The VEN should respond to events by sending reports to the VTN about the actions taken in response to the event.
+They should contain information about what energy resources were affected and how they were affected.
+In addition to reports about events, the VEN should also send out reports about the state of the energy resources it controls on a regular basis.
+
+We use the reports to monitor where we have capacity to influence the grid and to verify that VENs are acting on the events.
 
 ### Resources
 
 A resource is any energy resource that the VEN can control (e.g. electric vehicles, hot water heaters, solar panels, thermostats, etc).
+Each resource has a unique identifier that is used to identify it in the API which the events and reports will also refer to.
