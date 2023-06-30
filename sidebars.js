@@ -45,7 +45,7 @@ const sidebars = {
                 { type: 'doc', id: 'vtn/Introduction' },
                 { type: 'doc', id: 'vtn/Events' },
                 { type: 'doc', id: 'vtn/Reports' },
-                // { type: 'doc', id: 'vtn/Resources' },
+                { type: 'doc', id: 'vtn/Resources' },
                 // { type: 'doc', id: 'vtn/Subscriptions' },
             ],
         },
