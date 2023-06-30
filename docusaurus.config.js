@@ -51,8 +51,14 @@ const config = {
                 // Plugin Options for loading OpenAPI files
                 specs: [
                     {
+                        id: 'smart-charging-definition',
                         spec: 'https://api.voluespark.com/smart/v1/swagger/v1/swagger.yaml',
-                        route: '/specification/',
+                        route: '/smart-charging/spec',
+                    },
+                    {
+                        id: 'openadr-vtn-definition',
+                        spec: 'static/definitions/vtn.yaml',
+                        route: '/openadr/vtn/spec',
                     },
                 ],
                 // Theme Options for modifying how redoc renders them
@@ -94,10 +100,22 @@ const config = {
                         className: 'navbar__item',
                     },
                     {
-                        to: '/specification',
-                        label: 'API Specification',
+                        type: 'dropdown',
+                        label: 'Specifications',
                         position: 'left',
-                        className: 'navbar__item',
+                        className: 'navbar__item__dropdown',
+                        items: [
+                            {
+                                to: '/smart-charging/spec',
+                                label: 'Smart Charging API',
+                                className: 'navbar__nested_item',
+                            },
+                            {
+                                to: '/openadr/vtn/spec',
+                                label: 'VTN API',
+                                className: 'navbar__nested_item',
+                            },
+                        ],
                     },
                     {
                         type: 'doc',
@@ -107,10 +125,22 @@ const config = {
                         className: 'navbar__item',
                     },
                     {
-                        href: 'https://api.voluespark.com/smart/v1/swagger/index.html',
+                        type: 'dropdown',
                         label: 'Swagger',
                         position: 'right',
-                        className: 'navbar__item',
+                        className: 'navbar__item__dropdown',
+                        items: [
+                            {
+                                href: 'https://api.voluespark.com/smart/v1/swagger/index.html',
+                                label: 'Smart Charging',
+                                className: 'navbar__nested_item',
+                            },
+                            {
+                                href: 'https://api.voluespark.com/vtn/v1/swagger/index.html?urls.primaryName=Partner%20Docs',
+                                label: 'VTN API',
+                                className: 'navbar__nested_item',
+                            },
+                        ],
                     },
                     {
                         href: 'https://storybook.voluespark.com',
