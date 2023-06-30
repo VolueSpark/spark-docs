@@ -1,0 +1,82 @@
+---
+title: Reports
+description: Documentation on how to use the reports endpoints of the VTN API
+keywords: [api, documentation, vtn, reports]
+---
+
+# Events
+
+The base url of the VTN API is https://api.voluespark.com/vtn/v1.
+
+## Request body
+
+```json
+{
+    "eventId": "string",
+    "name": "string",
+    "payloads": [
+        {
+            "payloadType": "VehicleChargeAction",
+            "resourceId": "string",
+            "location": {
+                "latitude": 0,
+                "longitude": 0
+            },
+            "actionType": "Start",
+            "current": 0,
+            "power": 0,
+            "stateOfCharge": 0,
+            "batteryCapacity": 0
+        }
+    ]
+}
+```
+
+## EventID
+
+Reports responding to a specific event should have the same eventId as the event.
+
+## Payloads
+
+Multiple payloads can be submitted in response to an event. The fields of the payload are determined by the payloadType. At the moment we only support one payloadType: `VehicleChargeAction`.
+
+### VehicleChargeAction
+
+When responding to multiple VehicleChargeActions, an individual payload should be submitted for each vehicle.
+
+-   resourceId (Required)
+-   location (Required)
+-   actionType (Required): one of the following values: `Start`, `Stop`
+-   current (Optional): The current in Ampere
+-   power (Optional): The power in Watt
+-   stateOfCharge (Optional): The state of charge in percent
+-   batteryCapacity (Optional): The battery capacity in kWh
+
+## Submit report
+
+```bash
+curl -X 'POST' \
+  'https://api.voluespark.com/vtn/v1/reports' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer <Access_token>' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "eventId": "string",
+  "name": "string",
+  "payloads": [
+    {
+      "payloadType": "VehicleChargeAction",
+      "resourceId": "string",
+      "location": {
+        "latitude": 0,
+        "longitude": 0
+      },
+      "actionType": "Start",
+      "current": 0,
+      "power": 0,
+      "stateOfCharge": 0,
+      "batteryCapacity": 0
+    }
+  ]
+}'
+```

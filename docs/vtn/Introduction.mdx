@@ -1,0 +1,41 @@
+---
+title: Introduction
+description: Documentation on how to use the reports endpoints of the VTN API
+keywords: [api, documentation, vtn, introduction]
+---
+
+# Introduction
+
+This API is inspired by the OpenADR 3.0 draft and much of the terminology mirrors that of the OpenADR 3.0 specification. However, this API is not OpenADR 3.0 compliant.
+After careful consideration we have concluded that the full specification of the OpenADR is too complex for our use case. We have therefore decided to implement a subset of the OpenADR specification.
+We still use the same terminology and have an open mind to implement more of the OpenADR specification in the future based on the needs of our partners.
+Some of the terminology we use, which might be unfamiliar to certain of our partners, is explained in the glossary below.
+
+## Glossary
+
+### Virtual Top Node
+
+We have implemented a Virtual top node (VTN) server. In essence that is what this API is.
+A VTN is a server that is responsible for managing the energy resources of a VEN.
+The VTN is responsible for sending signals to the VEN to control the energy resources of the VEN.
+The VTN is also responsible for receiving reports from the VEN about the energy resources of the VEN.
+
+### Virtual End Node
+
+You as a partner is responsible for implementation of the VEN client.
+The VEN is responsible for receiving signals from the VTN and sending reports to the VTN.
+The VEN is also responsible for managing the energy resources and responding on events from the VTN.
+
+### Events
+
+Our server will send out events. An event is a request for the VEN to act on various energy resources.
+It is up to the VEN to decide how to act on the event. The VEN can choose to ignore the event or act on it.
+
+### Reports
+
+The VEN should respond to events by sending reports to the VTN.
+The reports should contain information about the energy resources of the VEN and the actions taken in response to the event.
+
+### Resources
+
+A resource is any energy resource that the VEN can control (e.g. electric vehicles, hot water heaters, solar panels, thermostats, etc).

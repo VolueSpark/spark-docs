@@ -15,23 +15,38 @@
 const sidebars = {
     documentationSidebar: [
         {
-            type: "doc",
-            label: "Introduction",
-            id: "index",
+            type: 'doc',
+            label: 'Introduction',
+            id: 'index',
         },
         {
             type: 'category',
             label: 'Getting Started',
             collapsible: false,
-            items: [{ type: 'doc', id: 'getting-started/Requirements' }, { type: 'doc', id: 'getting-started/Authentication' }],
+            items: [
+                { type: 'doc', id: 'getting-started/Requirements' },
+                { type: 'doc', id: 'getting-started/Authentication' },
+            ],
         },
         {
             type: 'category',
-            label: 'Guides',
+            label: 'Smart Charging',
             collapsible: false,
             items: [
-                { type: 'doc', id: 'guides/SpotPrices' },
-                { type: 'doc', id: 'guides/Forecast' },
+                { type: 'doc', id: 'smart/SpotPrices' },
+                { type: 'doc', id: 'smart/Forecast' },
+            ],
+        },
+        {
+            type: 'category',
+            label: 'VTN',
+            collapsible: false,
+            items: [
+                { type: 'doc', id: 'vtn/Introduction' },
+                { type: 'doc', id: 'vtn/Events' },
+                { type: 'doc', id: 'vtn/Reports' },
+                { type: 'doc', id: 'vtn/Resources' },
+                { type: 'doc', id: 'vtn/Subscriptions' },
             ],
         },
     ],

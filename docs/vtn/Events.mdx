@@ -1,0 +1,106 @@
+---
+title: Events
+description: Documentation on how to use the events endpoints of the VTN API.
+keywords: [api, documentation, vtn, events]
+---
+
+# Events
+
+The base url of the VTN API is https://api.voluespark.com/vtn/v1.
+
+## Response type
+
+```json
+{
+    "createdDateTime": "2023-06-30T07:34:27.567Z",
+    "ID": "string",
+    "modificationDateTime": "2023-06-30T07:34:27.567Z",
+    "name": "string",
+    "priority": 0,
+    "programID": "string",
+    "reportDescriptors": [
+        {
+            "payloadType": "string",
+            "readingType": "string",
+            "targets": [
+                {
+                    "targetType": "string",
+                    "values": ["string"]
+                }
+            ],
+            "aggregate": true,
+            "frequency": 0,
+            "historical": true,
+            "numIntervals": 0,
+            "repeat": 0,
+            "startInterval": 0
+        }
+    ],
+    "targets": [
+        {
+            "targetType": "string",
+            "values": ["string"]
+        }
+    ],
+    "intervalPeriod": {
+        "duration": "02:00:00",
+        "start": "2023-06-30T07:34:27.567Z",
+        "randomizeStart": "00:05:00"
+    },
+    "payload": {
+        "payloadType": "Unknown",
+        "targetCurrent": 0
+    }
+}
+```
+
+### ReportDescriptors
+
+When a partner receives an event from the VTN, the event might contain a list of report descriptors. These report descriptors contain the information about the data that the VTN wants to receive from the partner in response to the event. The partner can then use this information to create a report and send it back to the VTN.
+
+### Targets
+
+When a partner receives an event from the VTN, the event might contain a list of targets. These targets describe the target type and the potential IDs of these targets. For example, the target type might be `vehicle` and the values will then be the resource IDs of the vehicles that the event is targeting. If the event contains report descriptors then the targets will be the same for the report descriptors.
+
+### IntervalPeriod
+
+The interval period describes the interval period of the event. The interval period contains the start time of the event, the duration of the event and the randomize start time of the event. RandomizeStart is an optional timespan, and when used the partner should act on the event at a random times for each target between the start time and given timespan.
+
+### Payload
+
+The payload contains a payload type which describes the type of payload that the event contains. The payload type can be one of the following:
+
+-   `CurrentLevel`
+-   `PowerLevel`
+
+The rest of the fields are specific to the payload type.
+
+#### CurrentLevel
+
+-   `targetCurrent`: The target current level of the resource defined in `targets`.
+
+#### PowerLevel
+
+-   `targetPower`: The target power level of the resource defined in `targets`.
+
+## Fetch events
+
+```bash
+curl -X 'GET' \
+  'https://api.voluespark.com/vtn/v1/events' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer <Access_token>'
+```
+
+The response of this API call will be a JSON array containing multiple events for a specific partner id.
+
+## Fetch specific event
+
+```bash
+curl -X 'GET' \
+  'https://api.voluespark.com/vtn/v1/events/{id}' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer <Access_token>'
+```
+
+The response of this API call will be a JSON object containing a specific event.
