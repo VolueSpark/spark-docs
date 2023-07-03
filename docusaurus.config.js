@@ -57,7 +57,7 @@ const config = {
                     },
                     {
                         id: 'openadr-vtn-definition',
-                        spec: 'static/definitions/vtn.yaml',
+                        spec: 'https://api.voluespark.com/vtn/v1/swagger/Partner/swagger.yaml',
                         route: '/openadr/vtn/spec',
                     },
                 ],
