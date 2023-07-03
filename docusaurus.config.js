@@ -27,6 +27,20 @@ const config = {
         locales: ['en'],
     },
 
+    plugins: [
+        [
+            '@docusaurus/plugin-client-redirects',
+            {
+                redirects: [
+                    {
+                        to: '/energy-coordination/Introduction',
+                        from: '/vtn/Introduction',
+                    },
+                ],
+            },
+        ],
+    ],
+
     presets: [
         [
             'classic',

@@ -1,0 +1,23 @@
+---
+title: Introduction
+description: Introduction to the Spark Energy Coordination API.
+keywords: [api, documentation, vtn, introduction]
+---
+
+# Introduction
+
+Welcome to the Energy Coordination API! The API which aims to guide energy resources to win the game of efficient energy use! It's not about controlling the resources, but rather giving them the right incentives to play their best game.
+
+Essentially, our API is about smart collaboration between various energy resources at the neighbourhood level. It encourages devices, like electric vehicles or solar panels, to adjust their energy use and production in response to the state of the electricity grid. For example, if there's an abundance of solar power, the API might encourage charging electric vehicles. The magic here is that it's all done through incentives, and as our partner, you have the choice on how to respond.
+
+## How it works
+
+Our API keeps track of the electricity grid's state and sends out signals suggesting when it's beneficial to use more or less energy. You, as our partner, can decide how to act on these signals. In our API, these signals are what we call "events". You can request to receive events through our API, and we will send them to you when we think it's beneficial for you to act on them.
+
+In order for us to know which resources are available for energy coordination, we need to know about the state of your energy resources. This is done through "reports" which you send to us. The reports contain information about the state of your energy resources and how they have been affected by the events. We use the reports to monitor where we have capacity to influence the grid and to verify that you are acting on the events.
+
+## How to get started
+
+-   Become a partner by reviewing our terms and conditions, and receive credentials as outlined in the [requirements](/getting-started/Requirements)-section.
+-   Test the credentials by [authenticating](/getting-started/Authentication) with the API.
+-   Implement sending simple [reports for your resources](/getting-started/Reports), in order to participate with the energy coordination program.
