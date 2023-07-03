@@ -18,6 +18,12 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/SparkEvent'
+                '400':
+                    description: Bad Request
+                    content:
+                        application/json:
+                            schema:
+                                type: string
     '/events/{eventId}':
         get:
             tags:
@@ -37,19 +43,13 @@ paths:
                                 $ref: '#/components/schemas/SparkEvent'
                 '404':
                     description: Not Found
-    /reports:
-        get:
-            tags:
-                - Reports
-            responses:
-                '200':
-                    description: Success
+                '400':
+                    description: Bad Request
                     content:
                         application/json:
                             schema:
-                                type: array
-                                items:
-                                    $ref: '#/components/schemas/SparkReport'
+                                type: string
+    /reports:
         post:
             tags:
                 - Reports
@@ -57,7 +57,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/SparkReport'
+                            $ref: '#/components/schemas/CreateReportRequest'
                 required: true
             responses:
                 '200':
@@ -66,61 +66,12 @@ paths:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/SparkReport'
-    '/reports/{reportId}':
-        get:
-            tags:
-                - Reports
-            parameters:
-                - name: reportId
-                  in: path
-                  required: true
-                  schema:
-                      type: string
-            responses:
-                '200':
-                    description: Success
+                '400':
+                    description: Bad Request
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/SparkReport'
-                '404':
-                    description: Not Found
-        put:
-            tags:
-                - Reports
-            parameters:
-                - name: reportId
-                  in: path
-                  required: true
-                  schema:
-                      type: string
-            requestBody:
-                content:
-                    application/json:
-                        schema:
-                            $ref: '#/components/schemas/SparkReport'
-                required: true
-            responses:
-                '200':
-                    description: Success
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/SparkReport'
-                '404':
-                    description: Not Found
-        delete:
-            tags:
-                - Reports
-            parameters:
-                - name: reportId
-                  in: path
-                  required: true
-                  schema:
-                      type: string
-            responses:
-                '200':
-                    description: Success
+                                type: string
     '/reports/{reportId}/test':
         post:
             tags:
@@ -138,22 +89,21 @@ paths:
         get:
             tags:
                 - Resources
-            parameters:
-                - name: skip
-                  in: query
-                  schema:
-                      type: integer
-                      format: int32
-                      default: 0
-                - name: take
-                  in: query
-                  schema:
-                      type: integer
-                      format: int32
-                      default: 100
             responses:
                 '200':
                     description: Success
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/SparkResource'
+                '400':
+                    description: Bad Request
+                    content:
+                        application/json:
+                            schema:
+                                type: string
         post:
             tags:
                 - Resources
@@ -161,23 +111,67 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/Resource'
+                            $ref: '#/components/schemas/CreateResourceRequest'
                 required: true
             responses:
                 '200':
                     description: Success
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/SparkResource'
+                '400':
+                    description: Bad Request
+                    content:
+                        application/json:
+                            schema:
+                                type: string
         put:
             tags:
                 - Resources
+            parameters:
+                - name: resourceId
+                  in: query
+                  required: true
+                  schema:
+                      type: string
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/SparkResource'
+                required: true
             responses:
                 '200':
                     description: Success
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/SparkResource'
+                '400':
+                    description: Bad Request
+                    content:
+                        application/json:
+                            schema:
+                                type: string
         delete:
             tags:
                 - Resources
+            parameters:
+                - name: resourceId
+                  in: query
+                  required: true
+                  schema:
+                      type: string
             responses:
-                '200':
-                    description: Success
+                '204':
+                    description: No Content
+                '400':
+                    description: Bad Request
+                    content:
+                        application/json:
+                            schema:
+                                type: string
     '/resources/{eventId}':
         get:
             tags:
@@ -191,6 +185,18 @@ paths:
             responses:
                 '200':
                     description: Success
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/SparkResource'
+                '404':
+                    description: Not Found
+                '400':
+                    description: Bad Request
+                    content:
+                        application/json:
+                            schema:
+                                type: string
     /subscriptions:
         get:
             tags:
@@ -277,76 +283,38 @@ components:
                 webhookUrl:
                     type: string
                     nullable: true
+                clientId:
+                    type: string
+                    nullable: true
+                venId:
+                    type: string
+                    nullable: true
             additionalProperties: false
-        Coordinate:
+        CreateReportRequest:
             type: object
             properties:
-                x:
-                    type: number
-                    format: double
-                y:
-                    type: number
-                    format: double
-                z:
-                    type: number
-                    format: double
-                m:
-                    type: number
-                    format: double
-                coordinateValue:
-                    $ref: '#/components/schemas/Coordinate'
-                isValid:
-                    type: boolean
-                    readOnly: true
+                eventId:
+                    type: string
+                    nullable: true
+                name:
+                    type: string
+                    nullable: true
+                payloads:
+                    type: array
+                    items:
+                        oneOf:
+                            - $ref: '#/components/schemas/VehicleChargeActionPayload'
+                    nullable: true
             additionalProperties: false
-        CoordinateEqualityComparer:
-            type: object
-            additionalProperties: false
-        CoordinateSequence:
+        CreateResourceRequest:
             type: object
             properties:
-                dimension:
-                    type: integer
-                    format: int32
-                    readOnly: true
-                measures:
-                    type: integer
-                    format: int32
-                    readOnly: true
-                spatial:
-                    type: integer
-                    format: int32
-                    readOnly: true
-                ordinates:
-                    $ref: '#/components/schemas/Ordinates'
-                hasZ:
-                    type: boolean
-                    readOnly: true
-                hasM:
-                    type: boolean
-                    readOnly: true
-                zOrdinateIndex:
-                    type: integer
-                    format: int32
-                    readOnly: true
-                mOrdinateIndex:
-                    type: integer
-                    format: int32
-                    readOnly: true
-                first:
-                    $ref: '#/components/schemas/Coordinate'
-                last:
-                    $ref: '#/components/schemas/Coordinate'
-                count:
-                    type: integer
-                    format: int32
-                    readOnly: true
-            additionalProperties: false
-        CoordinateSequenceFactory:
-            type: object
-            properties:
-                ordinates:
-                    $ref: '#/components/schemas/Ordinates'
+                resourceId:
+                    type: string
+                    nullable: true
+                metadata:
+                    oneOf:
+                        - $ref: '#/components/schemas/VehicleMetadata'
             additionalProperties: false
         CurrentLevelPayload:
             type: object
@@ -356,153 +324,6 @@ components:
                 targetCurrent:
                     type: number
                     format: double
-            additionalProperties: false
-        Dimension:
-            enum:
-                - P
-                - Curve
-                - A
-                - Collapse
-                - Dontcare
-                - 'True'
-                - Unknown
-            type: string
-        Envelope:
-            type: object
-            properties:
-                isNull:
-                    type: boolean
-                    readOnly: true
-                width:
-                    type: number
-                    format: double
-                    readOnly: true
-                height:
-                    type: number
-                    format: double
-                    readOnly: true
-                diameter:
-                    type: number
-                    format: double
-                    readOnly: true
-                minX:
-                    type: number
-                    format: double
-                    readOnly: true
-                maxX:
-                    type: number
-                    format: double
-                    readOnly: true
-                minY:
-                    type: number
-                    format: double
-                    readOnly: true
-                maxY:
-                    type: number
-                    format: double
-                    readOnly: true
-                area:
-                    type: number
-                    format: double
-                    readOnly: true
-                minExtent:
-                    type: number
-                    format: double
-                    readOnly: true
-                maxExtent:
-                    type: number
-                    format: double
-                    readOnly: true
-                centre:
-                    $ref: '#/components/schemas/Coordinate'
-            additionalProperties: false
-        Geometry:
-            type: object
-            properties:
-                factory:
-                    $ref: '#/components/schemas/GeometryFactory'
-                userData:
-                    nullable: true
-                srid:
-                    type: integer
-                    format: int32
-                geometryType:
-                    type: string
-                    nullable: true
-                    readOnly: true
-                ogcGeometryType:
-                    $ref: '#/components/schemas/OgcGeometryType'
-                precisionModel:
-                    $ref: '#/components/schemas/PrecisionModel'
-                coordinate:
-                    $ref: '#/components/schemas/Coordinate'
-                coordinates:
-                    type: array
-                    items:
-                        $ref: '#/components/schemas/Coordinate'
-                    nullable: true
-                    readOnly: true
-                numPoints:
-                    type: integer
-                    format: int32
-                    readOnly: true
-                numGeometries:
-                    type: integer
-                    format: int32
-                    readOnly: true
-                isSimple:
-                    type: boolean
-                    readOnly: true
-                isValid:
-                    type: boolean
-                    readOnly: true
-                isEmpty:
-                    type: boolean
-                    readOnly: true
-                area:
-                    type: number
-                    format: double
-                    readOnly: true
-                length:
-                    type: number
-                    format: double
-                    readOnly: true
-                centroid:
-                    $ref: '#/components/schemas/Point'
-                interiorPoint:
-                    $ref: '#/components/schemas/Point'
-                pointOnSurface:
-                    $ref: '#/components/schemas/Point'
-                dimension:
-                    $ref: '#/components/schemas/Dimension'
-                boundary:
-                    $ref: '#/components/schemas/Geometry'
-                boundaryDimension:
-                    $ref: '#/components/schemas/Dimension'
-                envelope:
-                    $ref: '#/components/schemas/Geometry'
-                envelopeInternal:
-                    $ref: '#/components/schemas/Envelope'
-                isRectangle:
-                    type: boolean
-                    readOnly: true
-            additionalProperties: false
-        GeometryFactory:
-            type: object
-            properties:
-                precisionModel:
-                    $ref: '#/components/schemas/PrecisionModel'
-                coordinateSequenceFactory:
-                    $ref: '#/components/schemas/CoordinateSequenceFactory'
-                srid:
-                    type: integer
-                    format: int32
-                    readOnly: true
-                geometryServices:
-                    $ref: '#/components/schemas/NtsGeometryServices'
-            additionalProperties: false
-        GeometryOverlay:
-            type: object
             additionalProperties: false
         IntervalPeriod:
             type: object
@@ -528,169 +349,6 @@ components:
                     type: number
                     format: double
             additionalProperties: false
-        NtsGeometryServices:
-            type: object
-            properties:
-                geometryOverlay:
-                    $ref: '#/components/schemas/GeometryOverlay'
-                coordinateEqualityComparer:
-                    $ref: '#/components/schemas/CoordinateEqualityComparer'
-                defaultSRID:
-                    type: integer
-                    format: int32
-                    readOnly: true
-                defaultCoordinateSequenceFactory:
-                    $ref: '#/components/schemas/CoordinateSequenceFactory'
-                defaultPrecisionModel:
-                    $ref: '#/components/schemas/PrecisionModel'
-            additionalProperties: false
-        OgcGeometryType:
-            enum:
-                - Point
-                - LineString
-                - Polygon
-                - MultiPoint
-                - MultiLineString
-                - MultiPolygon
-                - GeometryCollection
-                - CircularString
-                - CompoundCurve
-                - CurvePolygon
-                - MultiCurve
-                - MultiSurface
-                - Curve
-                - Surface
-                - PolyhedralSurface
-                - TIN
-            type: string
-        Ordinates:
-            enum:
-                - None
-                - X
-                - Y
-                - XY
-                - Spatial3
-                - XYZ
-                - Spatial4
-                - Spatial5
-                - Spatial6
-                - Spatial7
-                - Spatial8
-                - Spatial9
-                - Spatial10
-                - Spatial11
-                - Spatial12
-                - Spatial13
-                - Spatial14
-                - Spatial15
-                - Spatial16
-                - AllSpatialOrdinates
-                - Measure1
-                - XYM
-                - XYZM
-                - Measure2
-                - Measure3
-                - Measure4
-                - Measure5
-                - Measure6
-                - Measure7
-                - Measure8
-                - Measure9
-                - Measure10
-                - Measure11
-                - Measure12
-                - Measure13
-                - Measure14
-                - Measure15
-                - Measure16
-                - AllMeasureOrdinates
-                - AllOrdinates
-            type: string
-        Point:
-            type: object
-            properties:
-                factory:
-                    $ref: '#/components/schemas/GeometryFactory'
-                userData:
-                    nullable: true
-                srid:
-                    type: integer
-                    format: int32
-                precisionModel:
-                    $ref: '#/components/schemas/PrecisionModel'
-                numGeometries:
-                    type: integer
-                    format: int32
-                    readOnly: true
-                isSimple:
-                    type: boolean
-                    readOnly: true
-                isValid:
-                    type: boolean
-                    readOnly: true
-                area:
-                    type: number
-                    format: double
-                    readOnly: true
-                length:
-                    type: number
-                    format: double
-                    readOnly: true
-                centroid:
-                    $ref: '#/components/schemas/Point'
-                interiorPoint:
-                    $ref: '#/components/schemas/Point'
-                pointOnSurface:
-                    $ref: '#/components/schemas/Point'
-                envelope:
-                    $ref: '#/components/schemas/Geometry'
-                envelopeInternal:
-                    $ref: '#/components/schemas/Envelope'
-                isRectangle:
-                    type: boolean
-                    readOnly: true
-                coordinateSequence:
-                    $ref: '#/components/schemas/CoordinateSequence'
-                coordinates:
-                    type: array
-                    items:
-                        $ref: '#/components/schemas/Coordinate'
-                    nullable: true
-                    readOnly: true
-                numPoints:
-                    type: integer
-                    format: int32
-                    readOnly: true
-                isEmpty:
-                    type: boolean
-                    readOnly: true
-                dimension:
-                    $ref: '#/components/schemas/Dimension'
-                boundaryDimension:
-                    $ref: '#/components/schemas/Dimension'
-                x:
-                    type: number
-                    format: double
-                y:
-                    type: number
-                    format: double
-                coordinate:
-                    $ref: '#/components/schemas/Coordinate'
-                geometryType:
-                    type: string
-                    nullable: true
-                    readOnly: true
-                ogcGeometryType:
-                    $ref: '#/components/schemas/OgcGeometryType'
-                boundary:
-                    $ref: '#/components/schemas/Geometry'
-                z:
-                    type: number
-                    format: double
-                m:
-                    type: number
-                    format: double
-            additionalProperties: false
         PostSubscriptionRequest:
             type: object
             properties:
@@ -710,32 +368,6 @@ components:
                     type: number
                     format: double
             additionalProperties: false
-        PrecisionModel:
-            type: object
-            properties:
-                isFloating:
-                    type: boolean
-                    readOnly: true
-                maximumSignificantDigits:
-                    type: integer
-                    format: int32
-                    readOnly: true
-                scale:
-                    type: number
-                    format: double
-                gridSize:
-                    type: number
-                    format: double
-                    readOnly: true
-                precisionModelType:
-                    $ref: '#/components/schemas/PrecisionModels'
-            additionalProperties: false
-        PrecisionModels:
-            enum:
-                - Floating
-                - FloatingSingle
-                - Fixed
-            type: string
         ReportDescriptor:
             type: object
             properties:
@@ -767,21 +399,6 @@ components:
                     type: integer
                     format: int32
             additionalProperties: false
-        Resource:
-            type: object
-            properties:
-                id:
-                    type: string
-                    nullable: true
-                name:
-                    type: string
-                    nullable: true
-                location:
-                    $ref: '#/components/schemas/Point'
-                currentAmperage:
-                    type: number
-                    format: double
-            additionalProperties: false
         SparkEvent:
             type: object
             properties:
@@ -789,6 +406,9 @@ components:
                     type: string
                     format: date-time
                 ID:
+                    type: string
+                    nullable: true
+                clientID:
                     type: string
                     nullable: true
                 modificationDateTime:
@@ -883,6 +503,37 @@ components:
                 - Unknown
                 - VehicleChargeAction
             type: string
+        SparkResource:
+            type: object
+            properties:
+                id:
+                    type: string
+                    nullable: true
+                resourceId:
+                    type: string
+                    nullable: true
+                clientId:
+                    type: string
+                    nullable: true
+                metadata:
+                    oneOf:
+                        - $ref: '#/components/schemas/VehicleMetadata'
+            additionalProperties: false
+        SparkResourceMetadata:
+            type: object
+            properties:
+                resourceType:
+                    $ref: '#/components/schemas/SparkResourceType'
+            additionalProperties: false
+            discriminator:
+                propertyName: resourceType
+                mapping:
+                    Vehicle: '#/components/schemas/VehicleMetadata'
+        SparkResourceType:
+            enum:
+                - Unknown
+                - Vehicle
+            type: string
         Target:
             type: object
             properties:
@@ -930,6 +581,24 @@ components:
                 - Start
                 - Stop
             type: string
+        VehicleMetadata:
+            type: object
+            allOf:
+                - $ref: '#/components/schemas/SparkResourceMetadata'
+            properties:
+                brand:
+                    type: string
+                    nullable: true
+                model:
+                    type: string
+                    nullable: true
+                year:
+                    type: integer
+                    format: int32
+                vin:
+                    type: string
+                    nullable: true
+            additionalProperties: false
     securitySchemes:
         Bearer:
             type: http
