@@ -27,6 +27,20 @@ const config = {
         locales: ['en'],
     },
 
+    plugins: [
+        [
+            '@docusaurus/plugin-client-redirects',
+            {
+                redirects: [
+                    {
+                        to: '/energy-coordination/Introduction',
+                        from: '/vtn/Introduction',
+                    },
+                ],
+            },
+        ],
+    ],
+
     presets: [
         [
             'classic',
@@ -112,7 +126,7 @@ const config = {
                             },
                             {
                                 to: '/openadr/vtn/spec',
-                                label: 'VTN API',
+                                label: 'Energy Coordination API',
                                 className: 'navbar__nested_item',
                             },
                         ],
@@ -137,7 +151,7 @@ const config = {
                             },
                             {
                                 href: 'https://api.voluespark.com/vtn/v1/swagger/index.html?urls.primaryName=Partner%20Docs',
-                                label: 'VTN API',
+                                label: 'Energy Coordination',
                                 className: 'navbar__nested_item',
                             },
                         ],
