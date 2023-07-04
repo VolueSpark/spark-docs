@@ -10,14 +10,42 @@ Welcome to the Energy Coordination API! The API which aims to guide energy resou
 
 Essentially, our API is about smart collaboration between various energy resources at the neighbourhood level. It encourages devices, like electric vehicles or solar panels, to adjust their energy use and production in response to the state of the electricity grid. For example, if there's an abundance of solar power, the API might encourage charging electric vehicles. The magic here is that it's all done through incentives, and as our partner, you have the choice on how to respond.
 
+## How to get started
+
+-   Become a partner by reviewing our terms and conditions, and receive credentials as outlined in the [requirements](/getting-started/Requirements)-section.
+-   Test the credentials by [authenticating](/getting-started/Authentication) with the API.
+-   Implement sending simple [reports for your resources](./Reports), in order to participate with the energy coordination program.
+
 ## How it works
 
 Our API keeps track of the electricity grid's state and sends out signals suggesting when it's beneficial to use more or less energy. You, as our partner, can decide how to act on these signals. In our API, these signals are what we call "events". You can request to receive events through our API, and we will send them to you when we think it's beneficial for you to act on them.
 
 In order for us to know which resources are available for energy coordination, we need to know about the state of your energy resources. This is done through "reports" which you send to us. The reports contain information about the state of your energy resources and how they have been affected by the events. We use the reports to monitor where we have capacity to influence the grid and to verify that you are acting on the events.
 
-## How to get started
+## Basic endpoint flows
 
--   Become a partner by reviewing our terms and conditions, and receive credentials as outlined in the [requirements](/getting-started/Requirements)-section.
--   Test the credentials by [authenticating](/getting-started/Authentication) with the API.
--   Implement sending simple [reports for your resources](./Reports), in order to participate with the energy coordination program.
+The API is built around the concept of resources, events and reports. The following diagram shows the basic flow of the API.
+
+### Registering a resource
+
+To begin with, you need to register your resource with the API. This is done by sending a `POST` request to the `/resources` endpoint. The request should contain information about your resource, such as its type and its capabilities. The API accepts resource id set by you, which you will use to identify your resource in future requests.
+
+![Registering a resource](/img/energy-coordination/resources-endpoint-flow-diagram.png)
+
+### Reporting the state of a resource
+
+Once you have registered your resource, you can start sending reports to the API. The reports should contain information about the state of your resource, such as its current energy usage and its current energy production. The API will use the reports to monitor the state of your resource and to verify that you are acting on the events.
+
+![Reporting the state of a resource](/img/energy-coordination/reports-endpoint-flow-diagram.png)
+
+### Fetching events
+
+You fetch events from the API at any time. The events contain information about the state of the electricity grid and suggestions on how to act on the events. The API will send you events that are relevant to your resource. The API can also send you events when it thinks it's beneficial for you to act on them (see next section for more information).
+
+![Fetching or receiving events](/img/energy-coordination/events-endpoint-flow-diagram.png)
+
+### Subscribing to events
+
+You can also subscribe to events. This means that the API will send you events when it thinks it's beneficial for you to act on them. The API will send you events that are relevant to your resource.
+
+![Subscribing to events](/img/energy-coordination/subscriptions-endpoint-flow-diagram.png)

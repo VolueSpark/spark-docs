@@ -47,7 +47,7 @@ const sidebars = {
                 { type: 'doc', id: 'energy-coordination/Reports' },
                 { type: 'doc', id: 'energy-coordination/Resources' },
                 { type: 'doc', id: 'energy-coordination/Glossary' },
-                // { type: 'doc', id: 'vtn/Subscriptions' },
+                // { type: 'doc', id: 'energy-coordination/Subscriptions' },
             ],
         },
     ],
