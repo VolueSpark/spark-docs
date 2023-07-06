@@ -71,7 +71,7 @@ const config = {
                     },
                     {
                         id: 'openadr-vtn-definition',
-                        spec: 'https://api.voluespark.com/vtn/v1/swagger/Partner/swagger.yaml',
+                        spec: 'https://api.voluespark.com/energy-coordination/v1/swagger/Partner/swagger.yaml',
                         route: '/openadr/vtn/spec',
                     },
                 ],
@@ -150,7 +150,7 @@ const config = {
                                 className: 'navbar__nested_item',
                             },
                             {
-                                href: 'https://api.voluespark.com/vtn/v1/swagger/index.html?urls.primaryName=Partner%20Docs',
+                                href: 'https://api.voluespark.com/energy-coordination/v1/swagger/index.html?urls.primaryName=Partner%20Docs',
                                 label: 'Energy Coordination',
                                 className: 'navbar__nested_item',
                             },
@@ -193,14 +193,14 @@ const config = {
                             {
                                 html: `
                                 <a href="https://www.ladeassistent.no/en" target="_blank">
-                                Demo app 
+                                Demo app
                                 <img src="icons/external-link.svg" width="16" height="16" />
                                 </a>`,
                             },
                             {
                                 html: `
                                 <a href="https://github.com/VolueSpark/ladeassistent.no" target="_blank">
-                                Github 
+                                Github
                                 <img src="icons/external-link.svg" width="16" height="16" />
                                 </a>`,
                             },
