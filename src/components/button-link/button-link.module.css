@@ -1,0 +1,45 @@
+.container {
+    border-radius: 8px;
+    border: 1px solid #11596A;
+    background: #157084;    
+    width: fit-content;
+    padding: 0.5rem 1rem;
+}
+
+.container:hover {
+    background: #11596A;
+}
+
+.container:active {
+    background: #0F4C5C;
+}
+
+.container:disabled {
+    background: #11596A;
+    border: 1px solid #11596A;
+    color: #0F4C5C;
+}
+
+.content {
+    color: #FFFFFF;
+}
+
+.content:hover {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.content:active {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.content:disabled {
+    color: #0F4C5C;
+    text-decoration: none;
+}
+
+.content:visited {
+    color: #FFFFFF;
+    text-decoration: none;
+}

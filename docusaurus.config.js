@@ -192,17 +192,33 @@ const config = {
                         items: [
                             {
                                 html: `
-                                <a href="https://www.ladeassistent.no/en" target="_blank">
+                                <a href="https://www.ladeassistent.no/en" target="_blank" class="footer__link-item">
                                 Demo app
                                 <img src="icons/external-link.svg" width="16" height="16" />
                                 </a>`,
                             },
                             {
                                 html: `
-                                <a href="https://github.com/VolueSpark/ladeassistent.no" target="_blank">
+                                <a href="https://github.com/VolueSpark/ladeassistent.no" target="_blank" class="footer__link-item">
                                 Github
                                 <img src="icons/external-link.svg" width="16" height="16" />
                                 </a>`,
+                            },
+                            {
+                                html: `
+                                <a href="https://storybook.voluespark.com" target="_blank" class="footer__link-item">
+                                Storybook 
+                                <img src="icons/external-link.svg" width="16" height="16" />
+                                </a>`,
+                            },
+                        ],
+                    },
+                    {
+                        title: 'Support',
+                        items: [
+                            {
+                                label: 'Glossary',
+                                to: '/energy-coordination/Glossary',
                             },
                         ],
                     },
@@ -210,20 +226,19 @@ const config = {
                         title: 'Other',
                         items: [
                             {
-                                label: 'About Spark',
-                                to: 'https://www.volue.com/spark',
+                                html: `
+                                <a href="https://www.volue.com/spark" target="_blank" class="footer__link-item">
+                                About Spark
+                                <img src="icons/external-link.svg" width="16" height="16" />
+                                </a>`,
                             },
                             {
                                 html: `
-                                <a href="pdf/spark-terms-and-conditions.pdf" target="_blank">
+                                <a href="pdf/spark-terms-and-conditions.pdf" target="_blank" class="footer__link-item">
                                 Terms and Conditions
                                 <img src="icons/external-link.svg" width="16" height="16" />
                                 </a>`,
                             },
-                            // {
-                            //     label: "Release notes",
-                            //     to: "/"
-                            // }
                         ],
                     },
                 ],

@@ -154,6 +154,21 @@ h3 {
   font-weight: 700;
 }
 
+.footer--dark {
+  --ifm-footer-background-color: #082D35;
+  --ifm-footer-color: #fff;
+  --ifm-footer-link-color: #fff;
+  --ifm-footer-title-color: #fff;
+}
+
+.footer--dark .footer__link-item {
+  color: #fff;
+}
+
+.footer__custom_link {
+  color: #fff;
+}
+
 
 @media (max-width: 996px) {
   .menu__link {
