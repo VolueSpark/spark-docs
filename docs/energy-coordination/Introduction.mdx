@@ -12,40 +12,34 @@ Essentially, our API is about smart collaboration between various energy resourc
 
 ## How to get started
 
--   Become a partner by reviewing our terms and conditions, and receive credentials as outlined in the [requirements](/getting-started/Requirements)-section.
--   Test the credentials by [authenticating](/getting-started/Authentication) with the API.
--   Implement sending simple [reports for your resources](./Reports), in order to participate with the energy coordination program.
+- Become a partner by signing up to receive credentials on [Spark Studio](https://voluespark.com/)
+- Test the credentials by [authenticating](/getting-started/Authentication) with the API
+- Enroll your [resources](/Resources) into our API
+- Set up a [webhook](/Webhooks) to receive events
 
 ## How it works
 
-Our API keeps track of the electricity grid's state and sends out signals suggesting when it's beneficial to use more or less energy. You, as our partner, can decide how to act on these signals. In our API, these signals are what we call "events". You can request to receive events through our API, and we will send them to you when we think it's beneficial for you to act on them.
+Our service keeps track of the state of the electric grid and sends out events when we detect it would be beneficial for a neighbourhood to consume more or less energy. You, as our partner, decide how you want to act when we send you an event, all we ask in return is that you send us a report telling us what you did.
 
 In order for us to know which resources are available for energy coordination, we need to know about the state of your energy resources. This is done through "reports" which you send to us. The reports contain information about the state of your energy resources and how they have been affected by the events. We use the reports to monitor where we have capacity to influence the grid and to verify that you are acting on the events.
+
+Our events are based on neighbourhoods and what would benefit those locally. When you send us information about your resources we use their location to craft targeted events for those resources.
 
 ## Basic endpoint flows
 
 The API is built around the concept of resources, events and reports. The following diagram shows the basic flow of the API.
 
+**TODO: Insert better diagram here
+TODO: Explain the flow and intention of each step better, updated for Q3 with incentives and such.**
+
 ### Registering a resource
 
 To begin with, you need to register your resource with the API. This is done by sending a `POST` request to the `/resources` endpoint. The request should contain information about your resource, such as its type and its capabilities. The API accepts resource id set by you, which you will use to identify your resource in future requests.
-
-![Registering a resource](/img/energy-coordination/resources-endpoint-flow-diagram.png)
 
 ### Reporting the state of a resource
 
 Once you have registered your resource, you can start sending reports to the API. The reports should contain information about the state of your resource, such as its current energy usage and its current energy production. The API will use the reports to monitor the state of your resource and to verify that you are acting on the events.
 
-![Reporting the state of a resource](/img/energy-coordination/reports-endpoint-flow-diagram.png)
-
 ### Fetching events
 
 You fetch events from the API at any time. The events contain information about the state of the electricity grid and suggestions on how to act on the events. The API will send you events that are relevant to your resource. The API can also send you events when it thinks it's beneficial for you to act on them (see next section for more information).
-
-![Fetching or receiving events](/img/energy-coordination/events-endpoint-flow-diagram.png)
-
-### Subscribing to events
-
-You can also subscribe to events. This means that the API will send you events when it thinks it's beneficial for you to act on them. The API will send you events that are relevant to your resource.
-
-![Subscribing to events](/img/energy-coordination/subscriptions-endpoint-flow-diagram.png)
