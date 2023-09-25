@@ -20,7 +20,3 @@ yarn-debug.log*
 yarn-error.log*
 
 .vercel
-
-# Obsidian
-**/.obsidian
-```
