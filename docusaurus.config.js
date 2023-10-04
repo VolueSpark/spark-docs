@@ -157,6 +157,19 @@ const config = {
                         ],
                     },
                     {
+                        type: 'dropdown',
+                        label: 'Support',
+                        position: 'left',
+                        className: 'navbar__item__dropdown',
+                        items: [
+                            {
+                                to: '/support/faq',
+                                label: 'FAQ',
+                                className: 'navbar__nested_item',
+                            },
+                        ],
+                    },
+                    {
                         href: 'https://storybook.voluespark.com',
                         label: 'Storybook',
                         position: 'right',

@@ -5,6 +5,10 @@
     justify-content: center;
 }
 
+.align {
+    align-items: center;
+}
+
 .item {
     width: 50%;
 }

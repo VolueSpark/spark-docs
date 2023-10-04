@@ -1,0 +1,113 @@
+---
+displayed_sidebar: null
+title: FAQ
+description: Frequently Asked Questions
+keywords:
+    [
+        support,
+        api,
+        faq,
+        frequently,
+        asked,
+        questions,
+        smart,
+        charging,
+        ev,
+        help,
+        guide,
+        troubleshoot,
+        energy,
+        coordination,
+    ]
+---
+
+import Flex from '../../src/components/flex'
+import Illustration from '/img/faq-illustration.svg'
+
+# How can we help you?
+
+<h4>
+    If you have any questions about Spark, you're in the right place! We've
+    compiled a list of frequently asked questions to provide answers to some of
+    the most common inquiries we've received.
+</h4>
+
+<p style={{ color: '#0c4957', fontWeight: 600 }}>API SPECIFIC</p>
+
+### How much does it cost to use this API?
+
+The use of this API is currently offered completely free of charge. However, please note that we may introduce additional features and functionality in the future that could be part of paid tiers.
+
+### Where is the API documented?
+
+You will find the API documentation under [Documentation](https://docs.voluespark.com/) and [API specification](https://docs.voluespark.com/smart-charging/spec). The documentation provides detailed information about the Spark API, including API endpoints, request and response formats, authentication methods, and specific guidelines for integration.
+
+### How can I access the API?
+
+To access and utilize the API, credentials are required. To begin, kindly reach out to us at [spark.developer@volue.com](mailto:spark.developer@volue.com)
+
+### How will I know when updates or changes have been made to the API?
+
+Currently, updates and changes to the API are communicated solely through our documentation. However, we are actively working on implementing a more comprehensive communication channel to keep you informed about any new features or modifications in the future.
+
+### What should I do if my API key is lost or compromised?
+
+If you suspect that your API key has been lost or compromised, kindly reach out to us at [spark.developer@volue.com](mailto:spark.developer@volue.com). We will promptly revoke your old key and provide you with a new one. This ensures that the old key will no longer function, while allowing you to seamlessly use the new key in your applications. We are here to assist you in maintaining the security of your API access.
+
+<p style={{ color: '#0c4957', fontWeight: 600 }}>EXAMPLES</p>
+
+### Do you provide any visual examples of how the API could be used?
+
+Yes, Spark provides examples of how the Smart Charging API could be used through the demo app [Ladeassistenten](https://www.ladeassistent.no/) and a sandbox environment in [Storybook](https://storybook.voluespark.com/?path=/docs/introduction--docs).
+
+### Are there any SDKs or code samples available?
+
+We provide various repositories with code examples to assist you in utilizing the Smart Charging API effectively. For UI components utilizing the API, you can find code samples in the Spark Elements Github repo. Additionally, if you are looking for a comprehensive solution incorporating these components, you can explore the Ladeassistenten Github repo. As for the Energy Coordination API these examples are currently under development.
+
+<p style={{ color: '#0c4957', fontWeight: 600 }}>FORECAST</p>
+
+### Is it possible to adjust the resolution of the forecast timeslots?
+
+The Spark service can provide forecast data for different resolution options, allowing you to adjust the resolution of the time slots based on your specific needs. The available resolution options include 3, 4, 6, 8, 12, and 24-hour blocks.
+
+While the UI component in our system displays a resolution of 6 hours, you have the flexibility to request and retrieve forecast data for other time resolutions as well. To adjust the resolution of the time slots, you would typically include the desired time resolution parameter when making API requests for forecast data. Consult the API documentation or reach out to us for specific details on how to set the time resolution parameter and retrieve data for different time slot resolutions.
+
+### Is it possible to get price data for another country?
+
+We can’t promise anything, but please contact us and we’ll look into it. We currently support Norwegian, Swedish, Danish and Finnish price areas.
+
+### How is the forecasts tested, and are they proven to be correct when back-testing them?
+
+Volue Insight, the provider of the forecasts used in Spark, conducts back-testing and benchmarking og their day-ahead and week-ahead forecasts. These forecasts are compared to the actual price market results to assess their accuracy and reliability. It’s important to note that forecasting is inherently complex, and future market conditions can be subject to various uncertainties. Therefore, while the track record of the forecasts is positive, it’s recommended to consider them as informed predictions rather than absolute guarantees of future outcomes.
+
+### How do you define «avoid», «normal» and «best»?
+
+The definitions are determined through a statistical analysis conducted for the forecast horizon, typically the next seven days. The specific definitions depend on the characteristics of the price curve, both for intra-day and week-ahead forecasts.
+
+For relatively flat price curves without significant peaks or dips, the thresholds for classifying segments are based on a certain percentage above or below the running average. Typically, values above a threshold are classified as «Avoid», indicating that those segments may hive higher prices or unfavorable conditions. Conversely, values below another threshold are classified as «Best», representing segments with lower prices or favorable conditions.
+
+In cases where the price curve exhibits significant volatility and dynamic price dynamics, the classification of «Avoid» and «Best» segments is determined based on a configurable confidence interval threshold. This threshold is often set at a high confidence level, capturing segments that lie outside this interval as «Avoid» or «Best».
+
+<p style={{ color: '#0c4957', fontWeight: 600 }}>TROUBLESHOOTING AND ERRORS</p>
+
+### What are the common error codes and what to they mean?
+
+Our API utilizes standard HTTP status codes to indicate common errors such as 400 Bad Request and 500 Internal Server Error. Additionally, we provide detailed error information in JSON format through the use of Problem Details when applicable. This allows you to quickly identify and understand the specific nature of any encountered errors.
+
+### Where can I reach out to get support?
+
+For support, you can reach out to us via email at [spark.developer@volue.com](mailto:spark.developer@volue.com)
+If you have any specific issues related to our Open Source projects, you can also engage with us on our [Github repositories](https://github.com/VolueSpark/spark-docs)
+
+### I have a feature/improvement request or a bug report. Where should I post?
+
+For support, you can reach out to us via email at [spark.developer@volue.com](mailto:spark.developer@volue.com)
+If you have any specific issues related to our Open Source projects, you can also engage with us on our [Github repositories](https://github.com/VolueSpark/spark-docs)
+
+<Flex align>
+    <span>
+        <h3>Didn't find what you were looking for?</h3>
+        <p> Feel free to contact us. We're here to help!</p>
+    </span>
+    <Illustration />
+</Flex>
