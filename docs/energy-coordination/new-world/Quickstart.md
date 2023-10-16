@@ -53,6 +53,21 @@ You can create users via `POST /users`, the response is a `userId` that you can 
 
 The `Vehicle` object represents a specific electric vehicle that your user owns.
 
+You can create vehicles via `POST /users/:userId/vehicles`, the payload should be information identifying a unique vehicle:
+
+```json
+{
+    "vehicleId": "<string>",
+    "metadata": {
+        "resourceType": "Vehicle",
+        "brand": "Tesla",
+        "model": "Model 3",
+        "year": 2022,
+        "vin": "<string>"
+    }
+}
+```
+
 ## 3. Registering a Meter
 
 The `Meter` object represents a specific power meter that your user owns. This is the information we give to DSOs so they can correctly send out incentives to your users.
@@ -68,7 +83,18 @@ In response you will get a `meterId` that you can use to refer to the meter in s
 
 ```json
 {
-    "meterId": "string"
+    "address": {
+        "street": "string",
+        "city": "string",
+        "zipCode": "string"
+    },
+    "location": {
+        "latitude": 63.1,
+        "longitude": 10.7
+    },
+    "meterPointId": "string",
+    "meterNumber": "string",
+    "locationType": "Residential"
 }
 ````
 
@@ -80,7 +106,14 @@ You can create resources via `POST /users/:userId/resources`, the payload should
 
 ```json
 {
-    *** TODO: Example payload ***
+    "resourceId": "<string>",
+    "metadata": {
+        "resourceType": "HotWaterTank",
+        "brand": "Oso",
+        "model": "SuperTank",
+        "capacity": 500,
+        "heatingElements": [1750, 1250]
+    }
 }
 ```
 
@@ -93,8 +126,8 @@ To create one, send a request to `POST /webhooks`:
 {
     "url": "string",
     "webhookSecret": "string",
-    "operations": ["string"],
-    "eventTypes": ["string"]
+    "operations": ["Create", "Update", "Delete"],
+    "eventTypes": ["PriceDelta"]
 }
 ```
 
@@ -120,6 +153,21 @@ You can send a report to the API by sending a `POST /reports` request:
 
 ```json
 {
-    *** TODO: Example payload ***
+    "eventId": "string",
+    "name": "Vehicle Started Charging",
+    "payloads": [
+        {
+            "payloadType": "VehicleChargeAction",
+            "resourceId": "e0fb2731-dadb-41c5-80f2-5dfcbc22b2b5",
+            "location": {
+                "latitude": 63.1,
+                "longitude": 10.7
+            },
+            "actionType": "Start",
+            "power": 11000,
+            "stateOfCharge": 0.5,
+            "batteryCapacity": 75000
+        }
+    ]
 }
 ```
