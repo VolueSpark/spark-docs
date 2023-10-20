@@ -4,8 +4,6 @@ description: Documentation on how webhooks fit into the Energy Coordination API
 keywords: [api, documentation, webhooks, events]
 ---
 
-l
-
 ## Introduction
 
 A big part of this service is Spark sending out information about events that are occurring regarding your resources. Instead of you having to poll data periodically to figure out what's happening, you can instead set up a webhook to allow us to just tell you directly.
@@ -20,7 +18,15 @@ You can for example have one webhook set up to handle events for electric vehicl
 
 ### Create
 
-To create a webhook...
+To create a webhook you need to send a POST to `/webhooks` with the following body:
+
+```json
+{
+    "name": "My Webhook",
+    "url": "https://my-webhook.com",
+    "events": ["event1", "event2"]
+}
+```
 
 ### Update / Pause
 
