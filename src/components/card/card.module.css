@@ -3,7 +3,8 @@
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  padding: 1rem;
+  padding: 1rem 1.5rem;
+  min-height: 180px;
   background: var(--color-background-secondary);
   border: 1px solid;
   border-color: var(--color-border-primary);
@@ -17,6 +18,14 @@
 
 .card_link p {
   color: var(--color-font-primary);
+  margin: 0;
+  line-height: 137.5%;
+  letter-spacing: 0.16px;
+}
+
+.card_link h3 {
+  color: var(--color-font-primary);
+  margin: 0;
 }
 
 .title {
@@ -24,7 +33,7 @@
 }
 
 .card_link_flex {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1.5fr;
+  gap: 1rem;
 }
