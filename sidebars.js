@@ -39,6 +39,7 @@ const sidebars = {
             label: 'Energy Coordination',
             collapsible: false,
             items: [
+                { type: 'doc', id: 'energy-coordination/Quickstart' },
                 { type: 'doc', id: 'energy-coordination/Introduction' },
                 { type: 'doc', id: 'energy-coordination/Events' },
                 { type: 'doc', id: 'energy-coordination/Reports' },
