@@ -1,0 +1,2436 @@
+{
+    "info": {
+        "_postman_id": "9f3d5a2c-4ce3-4db0-87d7-0731e9bd7665",
+        "name": "Energy Coordination API - Partner Endpoints",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "_exporter_id": "24421234",
+        "_collection_link": "https://spark-innovation0.postman.co/workspace/Spark-R%26D~59f24d73-b8d9-427d-9176-c4ca1aa4965d/collection/24421234-9f3d5a2c-4ce3-4db0-87d7-0731e9bd7665?action=share&source=collection_link&creator=24421234"
+    },
+    "item": [
+        {
+            "name": "events",
+            "item": [
+                {
+                    "name": "{eventId}",
+                    "item": [
+                        {
+                            "name": "/events/:eventId",
+                            "request": {
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "url": {
+                                    "raw": "{{baseUrl}}/events/:eventId",
+                                    "host": ["{{baseUrl}}"],
+                                    "path": ["events", ":eventId"],
+                                    "variable": [
+                                        {
+                                            "key": "eventId",
+                                            "value": "<string>"
+                                        }
+                                    ]
+                                }
+                            },
+                            "response": [
+                                {
+                                    "name": "Success",
+                                    "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                            {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                            },
+                                            {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                            }
+                                        ],
+                                        "url": {
+                                            "raw": "{{baseUrl}}/events/:eventId",
+                                            "host": ["{{baseUrl}}"],
+                                            "path": ["events", ":eventId"],
+                                            "variable": [
+                                                {
+                                                    "key": "eventId"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "status": "OK",
+                                    "code": 200,
+                                    "_postman_previewlanguage": "json",
+                                    "header": [
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                        }
+                                    ],
+                                    "cookie": [],
+                                    "body": "{\n  \"name\": \"<string>\",\n  \"priority\": \"<integer>\",\n  \"programId\": \"<string>\",\n  \"reportDescriptors\": [\n    {\n      \"payloadType\": \"VehicleChargeAction\",\n      \"targetResources\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"payloadType\": \"VehicleChargeAction\",\n      \"targetResources\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"targetResources\": [\n    {\n      \"resourceId\": \"<string>\",\n      \"locationId\": \"<string>\"\n    },\n    {\n      \"resourceId\": \"<string>\",\n      \"locationId\": \"<string>\"\n    }\n  ],\n  \"intervalPeriod\": {\n    \"duration\": \"<string>\",\n    \"start\": \"<dateTime>\",\n    \"randomizeStart\": \"<string>\"\n  },\n  \"payload\": {},\n  \"id\": \"<string>\",\n  \"createdAt\": \"<dateTime>\",\n  \"modifiedAt\": \"<dateTime>\"\n}"
+                                },
+                                {
+                                    "name": "Bad Request",
+                                    "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                            {
+                                                "key": "Accept",
+                                                "value": "application/problem+json"
+                                            },
+                                            {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                            }
+                                        ],
+                                        "url": {
+                                            "raw": "{{baseUrl}}/events/:eventId",
+                                            "host": ["{{baseUrl}}"],
+                                            "path": ["events", ":eventId"],
+                                            "variable": [
+                                                {
+                                                    "key": "eventId"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "status": "Bad Request",
+                                    "code": 400,
+                                    "_postman_previewlanguage": "json",
+                                    "header": [
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/problem+json"
+                                        }
+                                    ],
+                                    "cookie": [],
+                                    "body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"errors\": {\n    \"sed_45\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}"
+                                },
+                                {
+                                    "name": "Not Found",
+                                    "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                            {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                            }
+                                        ],
+                                        "url": {
+                                            "raw": "{{baseUrl}}/events/:eventId",
+                                            "host": ["{{baseUrl}}"],
+                                            "path": ["events", ":eventId"],
+                                            "variable": [
+                                                {
+                                                    "key": "eventId"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "status": "Not Found",
+                                    "code": 404,
+                                    "_postman_previewlanguage": "text",
+                                    "header": [],
+                                    "cookie": [],
+                                    "body": ""
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "/events",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/events",
+                            "host": ["{{baseUrl}}"],
+                            "path": ["events"]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Success",
+                            "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                    }
+                                ],
+                                "url": {
+                                    "raw": "{{baseUrl}}/events",
+                                    "host": ["{{baseUrl}}"],
+                                    "path": ["events"]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "[\n  {\n    \"name\": \"<string>\",\n    \"priority\": \"<integer>\",\n    \"programId\": \"<string>\",\n    \"reportDescriptors\": [\n      {\n        \"payloadType\": \"VehicleChargeAction\",\n        \"targetResources\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"payloadType\": \"VehicleChargeAction\",\n        \"targetResources\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ],\n    \"targetResources\": [\n      {\n        \"resourceId\": \"<string>\",\n        \"locationId\": \"<string>\"\n      },\n      {\n        \"resourceId\": \"<string>\",\n        \"locationId\": \"<string>\"\n      }\n    ],\n    \"intervalPeriod\": {\n      \"duration\": \"<string>\",\n      \"start\": \"<dateTime>\",\n      \"randomizeStart\": \"<string>\"\n    },\n    \"payload\": {},\n    \"id\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"modifiedAt\": \"<dateTime>\"\n  },\n  {\n    \"name\": \"<string>\",\n    \"priority\": \"<integer>\",\n    \"programId\": \"<string>\",\n    \"reportDescriptors\": [\n      {\n        \"payloadType\": \"EnergyUsage\",\n        \"targetResources\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"payloadType\": \"EnergyUsage\",\n        \"targetResources\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ],\n    \"targetResources\": [\n      {\n        \"resourceId\": \"<string>\",\n        \"locationId\": \"<string>\"\n      },\n      {\n        \"resourceId\": \"<string>\",\n        \"locationId\": \"<string>\"\n      }\n    ],\n    \"intervalPeriod\": {\n      \"duration\": \"<string>\",\n      \"start\": \"<dateTime>\",\n      \"randomizeStart\": \"<string>\"\n    },\n    \"payload\": {},\n    \"id\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"modifiedAt\": \"<dateTime>\"\n  }\n]"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "reports",
+            "item": [
+                {
+                    "name": "/reports",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"eventId\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+                            "options": {
+                                "raw": {
+                                    "headerFamily": "json",
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/reports",
+                            "host": ["{{baseUrl}}"],
+                            "path": ["reports"]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Success",
+                            "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n  \"eventId\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+                                    "options": {
+                                        "raw": {
+                                            "headerFamily": "json",
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{baseUrl}}/reports",
+                                    "host": ["{{baseUrl}}"],
+                                    "path": ["reports"]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n  \"id\": \"<string>\",\n  \"eventId\": \"<string>\",\n  \"programId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"createdDateTime\": \"<dateTime>\",\n  \"modificationDateTime\": \"<dateTime>\"\n}"
+                        },
+                        {
+                            "name": "Bad Request",
+                            "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n  \"eventId\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+                                    "options": {
+                                        "raw": {
+                                            "headerFamily": "json",
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{baseUrl}}/reports",
+                                    "host": ["{{baseUrl}}"],
+                                    "path": ["reports"]
+                                }
+                            },
+                            "status": "Bad Request",
+                            "code": 400,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "<string>"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "users",
+            "item": [
+                {
+                    "name": "{userId}",
+                    "item": [
+                        {
+                            "name": "meter",
+                            "item": [
+                                {
+                                    "name": "{meterId}",
+                                    "item": [
+                                        {
+                                            "name": "static-resources",
+                                            "item": [
+                                                {
+                                                    "name": "{resourceId}",
+                                                    "item": [
+                                                        {
+                                                            "name": "/users/:userId/meter/:meterId/static-resources/:resourceId",
+                                                            "request": {
+                                                                "method": "GET",
+                                                                "header": [
+                                                                    {
+                                                                        "key": "Accept",
+                                                                        "value": "application/json"
+                                                                    }
+                                                                ],
+                                                                "url": {
+                                                                    "raw": "{{baseUrl}}/users/:userId/meter/:meterId/static-resources/:resourceId",
+                                                                    "host": [
+                                                                        "{{baseUrl}}"
+                                                                    ],
+                                                                    "path": [
+                                                                        "users",
+                                                                        ":userId",
+                                                                        "meter",
+                                                                        ":meterId",
+                                                                        "static-resources",
+                                                                        ":resourceId"
+                                                                    ],
+                                                                    "variable": [
+                                                                        {
+                                                                            "key": "userId"
+                                                                        },
+                                                                        {
+                                                                            "key": "meterId"
+                                                                        },
+                                                                        {
+                                                                            "key": "resourceId"
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            },
+                                                            "response": [
+                                                                {
+                                                                    "name": "Success",
+                                                                    "originalRequest": {
+                                                                        "method": "GET",
+                                                                        "header": [
+                                                                            {
+                                                                                "key": "Accept",
+                                                                                "value": "application/json"
+                                                                            },
+                                                                            {
+                                                                                "description": "Added as a part of security scheme: bearer",
+                                                                                "key": "Authorization",
+                                                                                "value": "Bearer <token>"
+                                                                            }
+                                                                        ],
+                                                                        "url": {
+                                                                            "raw": "{{baseUrl}}/users/:userId/meter/:meterId/static-resources/:resourceId",
+                                                                            "host": [
+                                                                                "{{baseUrl}}"
+                                                                            ],
+                                                                            "path": [
+                                                                                "users",
+                                                                                ":userId",
+                                                                                "meter",
+                                                                                ":meterId",
+                                                                                "static-resources",
+                                                                                ":resourceId"
+                                                                            ],
+                                                                            "variable": [
+                                                                                {
+                                                                                    "key": "userId"
+                                                                                },
+                                                                                {
+                                                                                    "key": "meterId"
+                                                                                },
+                                                                                {
+                                                                                    "key": "resourceId"
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    },
+                                                                    "status": "OK",
+                                                                    "code": 200,
+                                                                    "_postman_previewlanguage": "json",
+                                                                    "header": [
+                                                                        {
+                                                                            "key": "Content-Type",
+                                                                            "value": "application/json"
+                                                                        }
+                                                                    ],
+                                                                    "cookie": [],
+                                                                    "body": "{\n  \"userId\": \"<string>\",\n  \"resourceId\": \"<string>\",\n  \"metadata\": {},\n  \"id\": \"<string>\"\n}"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "name": "/users/:userId/meter/:meterId/static-resources/:resourceId",
+                                                            "request": {
+                                                                "method": "DELETE",
+                                                                "header": [],
+                                                                "url": {
+                                                                    "raw": "{{baseUrl}}/users/:userId/meter/:meterId/static-resources/:resourceId",
+                                                                    "host": [
+                                                                        "{{baseUrl}}"
+                                                                    ],
+                                                                    "path": [
+                                                                        "users",
+                                                                        ":userId",
+                                                                        "meter",
+                                                                        ":meterId",
+                                                                        "static-resources",
+                                                                        ":resourceId"
+                                                                    ],
+                                                                    "variable": [
+                                                                        {
+                                                                            "key": "userId"
+                                                                        },
+                                                                        {
+                                                                            "key": "meterId"
+                                                                        },
+                                                                        {
+                                                                            "key": "resourceId"
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            },
+                                                            "response": [
+                                                                {
+                                                                    "name": "No Content",
+                                                                    "originalRequest": {
+                                                                        "method": "DELETE",
+                                                                        "header": [
+                                                                            {
+                                                                                "description": "Added as a part of security scheme: bearer",
+                                                                                "key": "Authorization",
+                                                                                "value": "Bearer <token>"
+                                                                            }
+                                                                        ],
+                                                                        "url": {
+                                                                            "raw": "{{baseUrl}}/users/:userId/meter/:meterId/static-resources/:resourceId",
+                                                                            "host": [
+                                                                                "{{baseUrl}}"
+                                                                            ],
+                                                                            "path": [
+                                                                                "users",
+                                                                                ":userId",
+                                                                                "meter",
+                                                                                ":meterId",
+                                                                                "static-resources",
+                                                                                ":resourceId"
+                                                                            ],
+                                                                            "variable": [
+                                                                                {
+                                                                                    "key": "userId"
+                                                                                },
+                                                                                {
+                                                                                    "key": "meterId"
+                                                                                },
+                                                                                {
+                                                                                    "key": "resourceId"
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    },
+                                                                    "status": "No Content",
+                                                                    "code": 204,
+                                                                    "_postman_previewlanguage": "text",
+                                                                    "header": [],
+                                                                    "cookie": [],
+                                                                    "body": ""
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "/users/:userId/meter/:meterId/static-resources",
+                                                    "request": {
+                                                        "method": "GET",
+                                                        "header": [
+                                                            {
+                                                                "key": "Accept",
+                                                                "value": "application/json"
+                                                            }
+                                                        ],
+                                                        "url": {
+                                                            "raw": "{{baseUrl}}/users/:userId/meter/:meterId/static-resources",
+                                                            "host": [
+                                                                "{{baseUrl}}"
+                                                            ],
+                                                            "path": [
+                                                                "users",
+                                                                ":userId",
+                                                                "meter",
+                                                                ":meterId",
+                                                                "static-resources"
+                                                            ],
+                                                            "variable": [
+                                                                {
+                                                                    "key": "userId"
+                                                                },
+                                                                {
+                                                                    "key": "meterId"
+                                                                }
+                                                            ]
+                                                        }
+                                                    },
+                                                    "response": [
+                                                        {
+                                                            "name": "Success",
+                                                            "originalRequest": {
+                                                                "method": "GET",
+                                                                "header": [
+                                                                    {
+                                                                        "key": "Accept",
+                                                                        "value": "application/json"
+                                                                    },
+                                                                    {
+                                                                        "description": "Added as a part of security scheme: bearer",
+                                                                        "key": "Authorization",
+                                                                        "value": "Bearer <token>"
+                                                                    }
+                                                                ],
+                                                                "url": {
+                                                                    "raw": "{{baseUrl}}/users/:userId/meter/:meterId/static-resources",
+                                                                    "host": [
+                                                                        "{{baseUrl}}"
+                                                                    ],
+                                                                    "path": [
+                                                                        "users",
+                                                                        ":userId",
+                                                                        "meter",
+                                                                        ":meterId",
+                                                                        "static-resources"
+                                                                    ],
+                                                                    "variable": [
+                                                                        {
+                                                                            "key": "userId"
+                                                                        },
+                                                                        {
+                                                                            "key": "meterId"
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            },
+                                                            "status": "OK",
+                                                            "code": 200,
+                                                            "_postman_previewlanguage": "json",
+                                                            "header": [
+                                                                {
+                                                                    "key": "Content-Type",
+                                                                    "value": "application/json"
+                                                                }
+                                                            ],
+                                                            "cookie": [],
+                                                            "body": "[\n  {\n    \"userId\": \"<string>\",\n    \"resourceId\": \"<string>\",\n    \"metadata\": {},\n    \"id\": \"<string>\"\n  },\n  {\n    \"userId\": \"<string>\",\n    \"resourceId\": \"<string>\",\n    \"metadata\": {},\n    \"id\": \"<string>\"\n  }\n]"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "/users/:userId/meter/:meterId/static-resources",
+                                                    "request": {
+                                                        "method": "POST",
+                                                        "header": [
+                                                            {
+                                                                "key": "Accept",
+                                                                "value": "application/json"
+                                                            }
+                                                        ],
+                                                        "url": {
+                                                            "raw": "{{baseUrl}}/users/:userId/meter/:meterId/static-resources",
+                                                            "host": [
+                                                                "{{baseUrl}}"
+                                                            ],
+                                                            "path": [
+                                                                "users",
+                                                                ":userId",
+                                                                "meter",
+                                                                ":meterId",
+                                                                "static-resources"
+                                                            ],
+                                                            "variable": [
+                                                                {
+                                                                    "key": "userId"
+                                                                },
+                                                                {
+                                                                    "key": "meterId"
+                                                                }
+                                                            ]
+                                                        }
+                                                    },
+                                                    "response": [
+                                                        {
+                                                            "name": "Success",
+                                                            "originalRequest": {
+                                                                "method": "POST",
+                                                                "header": [
+                                                                    {
+                                                                        "key": "Accept",
+                                                                        "value": "application/json"
+                                                                    },
+                                                                    {
+                                                                        "description": "Added as a part of security scheme: bearer",
+                                                                        "key": "Authorization",
+                                                                        "value": "Bearer <token>"
+                                                                    }
+                                                                ],
+                                                                "url": {
+                                                                    "raw": "{{baseUrl}}/users/:userId/meter/:meterId/static-resources",
+                                                                    "host": [
+                                                                        "{{baseUrl}}"
+                                                                    ],
+                                                                    "path": [
+                                                                        "users",
+                                                                        ":userId",
+                                                                        "meter",
+                                                                        ":meterId",
+                                                                        "static-resources"
+                                                                    ],
+                                                                    "variable": [
+                                                                        {
+                                                                            "key": "userId"
+                                                                        },
+                                                                        {
+                                                                            "key": "meterId"
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            },
+                                                            "status": "OK",
+                                                            "code": 200,
+                                                            "_postman_previewlanguage": "json",
+                                                            "header": [
+                                                                {
+                                                                    "key": "Content-Type",
+                                                                    "value": "application/json"
+                                                                }
+                                                            ],
+                                                            "cookie": [],
+                                                            "body": "{\n  \"userId\": \"<string>\",\n  \"resourceId\": \"<string>\",\n  \"metadata\": {},\n  \"id\": \"<string>\"\n}"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "/users/:userId/meter/:meterId",
+                                            "request": {
+                                                "method": "GET",
+                                                "header": [
+                                                    {
+                                                        "key": "Accept",
+                                                        "value": "application/json"
+                                                    }
+                                                ],
+                                                "url": {
+                                                    "raw": "{{baseUrl}}/users/:userId/meter/:meterId",
+                                                    "host": ["{{baseUrl}}"],
+                                                    "path": [
+                                                        "users",
+                                                        ":userId",
+                                                        "meter",
+                                                        ":meterId"
+                                                    ],
+                                                    "variable": [
+                                                        {
+                                                            "key": "userId"
+                                                        },
+                                                        {
+                                                            "key": "meterId"
+                                                        }
+                                                    ]
+                                                }
+                                            },
+                                            "response": [
+                                                {
+                                                    "name": "Success",
+                                                    "originalRequest": {
+                                                        "method": "GET",
+                                                        "header": [
+                                                            {
+                                                                "key": "Accept",
+                                                                "value": "application/json"
+                                                            },
+                                                            {
+                                                                "description": "Added as a part of security scheme: bearer",
+                                                                "key": "Authorization",
+                                                                "value": "Bearer <token>"
+                                                            }
+                                                        ],
+                                                        "url": {
+                                                            "raw": "{{baseUrl}}/users/:userId/meter/:meterId",
+                                                            "host": [
+                                                                "{{baseUrl}}"
+                                                            ],
+                                                            "path": [
+                                                                "users",
+                                                                ":userId",
+                                                                "meter",
+                                                                ":meterId"
+                                                            ],
+                                                            "variable": [
+                                                                {
+                                                                    "key": "userId"
+                                                                },
+                                                                {
+                                                                    "key": "meterId"
+                                                                }
+                                                            ]
+                                                        }
+                                                    },
+                                                    "status": "OK",
+                                                    "code": 200,
+                                                    "_postman_previewlanguage": "json",
+                                                    "header": [
+                                                        {
+                                                            "key": "Content-Type",
+                                                            "value": "application/json"
+                                                        }
+                                                    ],
+                                                    "cookie": [],
+                                                    "body": "{\n  \"meter\": {\n    \"id\": \"<uuid>\",\n    \"address\": {\n      \"street\": \"<string>\",\n      \"city\": \"<string>\",\n      \"zipCode\": \"<string>\"\n    },\n    \"location\": {\n      \"latitude\": \"<double>\",\n      \"longitude\": \"<double>\"\n    },\n    \"meterPointId\": \"<string>\",\n    \"meterNumber\": \"<string>\",\n    \"locationType\": \"Unknown\"\n  }\n}"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "/users/:userId/meter/:meterId",
+                                            "request": {
+                                                "method": "DELETE",
+                                                "header": [],
+                                                "url": {
+                                                    "raw": "{{baseUrl}}/users/:userId/meter/:meterId",
+                                                    "host": ["{{baseUrl}}"],
+                                                    "path": [
+                                                        "users",
+                                                        ":userId",
+                                                        "meter",
+                                                        ":meterId"
+                                                    ],
+                                                    "variable": [
+                                                        {
+                                                            "key": "userId"
+                                                        },
+                                                        {
+                                                            "key": "meterId"
+                                                        }
+                                                    ]
+                                                }
+                                            },
+                                            "response": [
+                                                {
+                                                    "name": "No Content",
+                                                    "originalRequest": {
+                                                        "method": "DELETE",
+                                                        "header": [
+                                                            {
+                                                                "description": "Added as a part of security scheme: bearer",
+                                                                "key": "Authorization",
+                                                                "value": "Bearer <token>"
+                                                            }
+                                                        ],
+                                                        "url": {
+                                                            "raw": "{{baseUrl}}/users/:userId/meter/:meterId",
+                                                            "host": [
+                                                                "{{baseUrl}}"
+                                                            ],
+                                                            "path": [
+                                                                "users",
+                                                                ":userId",
+                                                                "meter",
+                                                                ":meterId"
+                                                            ],
+                                                            "variable": [
+                                                                {
+                                                                    "key": "userId"
+                                                                },
+                                                                {
+                                                                    "key": "meterId"
+                                                                }
+                                                            ]
+                                                        }
+                                                    },
+                                                    "status": "No Content",
+                                                    "code": 204,
+                                                    "_postman_previewlanguage": "text",
+                                                    "header": [],
+                                                    "cookie": [],
+                                                    "body": ""
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "/users/:userId/meter",
+                                    "request": {
+                                        "method": "GET",
+                                        "header": [
+                                            {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                            }
+                                        ],
+                                        "url": {
+                                            "raw": "{{baseUrl}}/users/:userId/meter",
+                                            "host": ["{{baseUrl}}"],
+                                            "path": [
+                                                "users",
+                                                ":userId",
+                                                "meter"
+                                            ],
+                                            "variable": [
+                                                {
+                                                    "key": "userId"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "response": [
+                                        {
+                                            "name": "Success",
+                                            "originalRequest": {
+                                                "method": "GET",
+                                                "header": [
+                                                    {
+                                                        "key": "Accept",
+                                                        "value": "application/json"
+                                                    },
+                                                    {
+                                                        "description": "Added as a part of security scheme: bearer",
+                                                        "key": "Authorization",
+                                                        "value": "Bearer <token>"
+                                                    }
+                                                ],
+                                                "url": {
+                                                    "raw": "{{baseUrl}}/users/:userId/meter",
+                                                    "host": ["{{baseUrl}}"],
+                                                    "path": [
+                                                        "users",
+                                                        ":userId",
+                                                        "meter"
+                                                    ],
+                                                    "variable": [
+                                                        {
+                                                            "key": "userId"
+                                                        }
+                                                    ]
+                                                }
+                                            },
+                                            "status": "OK",
+                                            "code": 200,
+                                            "_postman_previewlanguage": "json",
+                                            "header": [
+                                                {
+                                                    "key": "Content-Type",
+                                                    "value": "application/json"
+                                                }
+                                            ],
+                                            "cookie": [],
+                                            "body": "[\n  {\n    \"meter\": {\n      \"id\": \"<uuid>\",\n      \"address\": {\n        \"street\": \"<string>\",\n        \"city\": \"<string>\",\n        \"zipCode\": \"<string>\"\n      },\n      \"location\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"meterPointId\": \"<string>\",\n      \"meterNumber\": \"<string>\",\n      \"locationType\": \"Residential\"\n    }\n  },\n  {\n    \"meter\": {\n      \"id\": \"<uuid>\",\n      \"address\": {\n        \"street\": \"<string>\",\n        \"city\": \"<string>\",\n        \"zipCode\": \"<string>\"\n      },\n      \"location\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"meterPointId\": \"<string>\",\n      \"meterNumber\": \"<string>\",\n      \"locationType\": \"Unknown\"\n    }\n  }\n]"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "/users/:userId/meter",
+                                    "request": {
+                                        "method": "POST",
+                                        "header": [
+                                            {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                            }
+                                        ],
+                                        "url": {
+                                            "raw": "{{baseUrl}}/users/:userId/meter",
+                                            "host": ["{{baseUrl}}"],
+                                            "path": [
+                                                "users",
+                                                ":userId",
+                                                "meter"
+                                            ],
+                                            "variable": [
+                                                {
+                                                    "key": "userId"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "response": [
+                                        {
+                                            "name": "Success",
+                                            "originalRequest": {
+                                                "method": "POST",
+                                                "header": [
+                                                    {
+                                                        "key": "Accept",
+                                                        "value": "application/json"
+                                                    },
+                                                    {
+                                                        "description": "Added as a part of security scheme: bearer",
+                                                        "key": "Authorization",
+                                                        "value": "Bearer <token>"
+                                                    }
+                                                ],
+                                                "url": {
+                                                    "raw": "{{baseUrl}}/users/:userId/meter",
+                                                    "host": ["{{baseUrl}}"],
+                                                    "path": [
+                                                        "users",
+                                                        ":userId",
+                                                        "meter"
+                                                    ],
+                                                    "variable": [
+                                                        {
+                                                            "key": "userId"
+                                                        }
+                                                    ]
+                                                }
+                                            },
+                                            "status": "OK",
+                                            "code": 200,
+                                            "_postman_previewlanguage": "json",
+                                            "header": [
+                                                {
+                                                    "key": "Content-Type",
+                                                    "value": "application/json"
+                                                }
+                                            ],
+                                            "cookie": [],
+                                            "body": "{\n  \"meter\": {\n    \"id\": \"<uuid>\",\n    \"address\": {\n      \"street\": \"<string>\",\n      \"city\": \"<string>\",\n      \"zipCode\": \"<string>\"\n    },\n    \"location\": {\n      \"latitude\": \"<double>\",\n      \"longitude\": \"<double>\"\n    },\n    \"meterPointId\": \"<string>\",\n    \"meterNumber\": \"<string>\",\n    \"locationType\": \"Unknown\"\n  }\n}"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "dynamic-resources",
+                            "item": [
+                                {
+                                    "name": "{resourceId}",
+                                    "item": [
+                                        {
+                                            "name": "/users/:userId/dynamic-resources/:resourceId",
+                                            "request": {
+                                                "method": "GET",
+                                                "header": [
+                                                    {
+                                                        "key": "Accept",
+                                                        "value": "application/json"
+                                                    }
+                                                ],
+                                                "url": {
+                                                    "raw": "{{baseUrl}}/users/:userId/dynamic-resources/:resourceId",
+                                                    "host": ["{{baseUrl}}"],
+                                                    "path": [
+                                                        "users",
+                                                        ":userId",
+                                                        "dynamic-resources",
+                                                        ":resourceId"
+                                                    ],
+                                                    "variable": [
+                                                        {
+                                                            "key": "userId"
+                                                        },
+                                                        {
+                                                            "key": "resourceId"
+                                                        }
+                                                    ]
+                                                }
+                                            },
+                                            "response": [
+                                                {
+                                                    "name": "Success",
+                                                    "originalRequest": {
+                                                        "method": "GET",
+                                                        "header": [
+                                                            {
+                                                                "key": "Accept",
+                                                                "value": "application/json"
+                                                            },
+                                                            {
+                                                                "description": "Added as a part of security scheme: bearer",
+                                                                "key": "Authorization",
+                                                                "value": "Bearer <token>"
+                                                            }
+                                                        ],
+                                                        "url": {
+                                                            "raw": "{{baseUrl}}/users/:userId/dynamic-resources/:resourceId",
+                                                            "host": [
+                                                                "{{baseUrl}}"
+                                                            ],
+                                                            "path": [
+                                                                "users",
+                                                                ":userId",
+                                                                "dynamic-resources",
+                                                                ":resourceId"
+                                                            ],
+                                                            "variable": [
+                                                                {
+                                                                    "key": "userId"
+                                                                },
+                                                                {
+                                                                    "key": "resourceId"
+                                                                }
+                                                            ]
+                                                        }
+                                                    },
+                                                    "status": "OK",
+                                                    "code": 200,
+                                                    "_postman_previewlanguage": "json",
+                                                    "header": [
+                                                        {
+                                                            "key": "Content-Type",
+                                                            "value": "application/json"
+                                                        }
+                                                    ],
+                                                    "cookie": [],
+                                                    "body": "{\n  \"userId\": \"<string>\",\n  \"resourceId\": \"<string>\",\n  \"metadata\": {},\n  \"id\": \"<string>\"\n}"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "/users/:userId/dynamic-resources/:resourceId",
+                                            "request": {
+                                                "method": "DELETE",
+                                                "header": [],
+                                                "url": {
+                                                    "raw": "{{baseUrl}}/users/:userId/dynamic-resources/:resourceId",
+                                                    "host": ["{{baseUrl}}"],
+                                                    "path": [
+                                                        "users",
+                                                        ":userId",
+                                                        "dynamic-resources",
+                                                        ":resourceId"
+                                                    ],
+                                                    "variable": [
+                                                        {
+                                                            "key": "userId"
+                                                        },
+                                                        {
+                                                            "key": "resourceId"
+                                                        }
+                                                    ]
+                                                }
+                                            },
+                                            "response": [
+                                                {
+                                                    "name": "No Content",
+                                                    "originalRequest": {
+                                                        "method": "DELETE",
+                                                        "header": [
+                                                            {
+                                                                "description": "Added as a part of security scheme: bearer",
+                                                                "key": "Authorization",
+                                                                "value": "Bearer <token>"
+                                                            }
+                                                        ],
+                                                        "url": {
+                                                            "raw": "{{baseUrl}}/users/:userId/dynamic-resources/:resourceId",
+                                                            "host": [
+                                                                "{{baseUrl}}"
+                                                            ],
+                                                            "path": [
+                                                                "users",
+                                                                ":userId",
+                                                                "dynamic-resources",
+                                                                ":resourceId"
+                                                            ],
+                                                            "variable": [
+                                                                {
+                                                                    "key": "userId"
+                                                                },
+                                                                {
+                                                                    "key": "resourceId"
+                                                                }
+                                                            ]
+                                                        }
+                                                    },
+                                                    "status": "No Content",
+                                                    "code": 204,
+                                                    "_postman_previewlanguage": "text",
+                                                    "header": [],
+                                                    "cookie": [],
+                                                    "body": ""
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "/users/:userId/dynamic-resources",
+                                    "request": {
+                                        "method": "GET",
+                                        "header": [
+                                            {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                            }
+                                        ],
+                                        "url": {
+                                            "raw": "{{baseUrl}}/users/:userId/dynamic-resources",
+                                            "host": ["{{baseUrl}}"],
+                                            "path": [
+                                                "users",
+                                                ":userId",
+                                                "dynamic-resources"
+                                            ],
+                                            "variable": [
+                                                {
+                                                    "key": "userId"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "response": [
+                                        {
+                                            "name": "Success",
+                                            "originalRequest": {
+                                                "method": "GET",
+                                                "header": [
+                                                    {
+                                                        "key": "Accept",
+                                                        "value": "application/json"
+                                                    },
+                                                    {
+                                                        "description": "Added as a part of security scheme: bearer",
+                                                        "key": "Authorization",
+                                                        "value": "Bearer <token>"
+                                                    }
+                                                ],
+                                                "url": {
+                                                    "raw": "{{baseUrl}}/users/:userId/dynamic-resources",
+                                                    "host": ["{{baseUrl}}"],
+                                                    "path": [
+                                                        "users",
+                                                        ":userId",
+                                                        "dynamic-resources"
+                                                    ],
+                                                    "variable": [
+                                                        {
+                                                            "key": "userId"
+                                                        }
+                                                    ]
+                                                }
+                                            },
+                                            "status": "OK",
+                                            "code": 200,
+                                            "_postman_previewlanguage": "json",
+                                            "header": [
+                                                {
+                                                    "key": "Content-Type",
+                                                    "value": "application/json"
+                                                }
+                                            ],
+                                            "cookie": [],
+                                            "body": "[\n  {\n    \"userId\": \"<string>\",\n    \"resourceId\": \"<string>\",\n    \"metadata\": {},\n    \"id\": \"<string>\"\n  },\n  {\n    \"userId\": \"<string>\",\n    \"resourceId\": \"<string>\",\n    \"metadata\": {},\n    \"id\": \"<string>\"\n  }\n]"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "/users/:userId/dynamic-resources",
+                                    "request": {
+                                        "method": "POST",
+                                        "header": [
+                                            {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                            }
+                                        ],
+                                        "url": {
+                                            "raw": "{{baseUrl}}/users/:userId/dynamic-resources",
+                                            "host": ["{{baseUrl}}"],
+                                            "path": [
+                                                "users",
+                                                ":userId",
+                                                "dynamic-resources"
+                                            ],
+                                            "variable": [
+                                                {
+                                                    "key": "userId",
+                                                    "value": ""
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "response": [
+                                        {
+                                            "name": "Success",
+                                            "originalRequest": {
+                                                "method": "POST",
+                                                "header": [
+                                                    {
+                                                        "key": "Accept",
+                                                        "value": "application/json"
+                                                    },
+                                                    {
+                                                        "description": "Added as a part of security scheme: bearer",
+                                                        "key": "Authorization",
+                                                        "value": "Bearer <token>"
+                                                    }
+                                                ],
+                                                "url": {
+                                                    "raw": "{{baseUrl}}/users/:userId/dynamic-resources",
+                                                    "host": ["{{baseUrl}}"],
+                                                    "path": [
+                                                        "users",
+                                                        ":userId",
+                                                        "dynamic-resources"
+                                                    ],
+                                                    "variable": [
+                                                        {
+                                                            "key": "userId"
+                                                        }
+                                                    ]
+                                                }
+                                            },
+                                            "status": "OK",
+                                            "code": 200,
+                                            "_postman_previewlanguage": "json",
+                                            "header": [
+                                                {
+                                                    "key": "Content-Type",
+                                                    "value": "application/json"
+                                                }
+                                            ],
+                                            "cookie": [],
+                                            "body": "{\n  \"userId\": \"<string>\",\n  \"resourceId\": \"<string>\",\n  \"metadata\": {},\n  \"id\": \"<string>\"\n}"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "/users/:userId",
+                            "request": {
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "url": {
+                                    "raw": "{{baseUrl}}/users/:userId",
+                                    "host": ["{{baseUrl}}"],
+                                    "path": ["users", ":userId"],
+                                    "variable": [
+                                        {
+                                            "key": "userId"
+                                        }
+                                    ]
+                                }
+                            },
+                            "response": [
+                                {
+                                    "name": "Success",
+                                    "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                            {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                            },
+                                            {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                            }
+                                        ],
+                                        "url": {
+                                            "raw": "{{baseUrl}}/users/:userId",
+                                            "host": ["{{baseUrl}}"],
+                                            "path": ["users", ":userId"],
+                                            "variable": [
+                                                {
+                                                    "key": "userId"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "status": "OK",
+                                    "code": 200,
+                                    "_postman_previewlanguage": "json",
+                                    "header": [
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                        }
+                                    ],
+                                    "cookie": [],
+                                    "body": "{\n  \"user\": {\n    \"id\": \"<uuid>\"\n  }\n}"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "/users/:userId",
+                            "request": {
+                                "method": "DELETE",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{baseUrl}}/users/:userId",
+                                    "host": ["{{baseUrl}}"],
+                                    "path": ["users", ":userId"],
+                                    "variable": [
+                                        {
+                                            "key": "userId"
+                                        }
+                                    ]
+                                }
+                            },
+                            "response": [
+                                {
+                                    "name": "No Content",
+                                    "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                            {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                            }
+                                        ],
+                                        "url": {
+                                            "raw": "{{baseUrl}}/users/:userId",
+                                            "host": ["{{baseUrl}}"],
+                                            "path": ["users", ":userId"],
+                                            "variable": [
+                                                {
+                                                    "key": "userId"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "status": "No Content",
+                                    "code": 204,
+                                    "_postman_previewlanguage": "text",
+                                    "header": [],
+                                    "cookie": [],
+                                    "body": ""
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "/users",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/users",
+                            "host": ["{{baseUrl}}"],
+                            "path": ["users"]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Success",
+                            "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                    }
+                                ],
+                                "url": {
+                                    "raw": "{{baseUrl}}/users",
+                                    "host": ["{{baseUrl}}"],
+                                    "path": ["users"]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "[\n  {\n    \"user\": {\n      \"id\": \"<uuid>\"\n    }\n  },\n  {\n    \"user\": {\n      \"id\": \"<uuid>\"\n    }\n  }\n]"
+                        }
+                    ]
+                },
+                {
+                    "name": "/users",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/users",
+                            "host": ["{{baseUrl}}"],
+                            "path": ["users"]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Success",
+                            "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                    }
+                                ],
+                                "url": {
+                                    "raw": "{{baseUrl}}/users",
+                                    "host": ["{{baseUrl}}"],
+                                    "path": ["users"]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n  \"user\": {\n    \"id\": \"<uuid>\"\n  }\n}"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "webhooks",
+            "item": [
+                {
+                    "name": "{subscriptionId}",
+                    "item": [
+                        {
+                            "name": "/webhooks/:subscriptionId",
+                            "request": {
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "url": {
+                                    "raw": "{{baseUrl}}/webhooks/:subscriptionId",
+                                    "host": ["{{baseUrl}}"],
+                                    "path": ["webhooks", ":subscriptionId"],
+                                    "variable": [
+                                        {
+                                            "key": "subscriptionId",
+                                            "value": "<string>"
+                                        }
+                                    ]
+                                }
+                            },
+                            "response": [
+                                {
+                                    "name": "Success",
+                                    "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                            {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                            },
+                                            {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                            }
+                                        ],
+                                        "url": {
+                                            "raw": "{{baseUrl}}/webhooks/:subscriptionId",
+                                            "host": ["{{baseUrl}}"],
+                                            "path": [
+                                                "webhooks",
+                                                ":subscriptionId"
+                                            ],
+                                            "variable": [
+                                                {
+                                                    "key": "subscriptionId"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "status": "OK",
+                                    "code": 200,
+                                    "_postman_previewlanguage": "json",
+                                    "header": [
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                        }
+                                    ],
+                                    "cookie": [],
+                                    "body": "{\n  \"id\": \"<string>\",\n  \"webhookSecret\": \"<string>\",\n  \"webhookUrl\": \"<string>\",\n  \"eventPayloadTypes\": [\n    \"CurrentLevel\",\n    \"PriceCurve\"\n  ],\n  \"operationTypes\": [\n    \"Update\",\n    \"Create\"\n  ]\n}"
+                                },
+                                {
+                                    "name": "Bad Request",
+                                    "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                            {
+                                                "key": "Accept",
+                                                "value": "application/problem+json"
+                                            },
+                                            {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                            }
+                                        ],
+                                        "url": {
+                                            "raw": "{{baseUrl}}/webhooks/:subscriptionId",
+                                            "host": ["{{baseUrl}}"],
+                                            "path": [
+                                                "webhooks",
+                                                ":subscriptionId"
+                                            ],
+                                            "variable": [
+                                                {
+                                                    "key": "subscriptionId"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "status": "Bad Request",
+                                    "code": 400,
+                                    "_postman_previewlanguage": "json",
+                                    "header": [
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/problem+json"
+                                        }
+                                    ],
+                                    "cookie": [],
+                                    "body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"errors\": {\n    \"sed_45\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}"
+                                },
+                                {
+                                    "name": "Not Found",
+                                    "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                            {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                            }
+                                        ],
+                                        "url": {
+                                            "raw": "{{baseUrl}}/webhooks/:subscriptionId",
+                                            "host": ["{{baseUrl}}"],
+                                            "path": [
+                                                "webhooks",
+                                                ":subscriptionId"
+                                            ],
+                                            "variable": [
+                                                {
+                                                    "key": "subscriptionId"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "status": "Not Found",
+                                    "code": 404,
+                                    "_postman_previewlanguage": "text",
+                                    "header": [],
+                                    "cookie": [],
+                                    "body": ""
+                                }
+                            ]
+                        },
+                        {
+                            "name": "/webhooks/:subscriptionId",
+                            "request": {
+                                "method": "PUT",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n  \"id\": \"<string>\",\n  \"webhookSecret\": \"<string>\",\n  \"webhookUrl\": \"<string>\",\n  \"eventPayloadTypes\": [\n    \"CurrentLevel\",\n    \"PriceCurve\"\n  ],\n  \"operationTypes\": [\n    \"Update\",\n    \"Create\"\n  ]\n}",
+                                    "options": {
+                                        "raw": {
+                                            "headerFamily": "json",
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{baseUrl}}/webhooks/:subscriptionId",
+                                    "host": ["{{baseUrl}}"],
+                                    "path": ["webhooks", ":subscriptionId"],
+                                    "variable": [
+                                        {
+                                            "key": "subscriptionId",
+                                            "value": "<string>"
+                                        }
+                                    ]
+                                }
+                            },
+                            "response": [
+                                {
+                                    "name": "Success",
+                                    "originalRequest": {
+                                        "method": "PUT",
+                                        "header": [
+                                            {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                            },
+                                            {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                            },
+                                            {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                            }
+                                        ],
+                                        "body": {
+                                            "mode": "raw",
+                                            "raw": "{\n  \"id\": \"<string>\",\n  \"webhookSecret\": \"<string>\",\n  \"webhookUrl\": \"<string>\",\n  \"eventPayloadTypes\": [\n    \"CurrentLevel\",\n    \"PriceCurve\"\n  ],\n  \"operationTypes\": [\n    \"Update\",\n    \"Create\"\n  ]\n}",
+                                            "options": {
+                                                "raw": {
+                                                    "headerFamily": "json",
+                                                    "language": "json"
+                                                }
+                                            }
+                                        },
+                                        "url": {
+                                            "raw": "{{baseUrl}}/webhooks/:subscriptionId",
+                                            "host": ["{{baseUrl}}"],
+                                            "path": [
+                                                "webhooks",
+                                                ":subscriptionId"
+                                            ],
+                                            "variable": [
+                                                {
+                                                    "key": "subscriptionId"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "status": "OK",
+                                    "code": 200,
+                                    "_postman_previewlanguage": "json",
+                                    "header": [
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                        }
+                                    ],
+                                    "cookie": [],
+                                    "body": "{\n  \"id\": \"<string>\",\n  \"webhookSecret\": \"<string>\",\n  \"webhookUrl\": \"<string>\",\n  \"eventPayloadTypes\": [\n    \"CurrentLevel\",\n    \"PriceCurve\"\n  ],\n  \"operationTypes\": [\n    \"Update\",\n    \"Create\"\n  ]\n}"
+                                },
+                                {
+                                    "name": "Bad Request",
+                                    "originalRequest": {
+                                        "method": "PUT",
+                                        "header": [
+                                            {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                            },
+                                            {
+                                                "key": "Accept",
+                                                "value": "application/problem+json"
+                                            },
+                                            {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                            }
+                                        ],
+                                        "body": {
+                                            "mode": "raw",
+                                            "raw": "{\n  \"id\": \"<string>\",\n  \"webhookSecret\": \"<string>\",\n  \"webhookUrl\": \"<string>\",\n  \"eventPayloadTypes\": [\n    \"CurrentLevel\",\n    \"PriceCurve\"\n  ],\n  \"operationTypes\": [\n    \"Update\",\n    \"Create\"\n  ]\n}",
+                                            "options": {
+                                                "raw": {
+                                                    "headerFamily": "json",
+                                                    "language": "json"
+                                                }
+                                            }
+                                        },
+                                        "url": {
+                                            "raw": "{{baseUrl}}/webhooks/:subscriptionId",
+                                            "host": ["{{baseUrl}}"],
+                                            "path": [
+                                                "webhooks",
+                                                ":subscriptionId"
+                                            ],
+                                            "variable": [
+                                                {
+                                                    "key": "subscriptionId"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "status": "Bad Request",
+                                    "code": 400,
+                                    "_postman_previewlanguage": "json",
+                                    "header": [
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/problem+json"
+                                        }
+                                    ],
+                                    "cookie": [],
+                                    "body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"errors\": {\n    \"sed_45\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}"
+                                },
+                                {
+                                    "name": "Not Found",
+                                    "originalRequest": {
+                                        "method": "PUT",
+                                        "header": [
+                                            {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                            },
+                                            {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                            }
+                                        ],
+                                        "body": {
+                                            "mode": "raw",
+                                            "raw": "{\n  \"id\": \"<string>\",\n  \"webhookSecret\": \"<string>\",\n  \"webhookUrl\": \"<string>\",\n  \"eventPayloadTypes\": [\n    \"CurrentLevel\",\n    \"PriceCurve\"\n  ],\n  \"operationTypes\": [\n    \"Update\",\n    \"Create\"\n  ]\n}",
+                                            "options": {
+                                                "raw": {
+                                                    "headerFamily": "json",
+                                                    "language": "json"
+                                                }
+                                            }
+                                        },
+                                        "url": {
+                                            "raw": "{{baseUrl}}/webhooks/:subscriptionId",
+                                            "host": ["{{baseUrl}}"],
+                                            "path": [
+                                                "webhooks",
+                                                ":subscriptionId"
+                                            ],
+                                            "variable": [
+                                                {
+                                                    "key": "subscriptionId"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "status": "Not Found",
+                                    "code": 404,
+                                    "_postman_previewlanguage": "text",
+                                    "header": [],
+                                    "cookie": [],
+                                    "body": ""
+                                }
+                            ]
+                        },
+                        {
+                            "name": "/webhooks/:subscriptionId",
+                            "request": {
+                                "method": "DELETE",
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/problem+json"
+                                    }
+                                ],
+                                "url": {
+                                    "raw": "{{baseUrl}}/webhooks/:subscriptionId",
+                                    "host": ["{{baseUrl}}"],
+                                    "path": ["webhooks", ":subscriptionId"],
+                                    "variable": [
+                                        {
+                                            "key": "subscriptionId",
+                                            "value": "<string>"
+                                        }
+                                    ]
+                                }
+                            },
+                            "response": [
+                                {
+                                    "name": "No Content",
+                                    "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                            {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                            }
+                                        ],
+                                        "url": {
+                                            "raw": "{{baseUrl}}/webhooks/:subscriptionId",
+                                            "host": ["{{baseUrl}}"],
+                                            "path": [
+                                                "webhooks",
+                                                ":subscriptionId"
+                                            ],
+                                            "variable": [
+                                                {
+                                                    "key": "subscriptionId"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "status": "No Content",
+                                    "code": 204,
+                                    "_postman_previewlanguage": "text",
+                                    "header": [],
+                                    "cookie": [],
+                                    "body": ""
+                                },
+                                {
+                                    "name": "Bad Request",
+                                    "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                            {
+                                                "key": "Accept",
+                                                "value": "application/problem+json"
+                                            },
+                                            {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                            }
+                                        ],
+                                        "url": {
+                                            "raw": "{{baseUrl}}/webhooks/:subscriptionId",
+                                            "host": ["{{baseUrl}}"],
+                                            "path": [
+                                                "webhooks",
+                                                ":subscriptionId"
+                                            ],
+                                            "variable": [
+                                                {
+                                                    "key": "subscriptionId"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "status": "Bad Request",
+                                    "code": 400,
+                                    "_postman_previewlanguage": "json",
+                                    "header": [
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/problem+json"
+                                        }
+                                    ],
+                                    "cookie": [],
+                                    "body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"errors\": {\n    \"sed_45\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "{webhookId}",
+                    "item": [
+                        {
+                            "name": "test",
+                            "item": [
+                                {
+                                    "name": "/webhooks/:webhookId/test",
+                                    "request": {
+                                        "method": "POST",
+                                        "header": [],
+                                        "url": {
+                                            "raw": "{{baseUrl}}/webhooks/:webhookId/test",
+                                            "host": ["{{baseUrl}}"],
+                                            "path": [
+                                                "webhooks",
+                                                ":webhookId",
+                                                "test"
+                                            ],
+                                            "variable": [
+                                                {
+                                                    "key": "webhookId"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "response": [
+                                        {
+                                            "name": "Success",
+                                            "originalRequest": {
+                                                "method": "POST",
+                                                "header": [
+                                                    {
+                                                        "description": "Added as a part of security scheme: bearer",
+                                                        "key": "Authorization",
+                                                        "value": "Bearer <token>"
+                                                    }
+                                                ],
+                                                "url": {
+                                                    "raw": "{{baseUrl}}/webhooks/:webhookId/test",
+                                                    "host": ["{{baseUrl}}"],
+                                                    "path": [
+                                                        "webhooks",
+                                                        ":webhookId",
+                                                        "test"
+                                                    ],
+                                                    "variable": [
+                                                        {
+                                                            "key": "webhookId"
+                                                        }
+                                                    ]
+                                                }
+                                            },
+                                            "status": "OK",
+                                            "code": 200,
+                                            "_postman_previewlanguage": "text",
+                                            "header": [],
+                                            "cookie": [],
+                                            "body": ""
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "/webhooks",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/webhooks",
+                            "host": ["{{baseUrl}}"],
+                            "path": ["webhooks"]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Success",
+                            "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                    }
+                                ],
+                                "url": {
+                                    "raw": "{{baseUrl}}/webhooks",
+                                    "host": ["{{baseUrl}}"],
+                                    "path": ["webhooks"]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "[\n  {\n    \"id\": \"<string>\",\n    \"webhookSecret\": \"<string>\",\n    \"webhookUrl\": \"<string>\",\n    \"eventPayloadTypes\": [\n      \"Unknown\",\n      \"Unknown\"\n    ],\n    \"operationTypes\": [\n      \"Update\",\n      \"Create\"\n    ]\n  },\n  {\n    \"id\": \"<string>\",\n    \"webhookSecret\": \"<string>\",\n    \"webhookUrl\": \"<string>\",\n    \"eventPayloadTypes\": [\n      \"PowerLevel\",\n      \"PriceCurve\"\n    ],\n    \"operationTypes\": [\n      \"Update\",\n      \"Update\"\n    ]\n  }\n]"
+                        }
+                    ]
+                },
+                {
+                    "name": "/webhooks",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"webhookSecret\": \"<string>\",\n  \"webhookUrl\": \"<string>\",\n  \"eventPayloadTypes\": [\n    \"CurrentLevel\",\n    \"PowerLevel\"\n  ],\n  \"operationTypes\": [\n    \"Update\",\n    \"Delete\"\n  ]\n}",
+                            "options": {
+                                "raw": {
+                                    "headerFamily": "json",
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/webhooks",
+                            "host": ["{{baseUrl}}"],
+                            "path": ["webhooks"]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Success",
+                            "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n  \"webhookSecret\": \"<string>\",\n  \"webhookUrl\": \"<string>\",\n  \"eventPayloadTypes\": [\n    \"CurrentLevel\",\n    \"PowerLevel\"\n  ],\n  \"operationTypes\": [\n    \"Update\",\n    \"Delete\"\n  ]\n}",
+                                    "options": {
+                                        "raw": {
+                                            "headerFamily": "json",
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{baseUrl}}/webhooks",
+                                    "host": ["{{baseUrl}}"],
+                                    "path": ["webhooks"]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n  \"id\": \"<string>\",\n  \"webhookSecret\": \"<string>\",\n  \"webhookUrl\": \"<string>\",\n  \"eventPayloadTypes\": [\n    \"CurrentLevel\",\n    \"PriceCurve\"\n  ],\n  \"operationTypes\": [\n    \"Update\",\n    \"Create\"\n  ]\n}"
+                        },
+                        {
+                            "name": "Bad Request",
+                            "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/problem+json"
+                                    },
+                                    {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n  \"webhookSecret\": \"<string>\",\n  \"webhookUrl\": \"<string>\",\n  \"eventPayloadTypes\": [\n    \"CurrentLevel\",\n    \"PowerLevel\"\n  ],\n  \"operationTypes\": [\n    \"Update\",\n    \"Delete\"\n  ]\n}",
+                                    "options": {
+                                        "raw": {
+                                            "headerFamily": "json",
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{baseUrl}}/webhooks",
+                                    "host": ["{{baseUrl}}"],
+                                    "path": ["webhooks"]
+                                }
+                            },
+                            "status": "Bad Request",
+                            "code": 400,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/problem+json"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\",\n  \"errors\": {\n    \"sed_45\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Quickstart Guide",
+            "item": [
+                {
+                    "name": "1. Create a User",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"userId\": \"{{$guid}}\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/users",
+                            "host": ["{{baseUrl}}"],
+                            "path": ["users"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "2. Create a Vehicle",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"vehicleId\": \"<string>\",\n    \"metadata\": {\n        \"resourceType\": \"Vehicle\",\n        \"brand\": \"Tesla\",\n        \"model\": \"Model 3\",\n        \"year\": 2022,\n        \"vin\": \"<string>\"\n    }\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/users/:userId/dynamic-resources",
+                            "host": ["{{baseUrl}}"],
+                            "path": ["users", ":userId", "dynamic-resources"],
+                            "variable": [
+                                {
+                                    "key": "userId",
+                                    "value": ""
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "3. Create a Meter",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"address\": {\n        \"street\": \"{{$randomStreetAddress}}\",\n        \"city\": \"{{$randomCity}}\",\n        \"zipCode\": \"{{$randomInt}}\"\n    },\n    \"location\": {\n        \"latitude\": {{$randomLatitude}},\n        \"longitude\": {{$randomLongitude}}\n    },\n    \"meterPointId\": \"string\",\n    \"meterNumber\": \"string\",\n    \"locationType\": \"Residential\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/users/:userId/meter",
+                            "host": ["{{baseUrl}}"],
+                            "path": ["users", ":userId", "meter"],
+                            "variable": [
+                                {
+                                    "key": "userId",
+                                    "value": ""
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "4. Create a Resource",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"resourceId\": \"<string>\",\n    \"metadata\": {\n        \"resourceType\": \"HotWaterTank\",\n        \"brand\": \"Oso\",\n        \"model\": \"SuperTank\",\n        \"capacity\": 500,\n        \"heatingElements\": [1750, 1250]\n    }\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/users/:userId/meter/:meterId/static-resources",
+                            "host": ["{{baseUrl}}"],
+                            "path": [
+                                "users",
+                                ":userId",
+                                "meter",
+                                ":meterId",
+                                "static-resources"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "userId",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "meterId",
+                                    "value": ""
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "5. Create a Webhook",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"url\": \"string\",\n    \"webhookSecret\": \"string\",\n    \"operations\": [\"Create\", \"Update\", \"Delete\"],\n    \"eventTypes\": [\"PriceDelta\"]\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/webhooks",
+                            "host": ["{{baseUrl}}"],
+                            "path": ["webhooks"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "6. Test the Webhook",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/webhooks/:webhookId/test",
+                            "host": ["{{baseUrl}}"],
+                            "path": ["webhooks", ":webhookId", "test"],
+                            "variable": [
+                                {
+                                    "key": "webhookId",
+                                    "value": ""
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "7. Send a Report",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"eventId\": \"string\",\n    \"name\": \"Vehicle Started Charging\",\n    \"payloads\": [\n        {\n            \"payloadType\": \"VehicleChargeAction\",\n            \"resourceId\": \"e0fb2731-dadb-41c5-80f2-5dfcbc22b2b5\",\n            \"location\": {\n                \"latitude\": 63.1,\n                \"longitude\": 10.7\n            },\n            \"actionType\": \"Start\",\n            \"power\": 11000,\n            \"stateOfCharge\": 0.5,\n            \"batteryCapacity\": 75000\n        }\n    ]\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/reports",
+                            "host": ["{{baseUrl}}"],
+                            "path": ["reports"]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "oauth2",
+        "oauth2": [
+            {
+                "key": "clientId",
+                "value": "{{ClientId}}",
+                "type": "string"
+            },
+            {
+                "key": "clientSecret",
+                "value": "{{ClientSecret}}",
+                "type": "string"
+            },
+            {
+                "key": "grant_type",
+                "value": "client_credentials",
+                "type": "string"
+            },
+            {
+                "key": "authUrl",
+                "value": "https://auth.identity.volue.com/",
+                "type": "string"
+            },
+            {
+                "key": "accessTokenUrl",
+                "value": "https://auth.identity.volue.com/connect/token",
+                "type": "string"
+            },
+            {
+                "key": "addTokenTo",
+                "value": "header",
+                "type": "string"
+            }
+        ]
+    },
+    "event": [
+        {
+            "listen": "prerequest",
+            "script": {
+                "type": "text/javascript",
+                "exec": [""]
+            }
+        },
+        {
+            "listen": "test",
+            "script": {
+                "type": "text/javascript",
+                "exec": [""]
+            }
+        }
+    ],
+    "variable": [
+        {
+            "key": "baseUrl",
+            "value": ""
+        },
+        {
+            "key": "ClientId",
+            "value": ""
+        },
+        {
+            "key": "ClientSecret",
+            "value": ""
+        }
+    ]
+}
