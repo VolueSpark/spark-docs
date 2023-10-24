@@ -74,13 +74,6 @@ The `Meter` object represents a specific power meter that your user owns. This i
 
 You can create meters via `POST /users/:userId/meters`, the payload should be information identifying a unique power meter:
 
-````json
-{
- ***TODO: Example payload***
-}```
-
-In response you will get a `meterId` that you can use to refer to the meter in subsequent requests.
-
 ```json
 {
     "address": {
@@ -96,7 +89,9 @@ In response you will get a `meterId` that you can use to refer to the meter in s
     "meterNumber": "string",
     "locationType": "Residential"
 }
-````
+```
+
+In response you will get a `meterId` that you can use to refer to the meter in subsequent requests.
 
 ## 4. Registering a Resource
 
