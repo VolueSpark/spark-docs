@@ -23,10 +23,7 @@ const sidebars = {
             type: 'category',
             label: 'Getting Started',
             collapsible: false,
-            items: [
-                { type: 'doc', id: 'getting-started/Requirements' },
-                { type: 'doc', id: 'getting-started/Authentication' },
-            ],
+            items: [{ type: 'doc', id: 'getting-started/Authentication' }],
         },
         {
             type: 'category',
@@ -42,8 +39,8 @@ const sidebars = {
             label: 'Energy Coordination',
             collapsible: false,
             items: [
-                { type: 'doc', id: 'energy-coordination/Quickstart' },
                 { type: 'doc', id: 'energy-coordination/Introduction' },
+                { type: 'doc', id: 'energy-coordination/Quickstart' },
                 { type: 'doc', id: 'energy-coordination/Events' },
                 { type: 'doc', id: 'energy-coordination/Reports' },
                 { type: 'doc', id: 'energy-coordination/Resources' },
