@@ -23,10 +23,7 @@ const sidebars = {
             type: 'category',
             label: 'Getting Started',
             collapsible: false,
-            items: [
-                { type: 'doc', id: 'getting-started/Requirements' },
-                { type: 'doc', id: 'getting-started/Authentication' },
-            ],
+            items: [{ type: 'doc', id: 'getting-started/Authentication' }],
         },
         {
             type: 'category',
