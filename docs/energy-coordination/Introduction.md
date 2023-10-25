@@ -12,10 +12,10 @@ Essentially, our API is about smart collaboration between various energy resourc
 
 ## How to get started
 
-- Become a partner by signing up to receive credentials on [Spark Studio](https://voluespark.com/)
-- Test the credentials by [authenticating](/getting-started/Authentication) with the API
-- Enroll your [resources](/Resources) into our API
-- Set up a [webhook](/Webhooks) to receive events
+-   Become a partner by signing up to receive credentials on [Spark Studio](https://voluespark.com/)
+-   Test the credentials by [authenticating](/getting-started/Authentication) with the API
+-   Enroll your [resources](/Resources) into our API
+-   Set up a [webhook](/Webhooks) to receive events
 
 ## How it works
 
@@ -27,10 +27,7 @@ Our events are based on neighbourhoods and what would benefit those locally. Whe
 
 ## Basic endpoint flows
 
-The API is built around the concept of resources, events and reports. The following diagram shows the basic flow of the API.
-
-**TODO: Insert better diagram here
-TODO: Explain the flow and intention of each step better, updated for Q3 with incentives and such.**
+The API is built around the concept of resources, events and reports.
 
 ### Registering a resource
 
@@ -43,3 +40,29 @@ Once you have registered your resource, you can start sending reports to the API
 ### Fetching events
 
 You fetch events from the API at any time. The events contain information about the state of the electricity grid and suggestions on how to act on the events. The API will send you events that are relevant to your resource. The API can also send you events when it thinks it's beneficial for you to act on them (see next section for more information).
+
+The following diagram shows the basic flow of the API.
+
+```mermaid
+sequenceDiagram
+	autonumber
+
+	box Partner
+	participant R as Resources
+    participant P as Partner
+    end
+
+	box Spark
+    participant S as Spark
+    participant F as Spark Forecasting
+    end
+
+	F-->>S: Excess production in neighbourhood
+    S->>P: Event detailing incentive
+	P->>S: Acknowledgement of event
+
+	P-->>R: Here are new prices
+	R-->>P: Here is how i acted
+
+	P->>S: Here's a report on how we acted
+```
