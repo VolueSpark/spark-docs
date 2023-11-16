@@ -47,69 +47,47 @@ You can create users via `POST /users`, the response is a `userId` that you can 
 
 ```json
 {
-    "userId": "string"
+  "userId": "3880a832-f483-4b6a-998d-6109d3a54b06"
 }
 ```
 
 ## 2. Registering a Vehicle
 
-The `Vehicle` object represents a specific electric vehicle that your user owns.
+Resources can either be registered to a fixed location, or be free standing resources that move around such as vehicles.
 
 You can create vehicles via `POST /users/:userId/vehicles`, the payload should be information identifying a unique vehicle:
 
 ```json
 {
-    "vehicleId": "<string>",
-    "metadata": {
-        "resourceType": "Vehicle",
-        "brand": "Tesla",
-        "model": "Model 3",
-        "year": 2022,
-        "vin": "<string>"
-    }
+  "resourceId": "4b146c67-9e59-4cfb-863c-8c175659e8ba",
+  "resourceType": "Vehicle"
 }
 ```
 
-## 3. Registering a Meter
+## 3. Registering a Location
 
-The `Meter` object represents a specific power meter that your user owns. This is the information we give to DSOs so they can correctly send out incentives to your users.
+The `Location` object represents a specific location that belongs to one of your users.
+This is the information we give to DSOs so they can correctly send out incentives to your users.
 
-You can create meters via `POST /users/:userId/meters`, the payload should be information identifying a unique power meter:
+You can create locations via `POST /users/:userId/locations`:
 
 ```json
 {
-    "address": {
-        "street": "string",
-        "city": "string",
-        "zipCode": "string"
-    },
-    "location": {
-        "latitude": 63.1,
-        "longitude": 10.7
-    },
-    "meterPointId": "string",
-    "meterNumber": "string",
-    "locationType": "Residential"
+  "locationId": "3fd2a74c-9a01-4c78-a924-60054faffa75",
+  "locationType": "Residential",
+  "meterPointId": "12345678901234567890123456789012",
 }
 ```
 
-In response you will get a `meterId` that you can use to refer to the meter in subsequent requests.
-
-## 4. Registering a Resource
+## 4. Registering a Location Bound Resource
 
 The `Resource` object represents a specific resource that your user owns.
 
-You can create resources via `POST /users/:userId/resources`, the payload should be information identifying a unique resource:
+You can create resources that are bound to a fixed specific location via `POST /users/:userId/locations/:locationId/resources`, the payload should be information identifying a unique resource:
 
 ```json
 {
-    "resourceId": "<string>",
-    "metadata": {
-        "resourceType": "HotWaterTank",
-        "brand": "Oso",
-        "model": "SuperTank",
-        "capacity": 500,
-        "heatingElements": [1750, 1250]
-    }
+  "resourceId": "23202835-7843-4a90-b6d9-235fdf0e5844",
+  "resourceType": "HotWaterTank"
 }
 ```
