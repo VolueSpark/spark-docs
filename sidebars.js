@@ -60,6 +60,7 @@ const sidebars = {
             id: 'usecase/Forecasting',
         },
     ],
+    supportSidebar: [{ type: 'doc', id: 'support/faq' }],
 }
 
 module.exports = sidebars
