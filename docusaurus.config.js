@@ -233,7 +233,7 @@ const config = {
                             },
                             {
                                 html: `
-                                <a href="pdf/spark-terms-and-conditions.pdf" target="_blank">
+                                <a href="https://www.voluespark.com/pdf/spark-terms-and-conditions.pdf" target="_blank">
                                 Terms and Conditions
                                 <img src="icons/external-link.svg" width="16" height="16" />
                                 </a>`,
