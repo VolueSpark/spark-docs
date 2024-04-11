@@ -1,0 +1,353 @@
+---
+title: Webhooks
+description: How to use Webhooks in the Energy Coordination API
+keywords: [api, documentation, webhooks]
+---
+
+# Energy Coordination API Webhooks
+
+Energy Coordination API utilizes webhooks to provide real-time event notifications, enabling seamless integration with your services. This document outlines how to securely set up and handle webhook events, including signature verification and error handling.
+
+## Adding Webhooks
+
+To configure webhooks with the Energy Coordination API, follow these steps to ensure your system is ready to receive real-time event notifications.
+
+**PS!** Preferably start by testing out in the sandbox environment, to ensure that everything is working as expected before moving to production. All partners are by default given access to the sandbox environment - but must be granted access to the production environment after testing is completed.
+
+The base URL for the sandbox environment is `https://api.sandbox.voluespark.com/energy-coordination/v1`. The endpoints can also be tested through the [Swagger UI](https://api.sandbox.voluespark.com/energy-coordination/v1/swagger/index.html).
+
+### Step 1: Authorization
+
+Ensure you have a valid API token with the necessary permissions. This token will be used in the `Authorization` header as a Bearer token for authenticating your requests. We use OAuth 2 for authentication. If don't have a client ID and secret, you can create those in the [Spark Portal](https://voluespark.com).
+
+### Step 2: Setting Up Your Endpoint And Resources
+
+Prepare an endpoint in your API to accept POST requests. This endpoint will be used to receive webhook event notifications from the Energy Coordination API. See our [implementation example here](#webhook-implementation-example) for inspiration on how to implement webhook endpoints.
+
+Our API will send event notifications to your endpoint when events occur, and if your endpoint returns a `200 OK` response, the event will be considered successfully delivered. If your endpoint returns any other status code, the event will be retried up to 3 times with an exponential backoff strategy. If the event is not successfully delivered after 3 retries, there are no further attempts to deliver the event. It can still be fetched via the `/events` endpoint.
+
+Ensure you have registered users, locations and resources in the Energy Coordination API. These resources are required to receive notifications for events related to these resources. Follow the [Quickstart](./Quickstart) guide to create these resources if you need test data. 
+
+**PS!** You can use the `/simulation/partner` endpoint to create random simulated data for users, locations and resources. But the better option for integration testing, is for you to export users, locations and resources which reflects data from your own system. This will also come in handy later when you start implementing energy usage reports.
+
+### Step 3: Registering Your Webhook
+
+To register your webhook, make a `POST` request to the `/webhooks` endpoint.
+
+#### Request Headers
+
+- `Content-Type`: application/json
+- `Accept`: application/json
+- `Authorization`: Bearer YOUR_API_TOKEN
+
+#### Request Body
+
+Provide the following details in the JSON body of your request:
+
+```json
+{
+  "name": "Name of your webhook",
+  "webhookSecret": "your webhook secret",
+  "webhookUrl": "https://yourdomain.com/api/",
+  "notificationTypes": [
+    "PriceCurveCreated",
+    "UserEligibilityUpdated"
+  ]
+}
+```
+
+Description of the parameters: 
+
+- webhookUrl: The endpoint URL where you want to receive webhook notifications.
+- notificationTypes: An array of event notification types you wish to subscribe to. It is up to you if you want to handle all events with one endpoint, or only specific ones with specific endpoints.
+- name: (Optional) A descriptive name for your webhook, used in UI and for debugging purposes.
+- webhookSecret: (Optional) A secret string for signature verification. This will be used by the Energy Coordination API to generate a HMAC SHA256 signature of the payload, providing an additional layer of security.
+
+#### Sample cURL Command
+
+```bash
+curl -X POST "{{baseUrl}}/webhooks" \
+     -H "Content-Type: application/json" \
+     -H "Accept: application/json" \
+     -H "Authorization: Bearer YOUR_API_TOKEN" \
+     -d '{
+           "name": "Handle PriceCurve created",
+           "webhookUrl": "https://yourdomain.com/api/"",
+           "notificationTypes": ["PriceCurveCreated"],
+           "webhookSecret": "exaglIXHM6IZue0",
+         }'
+```
+
+### Step 4: Confirmation and Testing
+
+After registering your webhook, you will receive a `201 Created` response with the webhook details. You can now test your webhook by simulating a `PriceCurveCreated` events by making a `POST` request to the `/simulation/events/priceCurve` endpoint.
+
+#### Request Headers
+
+- `Content-Type`: application/json
+- `Accept`: application/json
+- `Authorization`: Bearer YOUR_API_TOKEN
+
+#### Request Body
+
+If you want our API to pick random resources and locations, you can use an empty request body:
+
+```json
+{}
+```
+
+This will create a `PriceCurveCreated` event and send it to your webhook endpoint as well as making it available under the `/events` endpoint.
+
+If you want to specify the resources and locations, you can provide the following details in the JSON body of your request:
+
+```json
+{
+  "targets": [
+    {
+      "resourceId": "id of the resource you've created",
+      "locationId": "id of the location you've created which that resource belongs to"
+    }
+  ]
+}
+```
+
+You can also specify other parameters like `priceArea` and `priceCurveDelta` if you want to simulate specific values.
+
+Description of the parameters: 
+
+- targets: (Optional) An array of objects containing the `resourceId` and `locationId` of the resources and locations you want to simulate the event for. Picked at random from available resources and locations if not provided.
+- priceCurveDelta: (Optional) The price curve delta value for the event. A randomly generated values if not provided. 
+- priceArea: (Optional) The price area for the event. Also randomly generated values if not provided.
+
+#### Sample cURL Command
+
+```bash
+curl -X POST "{{baseUrl}}/simulation/events/priceCurve" \
+     -H "Content-Type: application/json" \
+     -H "Accept: application/json" \
+     -H "Authorization: Bearer YOUR_API_TOKEN" \
+     -d '{
+           "targets": [{ "resourceId": "6f81de1", "locationId": "9fbb535" } ]
+         }'
+```
+
+## Webhook Security
+
+### Verifying Webhook Signatures
+
+To ensure the integrity and origin of webhook events, each event is signed using a shared secret and delivered with a signature in the `X-Payload-Signature` header. The signature is a HMAC SHA256 hash of the request body, encoded in Base64.
+
+To verify the signature:
+
+1. Compute the HMAC SHA256 hash of the incoming payload using the shared secret as the key.
+2. Encode the hash in Base64.
+3. Compare your computed signature with the signature provided in the `X-Payload-Signature` header.
+
+## Implementing your webhook endpoint
+
+### Rules
+
+When implementing your webhook endpoint, consider the following rules:
+
+- **Always return a `200 OK` response**: This is important to acknowledge receipt of the event. If you need to perform long processing, save the event for later processing or enqueue it and return a `200 OK` response immediately.
+- **Handle retries**: If your endpoint returns a status code other than `200 OK`, the event will be retried up to 3 times with an exponential backoff strategy. If the event is not successfully delivered after 3 retries, there are no further attempts to deliver the event. It can still be fetched via the `/events` endpoint.
+- **Verify signature**: Preferably use the `webhookSecret` which you provided during webhook registration to verify the signature of the event. This will ensure the integrity and origin of the event coming from Spark so that you can trust the event.
+
+### Generate types from OpenAPI
+
+The API is available in the [Swagger UI](https://api.sandbox.voluespark.com/energy-coordination/v1/swagger/index.html) and as an [OpenAPI 3.0 file here](https://api.sandbox.voluespark.com/energy-coordination/v1/swagger/Partner/swagger.json).
+
+You can use tools like [OpenAPI Generator](https://openapi-generator.tech/) or [Swagger Codegen](https://swagger.io/tools/swagger-codegen/) to generate types (and API implementation in some cases) from your favorite language with . This will help you to work with the API in a strongly typed manner.
+
+For example to generate C# types from the OpenAPI file with `openapi-generator`, you can use the following command:
+
+```bash
+openapi-generator generate -i https://api.sandbox.voluespark.com/energy-coordination/v1/swagger/Partner/swagger.json -g csharp --skip-validate-spec
+```
+
+Or TypeScript
+
+```bash
+openapi-generator generate -i https://api.sandbox.voluespark.com/energy-coordination/v1/swagger/Partner/swagger.json -g typescript --skip-validate-spec
+```
+
+### C# Implementation Example {#webhook-implementation-example}
+
+A sample C# implementation of the webhook which includes an example on how to verify the signature is provided below:
+
+```csharp
+public class SparkWebhookEndpoint
+{
+    public static async Task<Results<Ok, UnauthorizedHttpResult>> Handle(
+        HttpContext context,
+        ILogger<SparkWebhookEndpoint> logger)
+    {
+        var req = context.Request;
+        using var ms = new MemoryStream();
+        await req.Body.CopyToAsync(ms);
+        var requestBody = ms.ToArray();
+
+        if (!VerifySignature(req, requestBody, "my-secret"))
+            return TypedResults.Unauthorized();
+
+        var sparkEventNotification = JsonSerializer.Deserialize<SparkEventNotification>(requestBody,
+            new JsonSerializerOptions
+                (JsonSerializerDefaults.Web) // web defaults to handle camelCase properties
+                {
+                    Converters =
+                    {
+                        new JsonStringEnumConverter(), // handle enums as strings
+                        new SparkEventPayloadConverter() // handle polymorphic payload
+                    }
+                });
+
+        // Do not perform long processing before returning a 200 OK response
+        // Instead, save the event for later processing or enqueue it
+        await SaveEventForLaterProcessingAsync(sparkEventNotification);
+
+        // Important to return a 200 OK response to acknowledge receipt of event
+        return TypedResults.Ok();
+    }
+
+    private static Task SaveEventForLaterProcessingAsync(SparkEventNotification sparkEventNotification)
+    {
+        // Save the event to a queue or database for later processing
+        // For example, you can save the event to a database for later processing
+        // using Entity Framework Core or Dapper
+        // or enqueue the event to a message broker like Azure Service Bus or RabbitMQ  
+        return Task.CompletedTask;
+    }
+
+    private static bool VerifySignature(HttpRequest req, byte[] requestBody, string secretKey)
+    {
+        // Retrieve the payload signature from the request headers
+        var providedSignature = req.Headers["x-payload-signature"].FirstOrDefault();
+
+        // Compute the expected payload signature
+        using var hmac = new HMACSHA256(Encoding.UTF8.GetBytes(secretKey));
+
+        var expectedSignatureBytes = hmac.ComputeHash(requestBody);
+        var expectedSignature = Convert.ToBase64String(expectedSignatureBytes);
+
+        // Compare the provided signature with the expected signature
+        return string.Equals(providedSignature, expectedSignature, StringComparison.OrdinalIgnoreCase);
+    }
+
+    internal record SparkEventNotification
+    {
+        public string NotificationId { get; set; }
+        public string EventId { get; set; }
+        public DateTimeOffset EventCreatedAtUtc { get; set; }
+        public DateTimeOffset NotificationSentUtc { get; set; }
+        public NotificationType NotificationType { get; set; }
+        public SparkEventPayload Payload { get; set; }
+    }
+
+    internal record SparkEventPayload
+    {
+        public SparkEventPayloadType? PayloadType { get; set; }
+    }
+
+    internal record UserEligibilityPayload : SparkEventPayload
+    {
+        public DateTime LastUpdated { get; set; }
+    }
+
+    internal record PriceCurvePayload : SparkEventPayload
+    {
+        public PriceArea? PriceArea { get; set; }
+        public List<PriceCurveTarget> Targets { get; set; }
+        public PriceCurve PriceCurveDelta { get; set; }
+    }
+
+    internal record PriceCurveTarget
+    {
+        public string ResourceId { get; set; }
+        public string LocationId { get; set; }
+    }
+
+    internal record PriceCurve
+    {
+        public EnergyUnit? EnergyUnit { get; set; }
+        public Currency? Currency { get; set; }
+        public List<PriceCurvePoint> Points { get; set; }
+        public TimeSpan Resolution { get; set; }
+    }
+
+    internal record PriceCurvePoint
+    {
+        public decimal Price { get; set; }
+        public DateTimeOffset Timestamp { get; set; }
+    }
+
+    internal enum Currency
+    {
+        NOK = 1,
+        EUR = 2,
+        SEK = 3,
+        DKK = 4
+    }
+
+    internal enum EnergyUnit
+    {
+        KWh = 1,
+        MWh = 2
+    }
+
+    internal enum PriceArea
+    {
+        NO1,
+        NO2,
+        NO3,
+        NO4,
+        NO5,
+        FI,
+        DK1,
+        DK2,
+        SE1,
+        SE2,
+        SE3,
+        SE4
+    }
+
+    internal enum NotificationType
+    {
+        PriceCurveCreated,
+        UserEligibilityUpdated
+    }
+
+    internal enum SparkEventPayloadType
+    {
+        UserEligibility,
+        PriceCurve
+    }
+
+    internal class SparkEventPayloadConverter : JsonConverter<SparkEventPayload>
+    {
+        public override SparkEventPayload? Read(ref Utf8JsonReader reader, Type typeToConvert,
+            JsonSerializerOptions options)
+        {
+            // Deserialize the JSON as a JObject.
+            var jo = JsonSerializer.Deserialize<JsonElement>(ref reader);
+
+            // Determine the specific derived type to use based on the "Type" property.
+            var typeProp = jo.GetProperty("payloadType");
+            SparkEventPayloadType? typeValue = Enum.Parse<SparkEventPayloadType>(typeProp.GetString() ?? string.Empty);
+
+            return typeValue switch
+            {
+                SparkEventPayloadType.UserEligibility =>
+                    JsonSerializer.Deserialize<UserEligibilityPayload>(jo.GetRawText(), options),
+                SparkEventPayloadType.PriceCurve =>
+                    JsonSerializer.Deserialize<PriceCurvePayload>(jo.GetRawText(), options),
+                _ => throw new JsonException($"Unknown payload type {typeProp}")
+            };
+        }
+
+        public override void Write(Utf8JsonWriter writer, SparkEventPayload value, JsonSerializerOptions options)
+        {
+            JsonSerializer.Serialize(writer, value, value.GetType(), options);
+        }
+    }
+}
+```
