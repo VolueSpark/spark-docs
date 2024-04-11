@@ -95,9 +95,11 @@ curl -X POST "{{baseUrl}}/webhooks" \
          }'
 ```
 
-### Step 4: Confirmation and Testing
+After registering your webhook, you will receive a `201 Created` response with the webhook details.
 
-After registering your webhook, you will receive a `201 Created` response with the webhook details. You can now test your webhook by simulating a `PriceCurveCreated` events by making a `POST` request to the `/simulation/events/priceCurve` endpoint.
+### Step 4: Testing PriceCurveCreated Events
+
+ You can now test your webhook by simulating a `PriceCurveCreated` events by making a `POST` request to the `/simulation/events/priceCurve` endpoint. This will create the event and send it to your webhook endpoint as well as making it available under the `/events` endpoint.
 
 #### Request Headers
 
@@ -147,6 +149,45 @@ curl -X POST "{{baseUrl}}/simulation/events/priceCurve" \
            "targets": [{ "resourceId": "6f81de1", "locationId": "9fbb535" } ]
          }'
 ```
+
+### Step 5: Testing UserEligibilityUpdated Events
+
+You can also test your webhook by simulating a `UserEligibilityUpdated` event by making a `POST` request to the `/simulation/events/userEligibility` endpoint. This will create the event and send it to your webhook endpoint as well as making it available under the `/events` endpoint. There is no request body for this call.
+
+#### Request Headers
+
+- `Authorization`: Bearer YOUR_API_TOKEN
+
+#### Sample cURL Command
+
+```bash
+curl -X POST "{{baseUrl}}/simulation/events/userEligibility" \
+     -H "Authorization: Bearer YOUR_API_TOKEN"
+```
+
+#### Testing actual eligibility changes
+
+**Important!** Calling the `/simulation/events/userEligibility` endpoint does not affect the eligibility of any users. It is only used to simulate the event and will give you a notification that the user eligibility has been updated with the `LastUpdated` timestamp set to the current time.
+
+To actually have the user eligibility updated, you need create or update a location as being inside an eligible Neighbourhood. This can be done by either:
+
+- Have a MeterPointId (Mpid) set on a location which corresponds to a specific Mpid which our analysis has shown exists in an eligible Neighbourhood.
+- Or, has Coordinates set on it which lands within that specific Neighbourhoods polygon/boundary box
+
+The easiest way is to set the following coordinates on a location, which lands inside on fo the test Neighbourhoods:
+
+```json
+{
+  "coordinates": {
+    "latitude": 60.52485052347296,
+    "longitude": 5.060012082871939
+  }
+}
+```
+
+This should (after a bit of processing time) make the user which owns the location eligible, and you should receive a `UserEligibilityUpdate` event. 
+
+**Important!** This event will only have a `LastUpdated` timestamp, and will not contain information on which users became eligible. To check which of your users are eligible, you can call the `users/eligible` endpoint to get a list of eligible users. In the future we will also include information in the event about which users had their eligibility changed.
 
 ## Webhook Security
 
