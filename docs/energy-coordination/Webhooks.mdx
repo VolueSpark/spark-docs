@@ -8,27 +8,44 @@ keywords: [api, documentation, webhooks]
 
 Energy Coordination API utilizes webhooks to provide real-time event notifications, enabling seamless integration with your services. This document outlines how to securely set up and handle webhook events, including signature verification and error handling.
 
+## How Webhooks Work
+
+Webhooks are a way for your systems to stay synchronized with the Spark system with regards to events. When an event occurs in the Energy Coordination API, we will send an HTTP POST request to the webhook URL you have provided. The request will contain a JSON payload with information about the event that occurred.
+
+These same events will be fetchable via the `/events` endpoint, but in general we do not recommend to poll this endpoint for events, as it is more efficient for all parties to use webhooks for real-time notifications.
+
+## Event Types
+
+The Energy Coordination API provides the following event types:
+- `PriceCurveCreated`: Sent when a new price curve is created.
+- `UserEligibilityUpdated`: Sent when the eligibility of your users is updated.
+
+More will be forthcoming as the API evolves.
+
 ## Adding Webhooks
 
 To configure webhooks with the Energy Coordination API, follow these steps to ensure your system is ready to receive real-time event notifications.
 
-**PS!** Preferably start by testing out in the sandbox environment, to ensure that everything is working as expected before moving to production. All partners are by default given access to the sandbox environment - but must be granted access to the production environment after testing is completed.
+**Important!** Preferably start by testing out in the sandbox environment, to ensure that everything is working as expected before moving to production. All partners are by default given access to the sandbox environment - but must be granted access to the production environment after testing is completed.
 
 The base URL for the sandbox environment is `https://api.sandbox.voluespark.com/energy-coordination/v1`. The endpoints can also be tested through the [Swagger UI](https://api.sandbox.voluespark.com/energy-coordination/v1/swagger/index.html).
 
-### Step 1: Authorization
+### Step 1: Setting Up Your Endpoint And Resources
 
-Ensure you have a valid API token with the necessary permissions. This token will be used in the `Authorization` header as a Bearer token for authenticating your requests. We use OAuth 2 for authentication. If don't have a client ID and secret, you can create those in the [Spark Portal](https://voluespark.com).
+Prepare an endpoint in your API to accept POST requests. This endpoint will be used to receive webhook event notifications from the Energy Coordination API. 
 
-### Step 2: Setting Up Your Endpoint And Resources
-
-Prepare an endpoint in your API to accept POST requests. This endpoint will be used to receive webhook event notifications from the Energy Coordination API. See our [implementation example here](#webhook-implementation-example) for inspiration on how to implement webhook endpoints.
+- Review the [rules for implementing your webhook endpoint](#webhook-implementation-rules) to ensure that your endpoint is correctly implemented.
+- See our [implementation example here](#webhook-implementation-example) for inspiration on how to implement webhook endpoints.
 
 Our API will send event notifications to your endpoint when events occur, and if your endpoint returns a `200 OK` response, the event will be considered successfully delivered. If your endpoint returns any other status code, the event will be retried up to 3 times with an exponential backoff strategy. If the event is not successfully delivered after 3 retries, there are no further attempts to deliver the event. It can still be fetched via the `/events` endpoint.
 
 Ensure you have registered users, locations and resources in the Energy Coordination API. These resources are required to receive notifications for events related to these resources. Follow the [Quickstart](./Quickstart) guide to create these resources if you need test data. 
 
-**PS!** You can use the `/simulation/partner` endpoint to create random simulated data for users, locations and resources. But the better option for integration testing, is for you to export users, locations and resources which reflects data from your own system. This will also come in handy later when you start implementing energy usage reports.
+**Important!** You can use the `/simulation/partner` endpoint to create random simulated data for users, locations and resources. But the better option for integration testing, is for you to export users, locations and resources which reflects data from your own system. This will also come in handy later when you start implementing energy usage reports.
+
+### Step 2: Authorization
+
+To register your webhook endpoint subscription, ensure you have a valid API token with the necessary permissions. This token will be used in the `Authorization` header as a JWT Bearer token for authenticating your requests. If don't have a client ID and secret, you can create those in [Spark Studio](https://voluespark.com).
 
 ### Step 3: Registering Your Webhook
 
@@ -145,12 +162,13 @@ To verify the signature:
 
 ## Implementing your webhook endpoint
 
-### Rules
+### Rules {#webhook-implementation-rules}
 
-When implementing your webhook endpoint, consider the following rules:
+When implementing your webhook endpoint, please follow these rules:
 
-- **Always return a `200 OK` response**: This is important to acknowledge receipt of the event. If you need to perform long processing, save the event for later processing or enqueue it and return a `200 OK` response immediately.
-- **Handle retries**: If your endpoint returns a status code other than `200 OK`, the event will be retried up to 3 times with an exponential backoff strategy. If the event is not successfully delivered after 3 retries, there are no further attempts to deliver the event. It can still be fetched via the `/events` endpoint.
+- **Do not perform long processing before returning a `200 OK` response**: Instead, save the event for later processing or enqueue it on a message bus, and return `200 OK` immediately. This is important in order to not congest Spark webhook endpoint calls. This also ensures you avoid timeouts by quickly acknowledging receipt of the event and ensure that the event is not retried.
+- **Always return a `200 OK` response**: This is important to acknowledge receipt of the event.
+- **Handle retries**: If your endpoint returns a status code other than `200 OK`, the event will be retried up to 3 times with an exponential backoff strategy. If the event is not successfully delivered after 3 retries, there are no further attempts to deliver the event. It can still be fetched via the `/events` endpoint. Make sure you handle duplicate events in your system to avoid processing the same event multiple times.
 - **Verify signature**: Preferably use the `webhookSecret` which you provided during webhook registration to verify the signature of the event. This will ensure the integrity and origin of the event coming from Spark so that you can trust the event.
 
 ### Generate types from OpenAPI
