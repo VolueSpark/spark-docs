@@ -143,14 +143,42 @@ To verify the signature:
 2. Encode the hash in Base64.
 3. Compare your computed signature with the signature provided in the `X-Payload-Signature` header.
 
-## Webhook Implementation Example {#webhook-implementation-example}
+## Implementing your webhook endpoint
+
+### Rules
+
+When implementing your webhook endpoint, consider the following rules:
+
+- **Always return a `200 OK` response**: This is important to acknowledge receipt of the event. If you need to perform long processing, save the event for later processing or enqueue it and return a `200 OK` response immediately.
+- **Handle retries**: If your endpoint returns a status code other than `200 OK`, the event will be retried up to 3 times with an exponential backoff strategy. If the event is not successfully delivered after 3 retries, there are no further attempts to deliver the event. It can still be fetched via the `/events` endpoint.
+- **Verify signature**: Preferably use the `webhookSecret` which you provided during webhook registration to verify the signature of the event. This will ensure the integrity and origin of the event coming from Spark so that you can trust the event.
+
+### Generate types from OpenAPI
+
+The API is available in the [Swagger UI](https://api.sandbox.voluespark.com/energy-coordination/v1/swagger/index.html) and as an [OpenAPI 3.0 file here](https://api.sandbox.voluespark.com/energy-coordination/v1/swagger/Partner/swagger.json).
+
+You can use tools like [OpenAPI Generator](https://openapi-generator.tech/) or [Swagger Codegen](https://swagger.io/tools/swagger-codegen/) to generate types (and API implementation in some cases) from your favorite language with . This will help you to work with the API in a strongly typed manner.
+
+For example to generate C# types from the OpenAPI file with `openapi-generator`, you can use the following command:
+
+```bash
+openapi-generator generate -i https://api.sandbox.voluespark.com/energy-coordination/v1/swagger/Partner/swagger.json -g csharp --skip-validate-spec
+```
+
+Or TypeScript
+
+```bash
+openapi-generator generate -i https://api.sandbox.voluespark.com/energy-coordination/v1/swagger/Partner/swagger.json -g typescript --skip-validate-spec
+```
+
+### C# Implementation Example {#webhook-implementation-example}
 
 A sample C# implementation of the webhook which includes an example on how to verify the signature is provided below:
 
 ```csharp
 public class SparkWebhookEndpoint
 {
-     public static async Task<Results<Ok, UnauthorizedHttpResult>> Handle(
+    public static async Task<Results<Ok, UnauthorizedHttpResult>> Handle(
         HttpContext context,
         ILogger<SparkWebhookEndpoint> logger)
     {
@@ -162,12 +190,32 @@ public class SparkWebhookEndpoint
         if (!VerifySignature(req, requestBody, "my-secret"))
             return TypedResults.Unauthorized();
 
+        var sparkEventNotification = JsonSerializer.Deserialize<SparkEventNotification>(requestBody,
+            new JsonSerializerOptions
+                (JsonSerializerDefaults.Web) // web defaults to handle camelCase properties
+                {
+                    Converters =
+                    {
+                        new JsonStringEnumConverter(), // handle enums as strings
+                        new SparkEventPayloadConverter() // handle polymorphic payload
+                    }
+                });
+
         // Do not perform long processing before returning a 200 OK response
-        // Instead, save the event for later processing or enqueue it for background processing
-        await SaveEventForLaterProcessingAsync(requestBody);
+        // Instead, save the event for later processing or enqueue it
+        await SaveEventForLaterProcessingAsync(sparkEventNotification);
 
         // Important to return a 200 OK response to acknowledge receipt of event
         return TypedResults.Ok();
+    }
+
+    private static Task SaveEventForLaterProcessingAsync(SparkEventNotification sparkEventNotification)
+    {
+        // Save the event to a queue or database for later processing
+        // For example, you can save the event to a database for later processing
+        // using Entity Framework Core or Dapper
+        // or enqueue the event to a message broker like Azure Service Bus or RabbitMQ  
+        return Task.CompletedTask;
     }
 
     private static bool VerifySignature(HttpRequest req, byte[] requestBody, string secretKey)
@@ -176,13 +224,130 @@ public class SparkWebhookEndpoint
         var providedSignature = req.Headers["x-payload-signature"].FirstOrDefault();
 
         // Compute the expected payload signature
-        using (var hmac = new HMACSHA256(Encoding.UTF8.GetBytes(secretKey)))
-        {
-            var expectedSignatureBytes = hmac.ComputeHash(requestBody);
-            var expectedSignature = Convert.ToBase64String(expectedSignatureBytes);
+        using var hmac = new HMACSHA256(Encoding.UTF8.GetBytes(secretKey));
 
-            // Compare the provided signature with the expected signature
-            return string.Equals(providedSignature, expectedSignature, StringComparison.OrdinalIgnoreCase);
+        var expectedSignatureBytes = hmac.ComputeHash(requestBody);
+        var expectedSignature = Convert.ToBase64String(expectedSignatureBytes);
+
+        // Compare the provided signature with the expected signature
+        return string.Equals(providedSignature, expectedSignature, StringComparison.OrdinalIgnoreCase);
+    }
+
+    internal record SparkEventNotification
+    {
+        public string NotificationId { get; set; }
+        public string EventId { get; set; }
+        public DateTimeOffset EventCreatedAtUtc { get; set; }
+        public DateTimeOffset NotificationSentUtc { get; set; }
+        public NotificationType NotificationType { get; set; }
+        public SparkEventPayload Payload { get; set; }
+    }
+
+    internal record SparkEventPayload
+    {
+        public SparkEventPayloadType? PayloadType { get; set; }
+    }
+
+    internal record UserEligibilityPayload : SparkEventPayload
+    {
+        public DateTime LastUpdated { get; set; }
+    }
+
+    internal record PriceCurvePayload : SparkEventPayload
+    {
+        public PriceArea? PriceArea { get; set; }
+        public List<PriceCurveTarget> Targets { get; set; }
+        public PriceCurve PriceCurveDelta { get; set; }
+    }
+
+    internal record PriceCurveTarget
+    {
+        public string ResourceId { get; set; }
+        public string LocationId { get; set; }
+    }
+
+    internal record PriceCurve
+    {
+        public EnergyUnit? EnergyUnit { get; set; }
+        public Currency? Currency { get; set; }
+        public List<PriceCurvePoint> Points { get; set; }
+        public TimeSpan Resolution { get; set; }
+    }
+
+    internal record PriceCurvePoint
+    {
+        public decimal Price { get; set; }
+        public DateTimeOffset Timestamp { get; set; }
+    }
+
+    internal enum Currency
+    {
+        NOK = 1,
+        EUR = 2,
+        SEK = 3,
+        DKK = 4
+    }
+
+    internal enum EnergyUnit
+    {
+        KWh = 1,
+        MWh = 2
+    }
+
+    internal enum PriceArea
+    {
+        NO1,
+        NO2,
+        NO3,
+        NO4,
+        NO5,
+        FI,
+        DK1,
+        DK2,
+        SE1,
+        SE2,
+        SE3,
+        SE4
+    }
+
+    internal enum NotificationType
+    {
+        PriceCurveCreated,
+        UserEligibilityUpdated
+    }
+
+    internal enum SparkEventPayloadType
+    {
+        UserEligibility,
+        PriceCurve
+    }
+
+    internal class SparkEventPayloadConverter : JsonConverter<SparkEventPayload>
+    {
+        public override SparkEventPayload? Read(ref Utf8JsonReader reader, Type typeToConvert,
+            JsonSerializerOptions options)
+        {
+            // Deserialize the JSON as a JObject.
+            var jo = JsonSerializer.Deserialize<JsonElement>(ref reader);
+
+            // Determine the specific derived type to use based on the "Type" property.
+            var typeProp = jo.GetProperty("payloadType");
+            SparkEventPayloadType? typeValue = Enum.Parse<SparkEventPayloadType>(typeProp.GetString() ?? string.Empty);
+
+            return typeValue switch
+            {
+                SparkEventPayloadType.UserEligibility =>
+                    JsonSerializer.Deserialize<UserEligibilityPayload>(jo.GetRawText(), options),
+                SparkEventPayloadType.PriceCurve =>
+                    JsonSerializer.Deserialize<PriceCurvePayload>(jo.GetRawText(), options),
+                _ => throw new JsonException($"Unknown payload type {typeProp}")
+            };
+        }
+
+        public override void Write(Utf8JsonWriter writer, SparkEventPayload value, JsonSerializerOptions options)
+        {
+            JsonSerializer.Serialize(writer, value, value.GetType(), options);
         }
     }
+}
 ```
